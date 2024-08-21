@@ -7,12 +7,26 @@
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
+<!-- Contenedor del modal -->
+<div id="modal" class="modal">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+      <img id="modalImg" class="modal-image">
+      <div id="modalDetails" class="modal-details">
+          <h2 id="modalName"></h2>
+          <p id="modalSoldCount"></p>
+          <p id="modalDescription"></p>
+          <p id="modalPrice"></p>
+      </div>
+  </div>
+</div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -38,7 +52,6 @@
   </nav>
   <main class="pb-5 container">
     <section class="container" id="MostrarProductos">
-
       
     </section>
   </main>
