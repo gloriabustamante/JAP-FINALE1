@@ -5,8 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+    rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <style>
@@ -16,20 +20,33 @@
   </style>
 </head>
 
-<body>
+<body class="loginBody">
   <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
+    <section class="container">
+      <img src="/img/cover_back_login.png" alt="colorful background image" class="backImage">
+      <form action="index.html" class="form">
+        <h2>Ingresar</h2>
+        <div class="inputContainer">
+          <input type="text" class="input" id="usernameLogin" placeholder="">
+          <label for="usernameLogin" class="label">Ingresa tu usuario:</label>
+        </div>
+        <div class="inputContainer">
+          <input type="text" class="input" id="passwordLogin" placeholder="">
+          <label for="passwordLogin" class="label">Ingresa tu contraseña:</label>
+          <!-- <p class="labelError">Este campo es obligatorio</p> para error hay quemodificar el dom-->
+        </div>
+        <button class="button" id="buttonLogin">BUTTON</button>
+        <!--(button class="buttonDisabled" disabled) & (input class"inputError") para error hay quemodificar el dom-->
+      </form>
+    </section>
   </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <script src="js/login.js"></script>

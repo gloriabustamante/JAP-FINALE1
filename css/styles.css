@@ -189,19 +189,66 @@ a.custom-card:hover {
   color: orange;
 }
 
+.loginBody {
+  background-color: #F8F9FA;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  padding: 3em;
+  background-color: #FCEBD1;
+  border: .09em solid #F09100;
+  border-radius: 1.5em;
+}
+
+.form > h2 {
+  text-align: center;
+}
+
+.form > button {
+  align-self: flex-end;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 40%;
   box-sizing: border-box;
+  margin: 1em 0;
+
+}
+
+.label {
+  height: fit-content;
+  width: max-content;
+  position: absolute;
+  padding: 0 .5em;
+  top: .8em;
+  left: .5em;
+  bottom: 10em;
+  transition: all 0.3s ease-in-out;
+}
+
+.labelError,
+input:invalid~.label {
+  color: #FF2B2B;
 }
 
 .input,
 .button {
   padding: .3em;
   width: 100%;
-  height: 100%;
+  height: 3em;
   background: transparent;
   outline: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px .1em .3em;
@@ -213,21 +260,6 @@ a.custom-card:hover {
 .inputError {
   border: .1em solid #FF2B2B;
   box-shadow: rgba(243, 2, 2, 0.24) 0px .1em .3em;
-}
-
-.label {
-  height: fit-content;
-  position: absolute;
-  padding: 0 .5em;
-  top: .5em;
-  left: .5em;
-  bottom: 10em;
-  transition: all 0.3s ease-in-out;
-}
-
-.labelError,
-input:invalid~.label {
-  color: #FF2B2B;
 }
 
 .inputContainer>.input:focus~.label,
@@ -246,8 +278,7 @@ input:invalid~.label {
   transition: all 200ms ease-in-out;
 }
 
-.button:hover,
-.button:not(:disabled) {
+.button:hover {
   background-color: #3B82F6;
 }
 
@@ -267,4 +298,8 @@ input:invalid~.label {
   padding: .3em 1.5em;
   border-radius: .5em;
   border-color: #9CA3AF;
+}
+
+.backImage {
+  width: 80%;
 }
