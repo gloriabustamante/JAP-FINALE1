@@ -207,10 +207,10 @@ a.custom-card:hover {
 }
 
 .ArticuloProductos {
-  width: 580px;
-  height: 515px;
+  width: 100px auto;
+  height: 100px auto;
   box-shadow: 3px 3px 3px 3px #f3d2a2;
-  margin: 50px;
+  margin: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 30px;
@@ -219,23 +219,23 @@ a.custom-card:hover {
 }
 
 .m-5{
-  width: 390px;
+  width: 290px;
   border-radius: 20px;
   justify-content: center;
 }
 
 .text-center {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-  font-size: 40px;
+  font-size: 30px;
   color: #4F4F4F;
 }
 
 #MostrarProductos {
   justify-items: center;
-  margin-left: 30px;
+  margin-left: 100px auto;
   margin-right: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 p {
