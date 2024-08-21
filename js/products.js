@@ -23,14 +23,12 @@ function MostrarProductos(productos){
     for(let p of productos){
         cadena += `
         <article class="ArticuloProductos">
-            <figure>
                 <img src="${p.image}" class="m-5">
-            </figure>
             <div class="divProductos">
                 <h2 class="text-center">${p.name}</h2>
                 <p><strong>Descripcion de producto:</strong> ${p.description}</p>
-                <p><strong>Precio del producto:</strong>${p.currency}${p.cost}</p>
                 <p><strong>Cantidad vendidos:</strong>${p.soldCount}</p>
+                <p><strong>Precio del producto:</strong>${p.currency}${p.cost}</p>
             </div>
         </article>`
         contadorProductos++;
