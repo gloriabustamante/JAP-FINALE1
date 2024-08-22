@@ -189,6 +189,154 @@ a.custom-card:hover {
   color: orange;
 }
 
+.col-md-4 div {
+  border-radius: 17.67px;
+}
+
+.m-3 {
+  font-family: title Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 30px;
+  letter-spacing: 2px;
+  margin: 20px;
+}
+
+.card-text{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 30px;
+}
+
+.ArticuloProductos {
+  width: 100px auto;
+  height: 100px auto;
+  box-shadow: 3px 3px 3px 3px #f3d2a2;
+  margin: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-color: rgb(243, 243, 243);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.ArticuloProductos:hover {
+  background-color: #f6dfbd;
+}
+
+.m-5{
+  width: 290px;
+  border-radius: 20px;
+  justify-content: center;
+}
+
+.text-center {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+  font-size: 30px;
+  color: #4F4F4F;
+}
+
+#MostrarProductos {
+  justify-items: center;
+  margin-left: 100px auto;
+  margin-right: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+p {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 2px;
+}
+
+.p4 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  color: #4F4F4F;
+}
+
+.p5 {
+  text-align: end;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  letter-spacing: 3px;
+  font-size: 25px;
+  color: #4F4F4F;
+  margin-top: 10px;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.8); 
+}
+
+.modal-content {
+  margin: 5% auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%; 
+  max-width: 800px; 
+  position: relative; 
+}
+
+.modal-image {
+  width: 100%; 
+  height: auto; 
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-details {
+  padding: 10px;
+}
+
+#modalName {
+  margin-top: 0;
+  margin-left: 20px;
+  font-size: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#modalDescription {
+  font-size: 20px;
+  font-family: inconsolate;
+}
+
+#modalSoldCount{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#modalPrice {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: end;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #000;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #666;
+}
+
+
 .loginBody {
   background-color: #F8F9FA;
 }

@@ -23,14 +23,12 @@ function MostrarProductos(productos){
     for(let p of productos){
         cadena += `
         <article class="ArticuloProductos">
-            <figure>
                 <img src="${p.image}" class="m-5">
-            </figure>
             <div class="divProductos">
                 <h2 class="text-center">${p.name}</h2>
-                <p><strong>Descripcion de producto:</strong> ${p.description}</p>
-                <p><strong>Precio del producto:</strong>${p.currency}${p.cost}</p>
-                <p><strong>Cantidad vendidos:</strong>${p.soldCount}</p>
+                <p class=p4><strong></strong>${p.soldCount} VENDIDOS</p>
+                <p><strong>Descripcion:</strong> ${p.description}</p>
+                <p class=p5><strong></strong>${p.currency}${p.cost}</p>
             </div>
         </article>`
         contadorProductos++;
@@ -41,4 +39,50 @@ function MostrarProductos(productos){
     }
 
     document.querySelector("#MostrarProductos").innerHTML = cadena;
+}
+
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalName = document.getElementById("modalName");
+const modalDescription = document.getElementById("modalDescription");
+const modalSoldCount = document.getElementById("modalSoldCount");
+const modalPrice = document.getElementById("modalPrice");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+// Función para abrir el modal con todos los detalles del producto
+function openModal(imgSrc, name, description, soldCount, price) {
+    modal.style.display = "block";
+    modalImg.src = imgSrc;
+    modalName.innerHTML = name;
+    modalDescription.innerHTML = description;
+    modalSoldCount.innerHTML = `${soldCount} VENDIDOS`;
+    modalPrice.innerHTML = ` ${price}`;
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+function MostrarProductos(productos) {
+    const cadena = productos.map(p => `
+        <article class="ArticuloProductos">
+            <img src="${p.image}" class="m-5" alt="${p.name}" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+            <div class="divProductos">
+                <h2 class="text-center">${p.name}</h2>
+                <p class="p4">${p.soldCount} VENDIDOS</p>
+                <p><strong>Descripción:</strong> ${p.description}</p>
+                <p class="p5">${p.currency}${p.cost}</p>
+            </div>
+        </article>
+    `).join('');
+
+    document.querySelector("#MostrarProductos").innerHTML = cadena;
+
+    closeBtn.onclick = closeModal;
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
 }
