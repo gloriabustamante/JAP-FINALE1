@@ -2,8 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
-  
+  font-family: 'Inconsolata', serif !important;
 }
 
 .jumbotron .display-4 {
@@ -335,4 +334,119 @@ p {
 .close:hover,
 .close:focus {
   color: #666;
+}
+
+
+.loginBody {
+  background-color: #F8F9FA;
+}
+
+.loginContainer {
+  display: flex;
+  width: 100%;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  padding: 3em;
+  background-color: #FCEBD1;
+  border: .09em solid #F09100;
+  border-radius: 1.5em;
+}
+
+.form > h2 {
+  text-align: center;
+}
+
+.form > button {
+  align-self: flex-end;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  margin: 1em 0;
+
+}
+
+.label {
+  height: fit-content;
+  width: max-content;
+  position: absolute;
+  padding: 0 .5em;
+  top: .8em;
+  left: .5em;
+  bottom: 10em;
+  transition: all 0.3s ease-in-out;
+}
+
+.labelError,
+input:invalid~.label {
+  color: #FF2B2B;
+}
+
+.input,
+.button {
+  padding: .3em;
+  width: 100%;
+  height: 3em;
+  background: transparent;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px .1em .3em;
+  border: .1em solid black;
+  font-size: 1rem;
+  pointer-events: all;
+}
+
+.inputError {
+  border: .1em solid #FF2B2B;
+  box-shadow: rgba(243, 2, 2, 0.24) 0px .1em .3em;
+}
+
+.inputContainer>.input:focus~.label,
+.inputContainer>.input:active~.label,
+.inputContainer>.input:not(:placeholder-shown)~.label {
+  background-color: #FCEBD1;
+  top: -.7em;
+  font-weight: 600;
+}
+
+.button {
+  width: fit-content;
+  padding: .3em 1.5em;
+  border-radius: .5em;
+  background-color: white;
+  transition: all 200ms ease-in-out;
+}
+
+.button:hover {
+  background-color: #3B82F6;
+}
+
+.button:active {
+  background-color: #1D4ED8;
+  border-color: #FFDD86;
+  color: #FFDD86;
+}
+
+.button:focus {
+  background-color: #5771BC;
+  border-color: #FFCE51;
+}
+
+.buttonDisabled {
+  width: fit-content;
+  padding: .3em 1.5em;
+  border-radius: .5em;
+  border-color: #9CA3AF;
+}
+
+.backImage {
+  width: 80%;
 }
