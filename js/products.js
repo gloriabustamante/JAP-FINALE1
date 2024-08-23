@@ -60,7 +60,7 @@ function MostrarProductosEnFormato(productos) {
                             <p class="m-0"><strong>${p.soldCount} VENDIDOS</strong></p>
                         </div>
                         <div class="col-6 m-0">
-                            <p class="">${p.description}</p>
+                            <p>${p.description}</p>
                         </div>
                         <div class="col-2 text-end">
                             <h5 class="text-muted">${p.currency}${p.cost}</h5>
