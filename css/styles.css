@@ -189,6 +189,8 @@ a.custom-card:hover {
   color: orange;
 }
 
+/***************************************PRODUCTS***************************************/
+
 .col-md-4 div {
   border-radius: 17.67px;
 }
@@ -266,6 +268,39 @@ p {
   margin-top: 10px;
 }
 
+/*Estilo Productos en Linea*/
+
+#bodyProductos{
+  background-color: #fff5e8;
+}
+
+#btnsPrefenciaProductos button{
+  border: none;
+  background-color: #fff5e8;
+}
+
+.sectionProductosLineal, .articuloProductosLineal{
+  box-shadow: 3px 3px 3px 3px #f3d2a2;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.563);
+}
+
+.sectionProductosLineal:hover {
+  background-color: #ffdeac;
+}
+
+.articuloProductosLineal{
+  padding: 10px 5px;
+}
+
+.imgProductosLineal{
+  margin-top: 1rem;
+  border-radius: 20px;
+}
+
+/*Model Productos*/
+
 .modal {
   display: none; 
   position: fixed; 
@@ -336,6 +371,7 @@ p {
   color: #666;
 }
 
+/***************************************LOGIN***************************************/
 
 .loginBody {
   background-color: #F8F9FA;
@@ -445,7 +481,19 @@ input:invalid~.label {
   padding: .3em 1.5em;
   border-radius: .5em;
   border-color: #9CA3AF;
+  background-color: #E5E7EB; 
+  color: #9CA3AF;
+  cursor: not-allowed; 
 }
+
+.buttonDisabled:hover,
+.buttonDisabled:active,
+.buttonDisabled:focus {
+  background-color: #E5E7EB; 
+  border-color: #9CA3AF;
+  color: #9CA3AF;
+}
+
 
 .backImage {
   width: 80%;
