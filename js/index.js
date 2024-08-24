@@ -13,19 +13,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-function login() {
-
-    let username = document.querySelector("#username").value;
-    let password = document.querySelector("#password").value;
-
-    if (username && password) {
-        localStorage.setItem("username", username)
-        window.location.href = "index.html"
-    } else {
-        alert("Error")
-    }
-
-}
 
 //Esta funcion te devuelve al login si no tiene usuario en localstorage
 document.addEventListener("DOMContentLoaded", function () {
