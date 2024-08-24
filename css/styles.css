@@ -420,6 +420,7 @@ p {
   left: .5em;
   bottom: 10em;
   transition: all 0.3s ease-in-out;
+  cursor: text;
 }
 
 .labelError {
