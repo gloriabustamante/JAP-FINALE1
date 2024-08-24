@@ -85,7 +85,7 @@ function MostrarProductosEnFormato(productos) {
     }
 
     if (contadorProductos == 0) {
-        cadena = `<div class="alert alert-danger text-center">Productos con esta categoría no fueron encontrados</div>`;
+        cadena = `<div class="alert alert-danger text-center">No fueron encontrados productos con esa categoria</div>`;
     }
 
     document.querySelector("#MostrarProductos").innerHTML = cadena;
