@@ -75,7 +75,7 @@ function MostrarProductosEnFormato(productos) {
                 <img src="${p.image}" class="m-5">
                 <div class="divProductos">
                     <h2 class="text-center">${p.name}</h2>
-                    <p class="p4"><strong>VENDIDOS:</strong> ${p.soldCount}</p>
+                    <p class="p4"> ${p.soldCount} <strong>VENDIDOS</strong></p>
                     <p><strong>Descripción:</strong> ${p.description}</p>
                     <p class="p5"><strong></strong>${p.currency}${p.cost}</p>
                 </div>
