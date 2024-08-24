@@ -71,7 +71,7 @@ function MostrarProductosEnFormato(productos) {
             document.querySelector("#MostrarProductos").classList.remove("d-flex");
             document.querySelector("#MostrarProductos").classList.remove("flex-wrap");
             cadena += `
-            <article class="ArticuloProductos" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">>
+            <article class="ArticuloProductos" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
                 <img src="${p.image}" class="m-5">
                 <div class="divProductos">
                     <h2 class="text-center">${p.name}</h2>
