@@ -65,8 +65,8 @@ function closeModal() {
 
 function MostrarProductos(productos) {
     const cadena = productos.map(p => `
-        <article class="ArticuloProductos">
-            <img src="${p.image}" class="m-5" alt="${p.name}" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+        <article class="ArticuloProductos" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+            <img src="${p.image}" class="m-5" alt="${p.name}" 
             <div class="divProductos">
                 <h2 class="text-center">${p.name}</h2>
                 <p class="p4">${p.soldCount} VENDIDOS</p>
