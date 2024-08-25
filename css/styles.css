@@ -387,7 +387,7 @@ p {
   display: flex;
   flex-direction: column;
   width: 40%;
-  margin: auto;
+  margin: 3em;
   padding: 3em;
   background-color: #FCEBD1;
   border: .09em solid #F09100;
@@ -420,11 +420,15 @@ p {
   left: .5em;
   bottom: 10em;
   transition: all 0.3s ease-in-out;
+  cursor: text;
 }
 
-.labelError,
-input:invalid~.label {
+.labelError {
   color: #FF2B2B;
+}
+
+.input {
+  transition: all 0.3s ease-in-out;
 }
 
 .input,

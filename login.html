@@ -27,12 +27,12 @@
       <form action="index.html" class="form">
         <h2>Ingresar</h2>
         <div class="inputContainer">
-          <input type="text" class="input" id="username" name="username" placeholder="" required>
-          <label for="username" class="label">Ingresa tu usuario:</label>
+          <input id="username" type="text" class="input" name="username" placeholder="" required>
+          <label id="usernameLabel" for="username" class="label">Ingresa tu usuario:</label>
         </div>
         <div class="inputContainer">
-          <input type="password" class="input" id="password" placeholder="" required>
-          <label for="password" class="label">Ingresa tu contraseña:</label>
+          <input  id="password" type="password" class="input" placeholder="" required>
+          <label id="passwordLabel" for="password" class="label">Ingresa tu contraseña:</label>
         </div>
         <button class="button" onclick="login(event)" id="buttonLogin" disabled>Login</button>
       </form>

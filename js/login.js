@@ -1,29 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let   username = document.querySelector("#username");
+    let username = document.querySelector("#username");
     let password = document.querySelector("#password");
     let buttonLogin = document.querySelector("#buttonLogin");
+    let usernameLabel = document.getElementById('usernameLabel');
+    let passwordLabel = document.getElementById('passwordLabel');
 
-    function alternarbotones() {
-        if (username.value.trim() !== '' && password.value.trim() !== '') {
-            buttonLogin.disabled = false; 
-            buttonLogin.classList.remove('buttonDisabled'); 
+    function alternarBotones() {
+        if (username.value && password.value) {
+            buttonLogin.disabled = false;
+            buttonLogin.classList.remove('buttonDisabled');
             buttonLogin.classList.add('button');
             localStorage.setItem("username", username)
         } else {
-            buttonLogin.disabled = true; 
-            buttonLogin.classList.remove('button'); 
-            buttonLogin.classList.add('buttonDisabled'); 
+            buttonLogin.disabled = true;
+            buttonLogin.classList.add('buttonDisabled');
         }
     }
 
-    username.addEventListener('input', alternarbotones);
-    password.addEventListener('input', alternarbotones);
+    function alternarEstados(input, label) {
+        label.classList.toggle('labelError', !input.value);
+        input.classList.toggle('inputError', !input.value);
+    }
 
-    alternarbotones();
+    function alternarInputs() {
+        username.addEventListener('blur', function () { alternarEstados(username, usernameLabel) });
+        password.addEventListener('blur', function () { alternarEstados(password, passwordLabel) });
+        username.addEventListener('input', alternarBotones);
+        password.addEventListener('input', alternarBotones);
+        username.addEventListener('input', function () { alternarEstados(username, usernameLabel) });
+        password.addEventListener('input', function () { alternarEstados(password, passwordLabel) });
+    }
+
+    username.addEventListener('input', alternarBotones);
+    password.addEventListener('input', alternarBotones);
+    alternarInputs();
+    alternarBotones();
+
 });
 
 function login() {
-
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
 
