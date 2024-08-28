@@ -22,20 +22,25 @@
 
 <body class="loginBody">
   <main class="mt-5">
-    <section class="loginContainer">
-      <img src="/img/cover_back_login.png" alt="colorful background image" class="backImage">
-      <form action="index.html" class="form">
-        <h2>Ingresar</h2>
-        <div class="inputContainer">
-          <input id="username" type="text" class="input" name="username" placeholder="" required>
-          <label id="usernameLabel" for="username" class="label">Ingresa tu usuario:</label>
-        </div>
-        <div class="inputContainer">
-          <input  id="password" type="password" class="input" placeholder="" required>
-          <label id="passwordLabel" for="password" class="label">Ingresa tu contraseña:</label>
-        </div>
-        <button class="button" onclick="login(event)" id="buttonLogin" disabled>Login</button>
-      </form>
+    <section class="loginContainer container-fluid">
+      <section class="col-12 col-md-12 d-flex justify-content-center align-items-center">
+        <figure class="d-none d-lg-block">
+          <img src="/img/cover_back_login.png" alt="colorful background image" class="backImage"></figure>
+        <form action="index.html" class="form container w-100">
+          <h2>Ingresar</h2>
+          <div class="form-row">
+            <div class="inputContainer col">
+              <input id="username" type="text" class="input" name="username" placeholder="" required>
+              <label id="usernameLabel" for="username" class="label">Ingresa tu usuario:</label>
+            </div>
+          </div>
+          <div class="inputContainer col">
+            <input id="password" type="password" class="input" placeholder="" required>
+            <label id="passwordLabel" for="password" class="label fs-6">Ingresa tu contraseña:</label>
+          </div>
+          <button class="button" onclick="login(event)" id="buttonLogin" disabled>Login</button>
+        </form>
+      </section>
     </section>
   </main>
   <footer class="text-muted">
@@ -45,6 +50,16 @@
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
       </p>
+    </div>
+    <div class=" container-fluid">
+      <div class="row">
+        <p class="col-12 d-sm-none">Resolución: <strong>XS</strong></p>
+        <p class="col-12 d-none d-sm-block d-md-none">Resolución: <strong>SM</strong></p>
+        <p class="col-12 d-none d-md-block d-lg-none">Resolución: <strong>MD</strong></p>
+        <p class="col-12 d-none d-lg-block d-xl-none">Resolución: <strong>LG</strong></p>
+        <p class="col-12 d-none d-xl-block d-xxl-none">Resolución: <strong>XL</strong></p>
+        <p class="col-12 d-none d-xxl-block">Resolución: <strong>XXL</strong></p>
+      </div>
     </div>
   </footer>
   <script src="js/login.js"></script>
