@@ -189,7 +189,7 @@ a.custom-card:hover {
   color: orange;
 }
 
-/***************************************PRODUCTS***************************************/
+/***************************************PRODUCTS - Modificados en Entrega 2***************************************/
 
 .col-md-4 div {
   border-radius: 17.67px;
@@ -199,7 +199,7 @@ a.custom-card:hover {
   font-family: title Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 30px;
   letter-spacing: 2px;
-  margin: 20px;
+
 }
 
 .card-text{
@@ -211,10 +211,6 @@ a.custom-card:hover {
   width: 100px auto;
   height: 100px auto;
   box-shadow: 3px 3px 3px 3px #f3d2a2;
-  margin: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
   background-color: rgb(243, 243, 243);
   border-radius: 20px;
   cursor: pointer;
@@ -227,30 +223,22 @@ a.custom-card:hover {
 .m-5{
   width: 290px;
   border-radius: 20px;
-  justify-content: center;
 }
 
 .text-center {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  text-align: center;
   font-size: 30px;
   color: #4F4F4F;
 }
 
 #MostrarProductos {
   justify-items: center;
-  margin-left: 100px auto;
-  margin-right: 15px;
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 p {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 2px;
 }
 
 .p4 {
@@ -260,15 +248,13 @@ p {
 }
 
 .p5 {
-  text-align: end;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   letter-spacing: 3px;
   font-size: 25px;
   color: #4F4F4F;
-  margin-top: 10px;
 }
 
-/*Estilo Productos en Linea*/
+/*Estilo Productos en Linea - Modificados en Entrega 2*/
 
 #bodyProductos{
   background-color: #fff5e8;
@@ -290,19 +276,13 @@ p {
   background-color: #ffdeac;
 }
 
-.articuloProductosLineal{
-  padding: 10px 5px;
-}
-
 .imgProductosLineal{
-  margin-top: 1rem;
   border-radius: 20px;
 }
 
-/*Model Productos*/
+/*Model Productos - Modificados en Entrega 2*/
 
 .modal {
-  display: none; 
   position: fixed; 
   z-index: 1; 
   left: 0;
@@ -314,8 +294,6 @@ p {
 }
 
 .modal-content {
-  margin: 5% auto;
-  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   width: 80%; 
@@ -329,13 +307,8 @@ p {
   border-bottom: 1px solid #ccc;
 }
 
-.modal-details {
-  padding: 10px;
-}
 
 #modalName {
-  margin-top: 0;
-  margin-left: 20px;
   font-size: 30px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -353,7 +326,6 @@ p {
 #modalPrice {
   font-size: 25px;
   font-weight: bold;
-  text-align: end;
 }
 
 .close {

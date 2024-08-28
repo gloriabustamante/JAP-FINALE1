@@ -119,3 +119,11 @@ window.onclick = function(event) {
 }
 
 closeBtn.onclick = closeModal;
+
+//Replicar diseño Desktop - Productos (Entrega 2)
+<div class=" container-fluid">
+<div class="row">
+<p class="col-12 d-none d-xl-block d-xxl-none">Resolución: <strong>XL</strong></p>
+<p class="col-12 d-none d-xxl-block">Resolución: <strong>XXL</strong></p>
+</div>
+</div>
