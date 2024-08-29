@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    if (!sessionStorage.getItem("preferenciaProductos")) {
-        sessionStorage.setItem("preferenciaProductos", "cuadrado");
-    }
+    ajustarPreferenciaPorTamañoVentana();
+    // Agrega el evento resize para ajustar la preferencia al cambiar el tamaño de la ventana
+    window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
     GetProductos();
-    
+
     document.querySelector("#btnLinealProductos").addEventListener("click", function() {
         mostrarProductosEnLinea();
         GetProductos();
@@ -14,6 +14,16 @@ document.addEventListener("DOMContentLoaded", function() {
         GetProductos();
     });
 });
+
+function ajustarPreferenciaPorTamañoVentana() {
+    let anchoVentana = window.innerWidth;
+
+    if (anchoVentana < 768) {
+        mostrarProductosCuadrado();
+    } 
+
+    GetProductos();
+}
 
 function mostrarProductosEnLinea() {
     sessionStorage.setItem("preferenciaProductos", "lineal");
@@ -45,15 +55,14 @@ function MostrarProductosEnFormato(productos) {
     let contadorProductos = 0;
     let preferencia = sessionStorage.getItem("preferenciaProductos");
 
+    cadena = `<section id="productosSection" class="container-fluid my-4 d-flex flex-wrap justify-content-center">`;
+
     for (let p of productos) {
         if (preferencia === "lineal") {
-            document.querySelector("#MostrarProductos").classList.add("d-flex");
-            document.querySelector("#MostrarProductos").classList.add("flex-wrap");
             cadena += `
-                <section class="container my-4 col-12 d-inline sectionProductosLineal" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
-                    <article class="row align-items-center articuloProductosLineal">
-                        <figure class="col-2 text-center">
-                            <img src="${p.image}" class="img-fluid imgProductosLineal">
+                <article class="row align-items-center articuloProductosLineal m-4">
+                        <figure class="col-2 m-auto">
+                            <img src="${p.image}" class="img-fluid imgProductosLineal p-2">
                         </figure>
                         <div class="col-2">
                             <h5 class="mb-1">${p.name}</h5>
@@ -65,24 +74,25 @@ function MostrarProductosEnFormato(productos) {
                         <div class="col-2 text-end">
                             <h5 class="text-muted">${p.currency}${p.cost}</h5>
                         </div>
-                    </article>
-                </section>`;
+                    </article>`;
         } else {
-            document.querySelector("#MostrarProductos").classList.remove("d-flex");
-            document.querySelector("#MostrarProductos").classList.remove("flex-wrap");
             cadena += `
-            <article class="ArticuloProductos" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
-                <img src="${p.image}" class="m-5">
-                <div class="divProductos">
-                    <h2 class="text-center">${p.name}</h2>
-                    <p class="p4"> ${p.soldCount} <strong>VENDIDOS</strong></p>
-                    <p><strong>Descripción:</strong> ${p.description}</p>
-                    <p class="p5"><strong></strong>${p.currency}${p.cost}</p>
-                </div>
-            </article>`;
+                <article class="row d-block justify-content-center ArticuloProductos col-12 m-2">
+                    <figure class="col-11">
+                        <img src="${p.image}" class="m-3 imagenProductosCuadrado">
+                    </figure>
+                    <div class="divProductos col-12 d-flex flex-wrap justify-content-start align-items-start">
+                        <h2 class="h2Cuadrado col-12">${p.name}</h2>
+                        <p class="p4 col-12"> ${p.soldCount} <strong>VENDIDOS</strong></p>
+                        <p class="col-12"><strong>Descripción:</strong> ${p.description}</p>
+                        <p class="p5 col-12 text-center">${p.currency}${p.cost}</p>
+                    </div>
+                </article>`;
         }
         contadorProductos++;
     }
+
+    cadena += `</section>`;
 
     if (contadorProductos == 0) {
         cadena = `<div class="alert alert-danger text-center">No fueron encontrados productos con esa categoria</div>`;
