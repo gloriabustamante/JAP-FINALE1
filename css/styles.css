@@ -189,7 +189,18 @@ a.custom-card:hover {
   color: orange;
 }
 
-/***************************************PRODUCTS***************************************/
+/**************PRODUCTS - Modificados en Entrega 2**************/
+
+.col-md-4 div {
+  border-radius: 17.67px;
+}
+
+.m-3 {
+  font-family: title Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 30px;
+  letter-spacing: 2px;
+
+}
 
 .card-text{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -197,6 +208,8 @@ a.custom-card:hover {
 }
 
 .ArticuloProductos {
+  width: 100px auto;
+  height: 100px auto;
   box-shadow: 3px 3px 3px 3px #f3d2a2;
   background-color: rgb(243, 243, 243);
   border-radius: 20px;
@@ -207,18 +220,23 @@ a.custom-card:hover {
   background-color: #f6dfbd;
 }
 
-.imagenProductosCuadrado{
-  width: 100%; 
+.m-5{
+  width: 290px;
   border-radius: 20px;
 }
 
-.h2Cuadrado {
+.text-center {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 30px;
   color: #4F4F4F;
 }
 
-.parrafosCadrado {
+#MostrarProductos {
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+p {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 20px;
 }
@@ -236,7 +254,7 @@ a.custom-card:hover {
   color: #4F4F4F;
 }
 
-/*Estilo Productos en Linea*/
+/******ESTILO PRODUCTOS EN LINEA - Modificados en Entrega 2******/
 
 #bodyProductos{
   background-color: #fff5e8;
@@ -258,19 +276,13 @@ a.custom-card:hover {
   background-color: #ffdeac;
 }
 
-.articuloProductosLineal{
-  /* padding: 10px 5px; */
-}
-
 .imgProductosLineal{
-  /* margin-top: 1rem; */
   border-radius: 20px;
 }
 
-/*Model Productos*/
+/*******MODEL PRODUCTOS - Modificados en Entrega 2******/
 
 .modal {
-  display: none; 
   position: fixed; 
   z-index: 1; 
   left: 0;
@@ -282,8 +294,6 @@ a.custom-card:hover {
 }
 
 .modal-content {
-  margin: 5% auto;
-  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   width: 80%; 
@@ -297,13 +307,8 @@ a.custom-card:hover {
   border-bottom: 1px solid #ccc;
 }
 
-.modal-details {
-  padding: 10px;
-}
 
 #modalName {
-  margin-top: 0;
-  margin-left: 20px;
   font-size: 30px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -321,7 +326,6 @@ a.custom-card:hover {
 #modalPrice {
   font-size: 25px;
   font-weight: bold;
-  text-align: end;
 }
 
 .close {
