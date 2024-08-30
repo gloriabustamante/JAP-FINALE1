@@ -354,7 +354,7 @@ a.custom-card:hover {
 .form {
   width: 40%;
   margin: 3em;
-  padding: 3em;
+  padding: 1.5em;
   background-color: #FCEBD1;
   border: .09em solid #F09100;
   border-radius: 1.5em;
@@ -405,7 +405,7 @@ a.custom-card:hover {
   background: transparent;
   outline: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px .1em .3em;
-  border: .1em solid black;
+  border: .1em solid rgb(0, 0, 0);
   font-size: 1rem;
   pointer-events: all;
 }
@@ -467,4 +467,14 @@ a.custom-card:hover {
 
 .backImage {
   width: 80%;
+}
+
+@media (max-width: 320px) {
+  .loginContainer {
+      padding: 10px;
+  }}
+.text-center-input {
+   text-align: center; 
+    line-height: 1.5; 
+    height: 3.5rem; 
 }
