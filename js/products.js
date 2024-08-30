@@ -17,12 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function ajustarPreferenciaPorTamañoVentana() {
     let anchoVentana = window.innerWidth;
-    let largoventana = window.innerHeight
+    let largoventana = window.innerHeight;
 
     if (anchoVentana < 768) {
         mostrarProductosCuadrado();
-    } else if (anchoVentana === 748 && largoventana ===1040)
-        mostrarProductosCuadrado();
+    }
 
     GetProductos();
 }
