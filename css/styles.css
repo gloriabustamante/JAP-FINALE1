@@ -244,7 +244,7 @@ a.custom-card:hover {
   color: #4F4F4F;
 }
 
-/*Estilo Productos en Linea*/
+/**********Estilo Productos en Linea************/
 
 #bodyProductos {
   background-color: #fff5e8;
@@ -268,15 +268,13 @@ a.custom-card:hover {
 }
 
 .articuloProductosLineal {
-  /* padding: 10px 5px; */
 }
 
 .imgProductosLineal {
-  /* margin-top: 1rem; */
   border-radius: 20px;
 }
 
-/*Model Productos*/
+/************Modal Productos**************/
 
 .modal {
   display: none;
