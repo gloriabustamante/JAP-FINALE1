@@ -17,10 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function ajustarPreferenciaPorTamañoVentana() {
     let anchoVentana = window.innerWidth;
+    let largoventana = window.innerHeight;
 
     if (anchoVentana < 768) {
         mostrarProductosCuadrado();
-    } 
+    }
 
     GetProductos();
 }
@@ -60,7 +61,7 @@ function MostrarProductosEnFormato(productos) {
     for (let p of productos) {
         if (preferencia === "lineal") {
             cadena += `
-                <article class="row align-items-center articuloProductosLineal m-4">
+                <article class="row align-items-center articuloProductosLineal m-4" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
                         <figure class="col-2 m-auto">
                             <img src="${p.image}" class="img-fluid imgProductosLineal p-2">
                         </figure>
@@ -77,8 +78,8 @@ function MostrarProductosEnFormato(productos) {
                     </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-12 m-2">
-                    <figure class="col-11">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+                    <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>
                     <div class="divProductos col-12 d-flex flex-wrap justify-content-start align-items-start">
