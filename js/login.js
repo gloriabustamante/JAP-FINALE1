@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function alternarInputs() {
         username.addEventListener('blur', function () { alternarEstados(username, usernameLabel) });
         password.addEventListener('blur', function () { alternarEstados(password, passwordLabel) });
-        username.addEventListener('input', alternarBotones);
-        password.addEventListener('input', alternarBotones);
         username.addEventListener('input', function () { alternarEstados(username, usernameLabel) });
         password.addEventListener('input', function () { alternarEstados(password, passwordLabel) });
     }
