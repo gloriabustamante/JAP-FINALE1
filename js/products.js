@@ -78,7 +78,7 @@ function MostrarProductosEnFormato(productos) {
                     </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
                     <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>
@@ -160,3 +160,4 @@ document.addEventListener("DOMContentLoaded", function () {
     displayNavBarName()
     displayLogOut()
 });
+
