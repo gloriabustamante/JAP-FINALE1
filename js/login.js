@@ -36,11 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function login() {
+function login(event) {
+    event.preventDefault();
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
 
-    if (username != null && password != null) {
+    if (username.length < 30 && username.length > 0  && password != null) {
         localStorage.setItem("username", username);
         window.location.href = "index.html";
     } else {

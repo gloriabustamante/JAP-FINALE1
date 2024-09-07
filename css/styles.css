@@ -30,21 +30,32 @@ nav a {
 
 .jumbotron {
   height: 50vh;
-  padding: 5em inherit;
+  padding: 5em;
   margin-bottom: 0;
   background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background: url('../img/cover_back.png') no-repeat center center;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 900px) {
   .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    background-position: 20% 0 ; 
+    background-size: cover;
+  }
+}
+
+@media (max-width: 475px) {
+  .jumbotron {
+    background-position: center center; /* Centra la imagen completamente */
+    background-size: contain; /* Muestra la imagen completamente */
+    background-color: #f8f8f8;
+    height: auto;
   }
 }
 
@@ -191,9 +202,58 @@ a.custom-card:hover {
 
 /***************************************NAV BAR***************************************/
 .navbar {
-  background-color: #eb8a01c5;
+  background-color: #ffffffc5;
   font-weight: 600;
 }
+
+.nav-item{
+  flex-grow: 1;
+  text-align: center;
+}
+
+.liIndex{
+  background-color: #f7c77e;
+  width: 22vh;
+  text-align: center;
+}
+
+#liInicio{
+  background-color: transparent;
+  width: 0.5rem;
+}
+
+#imgNavBar{
+  width: 2rem;
+}
+
+#navName {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+#menuHamburguesa{
+  background-color: #f7c77e;
+}
+
+.navbar-toggler-icon {
+  background-image: url(../img/menu.png);
+}
+
+/* Cuando el menú está abierto, cambiamos el icono a una "X" */
+.navbar-toggler.toggler-open .navbar-toggler-icon {
+  background-image: url(../img/circulo-marca-x.png);
+}
+
+@media (max-width: 991px) { /* Asegura que la imagen se mantenga en el centro hasta la resolucion lg */
+  .logo-centered {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 
 /***************************************PRODUCTS***************************************/
 
@@ -265,9 +325,6 @@ a.custom-card:hover {
 
 .sectionProductosLineal:hover {
   background-color: #ffdeac;
-}
-
-.articuloProductosLineal {
 }
 
 .imgProductosLineal {
