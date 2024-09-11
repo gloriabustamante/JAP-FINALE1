@@ -201,11 +201,6 @@ a.custom-card:hover {
 }
 
 /***************************************NAV BAR***************************************/
-#divContainer{
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 .navbar {
   background-color: #ffffffc5;
   font-weight: 600;
@@ -221,6 +216,15 @@ a.custom-card:hover {
   width: 22%;
   height: 6vh;
   text-align: center;
+}
+
+@media (max-width: 991px) {
+  .liIndex{
+    background-color: #f7c77e;
+    width: 10rem;
+    height: 6vh;
+    text-align: center;
+  }
 }
 
 #liInicio{
