@@ -43,7 +43,7 @@ nav a {
   text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 927px) {
   .jumbotron {
     background-position: 20% 0 ; 
     background-size: cover;
@@ -201,6 +201,11 @@ a.custom-card:hover {
 }
 
 /***************************************NAV BAR***************************************/
+#divContainer{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .navbar {
   background-color: #ffffffc5;
   font-weight: 600;
@@ -213,17 +218,18 @@ a.custom-card:hover {
 
 .liIndex{
   background-color: #f7c77e;
-  width: 22vh;
+  width: 22%;
+  height: 6vh;
   text-align: center;
 }
 
 #liInicio{
   background-color: transparent;
-  width: 0.5rem;
+  width: 3rem;
 }
 
 #imgNavBar{
-  width: 2rem;
+  width: 3rem;
 }
 
 #navName {
@@ -248,7 +254,7 @@ a.custom-card:hover {
 @media (max-width: 991px) { /* Asegura que la imagen se mantenga en el centro hasta la resolucion lg */
   .logo-centered {
     position: absolute;
-    top: 22px;
+    top: 12px;
     left: 50%;
     transform: translateX(-50%);
   }
