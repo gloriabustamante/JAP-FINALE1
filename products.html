@@ -10,55 +10,58 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body id="bodyProductos">
-<!-- Contenedor del modal -->
-<div id="modal" class="modal">
-  <span class="close">&times;</span>
-  <div class="modal-content">
+  <!-- Contenedor del modal -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
       <img id="modalImg" class="modal-image">
       <div id="modalDetails" class="modal-details">
-          <h2 id="modalName"></h2>
-          <p id="modalSoldCount"></p>
-          <p id="modalDescription"></p>
-          <p id="modalPrice"></p>
+        <h2 id="modalName"></h2>
+        <p id="modalSoldCount"></p>
+        <p id="modalDescription"></p>
+        <p id="modalPrice"></p>
       </div>
-  </div>
-</div>
-<nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
-  <div class="container">
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav w-100 justify-content-between">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="categories.html">Categorías</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sell.html">Vender</a>
-        </li>
-        <li class="nav-item" id="navName">
-        </li>
-        <li class="nav-item" id="logout">
-        </li>
-      </ul>
     </div>
   </div>
-</nav>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
+    <div class="container">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item" id="navName">
+          </li>
+          <li class="nav-item" id="logout">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <main class="pb-5 container">
     <div class="d-none d-md-flex align-items-end justify-content-end my-3" id="btnsPrefenciaProductos">
       <button id="btnLinealProductos"><img src="img/btnProductosLineal.png" alt=""></button>
       <button id="btnCuadradoProductos"><img src="img/btnProductosCuadrado.png" alt=""></button>
+      <input type="search" class="input" id="buscarProducto" placeholder="Busca un producto">
     </div>
     <section class="container-fluid d-flex align-items-center justify-content-center" id="MostrarProductos">
 
@@ -69,7 +72,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
@@ -83,6 +87,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/shared.js"></script>
 </body>
 
 </html>
