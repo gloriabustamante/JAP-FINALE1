@@ -323,6 +323,10 @@ a.custom-card:hover {
   background-color: #fff5e8;
 }
 
+#btnsPrefenciaProductos {
+  width: 30%;
+}
+
 #btnsPrefenciaProductos button {
   border: none;
   background-color: #fff5e8;

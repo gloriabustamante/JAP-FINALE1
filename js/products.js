@@ -1,15 +1,22 @@
-document.addEventListener("DOMContentLoaded", function() {
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalName = document.getElementById("modalName");
+const modalDescription = document.getElementById("modalDescription");
+const modalSoldCount = document.getElementById("modalSoldCount");
+const modalPrice = document.getElementById("modalPrice");
+const closeBtn = document.getElementsByClassName("close");
+
+document.addEventListener("DOMContentLoaded", function () {
     ajustarPreferenciaPorTamañoVentana();
-    // Agrega el evento resize para ajustar la preferencia al cambiar el tamaño de la ventana
     window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
     GetProductos();
 
-    document.querySelector("#btnLinealProductos").addEventListener("click", function() {
+    document.querySelector("#btnLinealProductos").addEventListener("click", function () {
         mostrarProductosEnLinea();
         GetProductos();
     });
 
-    document.querySelector("#btnCuadradoProductos").addEventListener("click", function() {
+    document.querySelector("#btnCuadradoProductos").addEventListener("click", function () {
         mostrarProductosCuadrado();
         GetProductos();
     });
@@ -21,7 +28,6 @@ function ajustarPreferenciaPorTamañoVentana() {
     if (anchoVentana < 768) {
         mostrarProductosCuadrado();
     }
-
     GetProductos();
 }
 
@@ -38,25 +44,25 @@ function GetProductos() {
 
     fetch(`${PRODUCTS_URL}${idProducto}${EXT_TYPE}`, {
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         if (response.ok) {
             return response.json();
         }
         throw new Error("Error al acceder a la URL");
-    }).then(function(data) {
-        MostrarProductosEnFormato(data.products);
-    }).catch(function(error) {
+    }).then(function (data) {
+        mostrarProductosEnFormato(data.products);
+        buscarProducto(data.products)
+    }).catch(function (error) {
         console.error(error);
     });
 }
 
-function MostrarProductosEnFormato(productos) {
+function mostrarProductosEnFormato(productos) {
     let cadena = "";
     let contadorProductos = 0;
     let preferencia = sessionStorage.getItem("preferenciaProductos");
 
     cadena = `<section id="productosSection" class="container-fluid my-4 d-flex flex-wrap justify-content-center">`;
-
     for (let p of productos) {
         if (preferencia === "lineal") {
             cadena += `
@@ -110,13 +116,17 @@ function redirecionAInfoProducto(id){
     window.location.href = "product-info.html";
 }
 
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const modalName = document.getElementById("modalName");
-const modalDescription = document.getElementById("modalDescription");
-const modalSoldCount = document.getElementById("modalSoldCount");
-const modalPrice = document.getElementById("modalPrice");
-const closeBtn = document.getElementsByClassName("close")[0];
+function buscarProducto(products) {
+    let searchBar = document.querySelector('#buscarProducto');
+    searchBar.addEventListener('input', function () {
+        const query = searchBar.value.toLowerCase();
+        const filteredProducts = products.filter(product => 
+          product.name.toLowerCase().includes(query) || 
+          product.description.toLowerCase().includes(query)
+        );
+        mostrarProductosEnFormato(filteredProducts);
+    })
+}
 
 function openModal(imgSrc, name, description, soldCount, price, id) {
     modal.style.display = "block";
@@ -131,7 +141,7 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target === modal) {
         closeModal();
     }
@@ -139,33 +149,3 @@ window.onclick = function(event) {
 
 closeBtn.onclick = closeModal;
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    function displayNavBarName() {
-        let navListItem = document.querySelector('#navName');
-        let navUsername = localStorage.getItem("username");
-       
-    if (navUsername) {
-            let navLink = document.createElement('a');
-            navLink.textContent = navUsername;
-            navListItem.appendChild(navLink);
-            navLink.setAttribute('class', 'nav-link')
-            navLink.setAttribute('href', 'my-profile.html')
-        }
-    }
-
-    function displayLogOut() {
-        let navListItem = document.querySelector('#logout');
-        let navUsername = localStorage.getItem("username");
-       
-    if (navUsername) {
-            let navLink = document.createElement('a');
-            navLink.textContent = 'Cerrar Sesión';
-            navListItem.appendChild(navLink);
-            navLink.setAttribute('class', 'nav-link')
-            navLink.setAttribute('href', 'login.html')
-        }
-    }
-    displayNavBarName()
-    displayLogOut()
-});
