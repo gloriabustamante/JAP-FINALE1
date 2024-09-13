@@ -43,7 +43,7 @@ nav a {
   text-align: center;
 }
 
-@media (max-width: 927px) {
+@media (max-width: 900px) {
   .jumbotron {
     background-position: 20% 0 ; 
     background-size: cover;
@@ -201,9 +201,12 @@ a.custom-card:hover {
 }
 
 /***************************************NAV BAR***************************************/
+
 .navbar {
   background-color: #ffffffc5;
   font-weight: 600;
+  font-family: "Lexand Deca";
+  text-transform: uppercase;
 }
 
 .nav-item{
@@ -221,9 +224,10 @@ a.custom-card:hover {
 @media (max-width: 991px) {
   .liIndex{
     background-color: #f7c77e;
-    width: 10rem;
+    width: 8rem;
     height: 6vh;
     text-align: center;
+    font-size: .8rem;
   }
 }
 
@@ -250,15 +254,14 @@ a.custom-card:hover {
   background-image: url(../img/menu.png);
 }
 
-/* Cuando el menú está abierto, cambiamos el icono a una "X" */
 .navbar-toggler.toggler-open .navbar-toggler-icon {
   background-image: url(../img/circulo-marca-x.png);
 }
 
-@media (max-width: 991px) { /* Asegura que la imagen se mantenga en el centro hasta la resolucion lg */
+@media (max-width: 991px) {
   .logo-centered {
     position: absolute;
-    top: 12px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -563,4 +566,32 @@ a.custom-card:hover {
   .navbar {
     background-color: #F8F9FA;
   }
+}
+
+/***************************************INFO PRODUCTO***************************************/
+#imagenPrincipal{
+  width: 35em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.fontKantumruy{
+  font-family: "Kantumruy Pro";
+} 
+
+.accentText{
+  /*poner color naranja y arreglarlo un poco(tamaño o esas cosas)*/
+}
+
+.strongText{
+  /*Poner negrita la letra y arreglarla un poco(tamaño)*/
+}
+
+.lightText{
+  /*Poner un gris mas clarito como color y font family Inconsolata*/
+}
+
+.btnInfoProducto{
+  /*Agregarle la decoracion a los botones(naranjita y bordeado)*/
 }
