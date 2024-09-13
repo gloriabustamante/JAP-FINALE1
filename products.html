@@ -58,16 +58,17 @@
 </nav>
   <main class="pb-5 container">
     <div class="d-none d-md-flex align-items-end justify-content-end my-3" id="btnsPrefenciaProductos">
-      <i id="sortPriceAscIcon" class="fa-solid fa-sort-amount-up" aria-hidden="true" title="Ordenar de menor a mayor"></i>
-      <i id="sortPriceDescIcon" class="fa-solid fa-sort-amount-down" aria-hidden="true" title="Ordenar de mayor a menor"></i>
-      <i id="sortRelevanceDescIcon" class="fa-solid fa-fire" aria-hidden="true" title="Ordenar por relevancia (más vendidos)"></i>
-      <i id="sortCompactLine" class="fa-solid fa-grip-lines sort-icon mx-2" title="Ver formato lista"></i>
-      <i id="sortCompactIcon" class="fa-solid fa-grip sort-icon mx-2" title="Ver formato grid"></i>
+      <i id="sortPriceAscIcon" class="fa-solid fa-sort-amount-up filtro-1" aria-hidden="true" title="Ordenar de menor a mayor"></i>
+      <i id="sortPriceDescIcon" class="fa-solid fa-sort-amount-down filtro-1 " aria-hidden="true" title="Ordenar de mayor a menor"></i>
+      <i id="sortRelevanceDescIcon" class="fa-solid fa-fire filtro-1" aria-hidden="true" title="Ordenar por relevancia (más vendidos)"></i>
+      <i id="sortCompactLine" class="fa-solid fa-grip-lines sort-icon mx-2 filtro-2" title="Ver formato lista"></i>
+      <i id="sortCompactIcon" class="fa-solid fa-grip sort-icon mx-2 filtro-2" title="Ver formato grid"></i>
     </div>
     <div class="filter-container my-3 d-flex justify-content-end align-items-center">
       <input type="number" id="minPriceInput" placeholder="Mínimo" class="form-control" style="width: 100px; display: inline-block;">
       <input type="number" id="maxPriceInput" placeholder="Máximo" class="form-control" style="width: 100px; display: inline-block;">
-      <i id="filter-price" class="fa-solid fa-filter-circle-dollar"  title="Filtrar por precio"></i>
+      <i id="filter-price" class="fa-solid fa-filter-circle-dollar filtro-2"  title="Filtrar por precio"></i>
+      <i id="delete-filter"class="fa-solid fa-filter-circle-xmark filtro-2"></i>
   </div>
   
     <section class="container-fluid d-flex align-items-center justify-content-center" id="MostrarProductos">

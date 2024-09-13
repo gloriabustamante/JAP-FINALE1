@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.querySelector("#filter-price").addEventListener("click", filtrarProductosPorPrecio);
+
+    document.querySelector("#delete-filter").addEventListener("click", filtrarProductosPorPrecio);
 });
 
 function ajustarPreferenciaPorTamañoVentana() {
@@ -92,7 +94,7 @@ function ordenarProductosPorRelevancia(order) {
     productos.forEach(producto => contenedorProductos.appendChild(producto));
 }
 
-function filtrarProductosPorPrecio() {
+function filtrarProductosPorPrecio(event) {
     const minPriceInput = document.getElementById('minPriceInput').value;
     const maxPriceInput = document.getElementById('maxPriceInput').value;
     
@@ -101,6 +103,11 @@ function filtrarProductosPorPrecio() {
     
     const contenedorProductos = document.querySelector('#productosSection');
     const productos = Array.from(contenedorProductos.children);
+
+    if (event.target.id === 'delete-filter') {
+        GetProductos(); 
+        return;
+    }
 
     if (minPriceInput === '' && maxPriceInput === '') {
         GetProductos();
@@ -116,7 +123,6 @@ function filtrarProductosPorPrecio() {
     contenedorProductos.innerHTML = ''; 
     productosFiltrados.forEach(producto => contenedorProductos.appendChild(producto));
 }
-
 
 function mostrarProductosEnFormato(productos) {
     let cadena = "";
