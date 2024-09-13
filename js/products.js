@@ -126,7 +126,40 @@ function openModal(imgSrc, name, description, soldCount, price) {
     modalDescription.innerHTML = description;
     modalSoldCount.innerHTML = `${soldCount} VENDIDOS`;
     modalPrice.innerHTML = ` ${price}`;
+
+
+let verDetalleBtn = document.createElement("a");
+verDetalleBtn.textContent = "Ver detalle";
+verDetalleBtn.href = `product-info.html`; 
+verDetalleBtn.addEventListener('click', () =>{
+    localStorage.setItem('prodId', id)
+})
+
+let previousBtn = document.getElementById("verDetalleBtn");
+if (previousBtn) {
+    previousBtn.remove();
 }
+
+verDetalleBtn.id = "verDetalleBtn";
+
+let modalContent = document.querySelector(".modal-content");
+
+if (modalContent) {
+    let previousButtonContainer = document.getElementById("buttonContainer");
+    if (previousButtonContainer) {
+        previousButtonContainer.remove();
+    }
+
+    let buttonContainer = document.createElement("div");
+    buttonContainer.style.textAlign = "center"; 
+    buttonContainer.style.marginTop = "20px";
+
+    buttonContainer.appendChild(verDetalleBtn);
+
+    modalContent.appendChild(buttonContainer);
+}
+}
+
 
 function closeModal() {
     modal.style.display = "none";
