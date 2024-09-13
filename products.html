@@ -1,88 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-</head>
-
-<body id="bodyProductos">
-<!-- Contenedor del modal -->
-<div id="modal" class="modal">
-  <span class="close">&times;</span>
-  <div class="modal-content">
-      <img id="modalImg" class="modal-image">
-      <div id="modalDetails" class="modal-details">
+  <body id="bodyProductos">
+    <!-- Contenedor del modal -->
+    <div id="modal" class="modal">
+      <span class="close">&times;</span>
+      <div class="modal-content">
+        <img id="modalImg" class="modal-image" />
+        <div id="modalDetails" class="modal-details">
           <h2 id="modalName"></h2>
           <p id="modalSoldCount"></p>
           <p id="modalDescription"></p>
           <p id="modalPrice"></p>
+        </div>
       </div>
-  </div>
-</div>
-<nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
-  <div class="container">
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav w-100 justify-content-between">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="categories.html">Categorías</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sell.html">Vender</a>
-        </li>
-        <li class="nav-item" id="navName">
-        </li>
-        <li class="nav-item" id="logout">
-        </li>
-      </ul>
     </div>
-  </div>
-</nav>
-  <main class="pb-5 container">
-    <div class="d-none d-md-flex align-items-end justify-content-end my-3" id="btnsPrefenciaProductos">
-      <button id="btnLinealProductos"><img src="img/btnProductosLineal.png" alt=""></button>
-      <button id="btnCuadradoProductos"><img src="img/btnProductosCuadrado.png" alt=""></button>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
+      <div class="container position-relative">
+        <!-- Botón menú hamburguesa -->
+        <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Imagen centrada que se mantiene estática -->
+        <a href="index.html" class="logo-centered d-lg-none">
+          <img src="img/logo.svg" id="imgNavBar">
+        </a>
+    
+        <!-- Menú colapsable -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
+            <li class="nav-item liIndex mx-1 my-1">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item liIndex mx-1 my-1">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item mx-1 d-none d-lg-block my-1 my-lg-0" id="liInicio">
+              <a class="nav-link active" href="index.html">
+                <img src="img/logo.svg" id="imgNavBar">
+              </a>
+            </li>
+            <li class="nav-item liIndex mx-1 my-1" id="navName"></li>
+            <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="pb-5 container">
+      <div
+        class="d-none d-md-flex align-items-end justify-content-end my-3"
+        id="btnsPrefenciaProductos"
+      >
+        <button id="btnLinealProductos">
+          <img src="img/btnProductosLineal.png" alt="" />
+        </button>
+        <button id="btnCuadradoProductos">
+          <img src="img/btnProductosCuadrado.png" alt="" />
+        </button>
+      </div>
+      <section
+        class="container-fluid d-flex align-items-center justify-content-center"
+        id="MostrarProductos"
+      ></section>
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-    <section class="container-fluid d-flex align-items-center justify-content-center" id="MostrarProductos">
-
-    </section>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/products.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/CodigoCompartido.js"></script>
+  </body>
 </html>
