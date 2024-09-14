@@ -18,6 +18,7 @@ function GetProductos() {
         throw new Error("Ocurrio un error:", error)
     });
 }
+    GetProductos();
 
 GetProductos();
 
@@ -42,15 +43,16 @@ function productosInfo(productos) {
             </div>
         </figure>
         <div class="col-12 col-lg-5 pb-2">
-            <p>${categoria}</p>
-            <h2>${nombre}</h2>
+            <p class= accentText>${categoria}</p>
+            <h class= strongText>${nombre}</h>
             <p>${descripcion}</p>
-            <p>${moneda} ${costo}</p>
-            <p>${vendidos} vendidos</p>
+            <h class= strongText>${moneda} ${costo}</h>
+            <p class="lightText">${vendidos} vendidos</p>
+
             <button class="btnInfoProducto">Boton 1</button>
             <button class="btnInfoProducto">Boton 2</button>
         </div>
-        <h3 class='px-5 py-2'>Productos relacionados</h3>
+        <h3 class='px-5 py-2 accentText'>Productos relacionados</h3>
     </section>
     `;
 

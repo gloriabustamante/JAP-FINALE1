@@ -141,7 +141,7 @@ function mostrarProductosEnFormato(productos) {
         const dataPriceAttr = `data-price="${p.cost}" data-sold="${p.soldCount}"`;
         if (preferencia === "lineal") {
             cadena += `
-                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', '${p.soldCount}', '${p.currency}${p.cost}', '${p.id}')">
+                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}', '${p.cost}',  '${p.id}')">
                         <figure class="col-2 m-auto">
                             <img src="${p.image}" class="img-fluid imgProductosLineal p-2">
                         </figure>
@@ -159,7 +159,7 @@ function mostrarProductosEnFormato(productos) {
                 </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', '${p.soldCount}', '${p.currency}${p.cost}', '${p.id}')">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}$', '${p.id}, '${p.cost})">
                     <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>
