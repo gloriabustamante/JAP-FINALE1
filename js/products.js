@@ -11,15 +11,31 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
     GetProductos();
 
-    document.querySelector("#btnLinealProductos").addEventListener("click", function () {
+    document.querySelector("#sortCompactLine").addEventListener("click", function() {
         mostrarProductosEnLinea();
         GetProductos();
     });
 
-    document.querySelector("#btnCuadradoProductos").addEventListener("click", function () {
+    document.querySelector("#sortCompactIcon").addEventListener("click", function() {
         mostrarProductosCuadrado();
         GetProductos();
     });
+    
+    document.querySelector("#sortPriceDescIcon").addEventListener("click", function() {
+        ordenarProductosPorPrecio('desc');
+    });
+
+    document.querySelector("#sortPriceAscIcon").addEventListener("click", function() {
+        ordenarProductosPorPrecio('asc');
+    });
+
+    document.querySelector("#sortRelevanceDescIcon").addEventListener("click", function() {
+        ordenarProductosPorRelevancia('desc');
+    });
+
+    document.querySelector("#filter-price").addEventListener("click", filtrarProductosPorPrecio);
+
+    document.querySelector("#delete-filter").addEventListener("click", filtrarProductosPorPrecio);
 });
 
 function ajustarPreferenciaPorTamañoVentana() {
@@ -57,6 +73,64 @@ function GetProductos() {
     });
 }
 
+function ordenarProductosPorPrecio(order) {
+    const contenedorProductos = document.querySelector('#productosSection');
+    const productos = Array.from(contenedorProductos.children);
+
+    productos.sort((a, b) => {
+        const priceA = parseFloat(a.getAttribute('data-price'));
+        const priceB = parseFloat(b.getAttribute('data-price'));
+        return order === 'asc' ? priceA - priceB : priceB - priceA;
+    });
+
+    contenedorProductos.innerHTML = ''; 
+    productos.forEach(producto => contenedorProductos.appendChild(producto));
+}
+
+function ordenarProductosPorRelevancia(order) {
+    const contenedorProductos = document.querySelector('#productosSection');
+    const productos = Array.from(contenedorProductos.children);
+
+    productos.sort((a, b) => {
+        const soldA = parseInt(a.getAttribute('data-sold'), 10);
+        const soldB = parseInt(b.getAttribute('data-sold'), 10);
+        return order === 'desc' ? soldB - soldA : soldA - soldB;
+    });
+
+    contenedorProductos.innerHTML = ''; 
+    productos.forEach(producto => contenedorProductos.appendChild(producto));
+}
+
+function filtrarProductosPorPrecio(event) {
+    const minPriceInput = document.getElementById('minPriceInput').value;
+    const maxPriceInput = document.getElementById('maxPriceInput').value;
+    
+    const minPrice = parseFloat(minPriceInput);
+    const maxPrice = parseFloat(maxPriceInput);
+    
+    const contenedorProductos = document.querySelector('#productosSection');
+    const productos = Array.from(contenedorProductos.children);
+
+    if (event.target.id === 'delete-filter') {
+        GetProductos(); 
+        return;
+    }
+
+    if (minPriceInput === '' && maxPriceInput === '') {
+        GetProductos();
+        return;
+    }
+
+    const productosFiltrados = productos.filter(producto => {
+        const precio = parseFloat(producto.getAttribute('data-price'));
+        return (isNaN(minPrice) || precio >= minPrice) && 
+               (isNaN(maxPrice) || precio <= maxPrice);
+    });
+
+    contenedorProductos.innerHTML = ''; 
+    productosFiltrados.forEach(producto => contenedorProductos.appendChild(producto));
+}
+
 function mostrarProductosEnFormato(productos) {
     let cadena = "";
     let contadorProductos = 0;
@@ -64,9 +138,10 @@ function mostrarProductosEnFormato(productos) {
 
     cadena = `<section id="productosSection" class="container-fluid my-4 d-flex flex-wrap justify-content-center">`;
     for (let p of productos) {
+        const dataPriceAttr = `data-price="${p.cost}" data-sold="${p.soldCount}"`;
         if (preferencia === "lineal") {
             cadena += `
-                <article class="row align-items-center articuloProductosLineal m-4" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}', ${p.id})">
+                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}', '${p.cost}',  '${p.id}')">
                         <figure class="col-2 m-auto">
                             <img src="${p.image}" class="img-fluid imgProductosLineal p-2">
                         </figure>
@@ -84,7 +159,7 @@ function mostrarProductosEnFormato(productos) {
                 </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3" onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}', ${p.id})">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}$', '${p.id}, '${p.cost})">
                     <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>
@@ -148,4 +223,3 @@ window.onclick = function (event) {
 }
 
 closeBtn.onclick = closeModal;
-
