@@ -1,26 +1,20 @@
-function GetProductos() {
-    let idProducto = localStorage.getItem("prodId"); 
-    let url = `${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`;
-
-    fetch(url, {
-        method: "GET"
-    })
-    .then(function(response) {
-        if (response.ok) {
-            return response.json(); 
+function obtenerProductos(){
+    let idProducto = localStorage.getItem("prodId")
+    fetch(`${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`)
+    .then(response => {
+        if(response.ok){
+            return response.json()
         }
-        throw new Error("Error al acceder a la URL: " + response.status);
+        throw new Error('Error')
+    }).then(data => {
+        console.log(data)
+        productosInfo(data)
+    }).catch(error =>{
+        throw new Error(error)
     })
-    .then(function(data) {
-        productosInfo(data);
-    })
-    .catch(function(error) {
-        throw new Error("Ocurrio un error:", error)
-    });
 }
-    GetProductos();
 
-GetProductos();
+obtenerProductos();
 
 function productosInfo(productos) {
     let contenedor = document.querySelector("#divProductosInfo");
@@ -43,16 +37,15 @@ function productosInfo(productos) {
             </div>
         </figure>
         <div class="col-12 col-lg-5 pb-2">
-            <p class= accentText>${categoria}</p>
-            <h class= strongText>${nombre}</h>
+            <p class="accentText">${categoria}</p>
+            <h2 class="strongText">${nombre}</h2>
             <p>${descripcion}</p>
-            <h class= strongText>${moneda} ${costo}</h>
+            <p class="strongText">${moneda} ${costo}</p>
             <p class="lightText">${vendidos} vendidos</p>
-
             <button class="btnInfoProducto">Boton 1</button>
             <button class="btnInfoProducto">Boton 2</button>
         </div>
-        <h3 class='px-5 py-2 accentText'>Productos relacionados</h3>
+        <h3 class="accentText px-5 py-2">Productos relacionados</h3>
     </section>
     `;
 
@@ -65,10 +58,12 @@ function productosInfo(productos) {
                 document.querySelector('#imagenPrincipal').src = imagenes[pos];
             });
         });
-    }, 100); 
+    }, 10); 
 
     obtenerDatosProductosRelacionados(productosRelacionados);
 }
+
+
 
 function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
     let idProducto = localStorage.getItem("catID");
