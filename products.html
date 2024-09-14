@@ -62,9 +62,9 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container d-flex">
-      <aside>
-        <section class="sideBarSection">
+  <main class="pb-5 container d-flex row col-12">
+      <aside class="col-4">
+        <section class="sideBarSection row">
           <h3>Buscar</h3>
           <div class="inputContainer col">
             <input type="search" class="input filtro-3" placeholder="" id="buscarProducto">
@@ -72,20 +72,20 @@
           </div>
         </section>
             <div class="filter-container my-3 d-flex justify-content-start align-items-start flex-column">
-        <section class="sideBarSection">
+        <section class="sideBarSection row d-flex flex-wrap">
           <h3>Precio</h3>
           <fieldset class="d-flex priceFieldset">
-            <div class="inputContainer col">
+            <div class="inputContainer col-6 me-2">
               <input type="number" id="minPriceInput" placeholder="" class="input filtro-3" style="width: 100px; display: inline-block;">
               <label for="minPriceInput" class="label">Mínimo</label>
             </div>
-            <div class="inputContainer col">
+            <div class="inputContainer col-6 mx-2">
               <input type="number" id="maxPriceInput" placeholder="" class="input filtro-3" style="width: 100px; display: inline-block;">
               <label for="maxPriceInput" class="label">Máximo</label>
             </div>
           </fieldset>
-          <i id="filter-price" class="fa-solid fa-filter-circle-dollar filtro-2" title="Filtrar por precio"></i>
-          <i id="delete-filter"class="fa-solid fa-filter-circle-xmark filtro-2" title="Eliminar filtro"></i>
+          <i id="filter-price" class="fa-solid fa-filter-circle-dollar filtro-2 col-1" title="Filtrar por precio"></i>
+          <i id="delete-filter"class="fa-solid fa-filter-circle-xmark filtro-2 col-1" title="Eliminar filtro"></i>
         </section>
         <section class="sideBarSection">
           <h3>Ordenar</h3>
@@ -100,7 +100,7 @@
         </section>
       </aside>
 
-    <section class="container-fluid d-flex align-items-center justify-content-center" id="MostrarProductos">
+    <section class="container-fluid d-flex align-items-center justify-content-center col-8" id="MostrarProductos">
       
     </section>
   </main>

@@ -572,11 +572,6 @@ a.custom-card:hover {
   margin: 0.4em; 
 }
 
-.filtro-3 {
-  width: 22rem;
-  margin: 0.3em;
-}
-
 /***************************************INFO PRODUCTO***************************************/
 #imagenPrincipal{
   width: 35em;
@@ -609,11 +604,7 @@ a.custom-card:hover {
   padding: 1em;
   margin: 0.3em;
   margin-bottom: 1em;
-  width: 100%;
+  width: 70%;
   border-radius: 1em;
   background-color: #f7e6cd;
-}
-
-.priceFieldset{
-  width: fit-content;
 }
