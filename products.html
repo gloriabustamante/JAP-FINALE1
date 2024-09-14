@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -36,8 +37,6 @@
       <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
         <span class="navbar-toggler-icon"></span>
-        <i id="icon-bars" class="fa-solid fa-bars" style="font-size: 24px; cursor: pointer;"></i>
-        <i id="icon-xmark" class="fa-solid fa-xmark hidden" style="font-size: 24px; cursor: pointer;"></i>
       </button>
       
       <a href="index.html" class="logo-centered d-lg-none">
@@ -63,24 +62,45 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
-    <div class="d-none d-md-flex align-items-end  justify-content-end my-3" id="btnsPrefenciaProductos">
-      <input type="search" class="input filtro-3" id="buscarProducto" placeholder="Busca un producto" style="display: inline-block">
-      <i id="sortPriceAscIcon" class="fa-solid fa-sort-amount-up filtro-1" aria-hidden="true" title="Ordenar de menor a mayor"></i>
-      <i id="sortPriceDescIcon" class="fa-solid fa-sort-amount-down filtro-1 " aria-hidden="true" title="Ordenar de mayor a menor"></i>
-      <i id="sortCompactLine" class="fa-solid fa-grip-lines sort-icon mx-2 filtro-2" title="Ver formato lista"></i>
-      <i id="sortCompactIcon" class="fa-solid fa-grip sort-icon mx-2 filtro-2" title="Ver formato grid"></i>
-    </div>
-    <div class="filter-container my-3 d-flex justify-content-end align-items-center">
-      <input type="number" id="minPriceInput" placeholder="Mínimo" class="input filtro-3 mx-0" style="width: 100px; display: inline-block;">
-      <input type="number" id="maxPriceInput" placeholder="Máximo" class="input filtro-3 filtro-3 mx-1" style="width: 100px; display: inline-block;">
-      <i id="filter-price" class="fa-solid fa-filter-circle-dollar filtro-2 mx-3" title="Filtrar por precio"></i>
-      <i id="delete-filter"class="fa-solid fa-filter-circle-xmark filtro-2 mx-3" title="Eliminar filtro"></i>
-      <i id="sortRelevanceDescIcon" class="fa-solid fa-fire filtro-1" aria-hidden="true" title="Ordenar por relevancia (más vendidos)"></i>
+  <main class="pb-5 container d-flex row col-12">
+      <aside class="col-4">
+        <section class="sideBarSection row">
+          <h3>Buscar</h3>
+          <div class="inputContainer col">
+            <input type="search" class="input filtro-3" placeholder="" id="buscarProducto">
+            <label class="label" for="buscarProducto">Busca un producto</label>
+          </div>
+        </section>
+            <div class="filter-container my-3 d-flex justify-content-start align-items-start flex-column">
+        <section class="sideBarSection row d-flex flex-wrap">
+          <h3>Precio</h3>
+          <fieldset class="d-flex priceFieldset">
+            <div class="inputContainer col-6 me-2">
+              <input type="number" id="minPriceInput" placeholder="" class="input filtro-3" style="width: 100px; display: inline-block;">
+              <label for="minPriceInput" class="label">Mínimo</label>
+            </div>
+            <div class="inputContainer col-6 mx-2">
+              <input type="number" id="maxPriceInput" placeholder="" class="input filtro-3" style="width: 100px; display: inline-block;">
+              <label for="maxPriceInput" class="label">Máximo</label>
+            </div>
+          </fieldset>
+          <i id="filter-price" class="fa-solid fa-filter-circle-dollar filtro-2 col-1" title="Filtrar por precio"></i>
+          <i id="delete-filter"class="fa-solid fa-filter-circle-xmark filtro-2 col-1" title="Eliminar filtro"></i>
+        </section>
+        <section class="sideBarSection">
+          <h3>Ordenar</h3>
+          <i id="sortRelevanceDescIcon" class="fa-solid fa-fire filtro-1" aria-hidden="true" title="Ordenar por relevancia (más vendidos)"></i>
+          <i id="sortPriceAscIcon" class="fa-solid fa-sort-amount-up filtro-1" aria-hidden="true" title="Ordenar de menor a mayor"></i>
+          <i id="sortPriceDescIcon" class="fa-solid fa-sort-amount-down filtro-1 " aria-hidden="true" title="Ordenar de mayor a menor"></i>
+        </section>
+        <section class="sideBarSection">
+          <h3>Vista</h3>
+          <i id="sortCompactLine" class="fa-solid fa-grip-lines sort-icon mx-2 filtro-2" title="Ver formato lista"></i>
+          <i id="sortCompactIcon" class="fa-solid fa-grip sort-icon mx-2 filtro-2" title="Ver formato grid"></i>
+        </section>
+      </aside>
 
-  </div>
-  
-    <section class="container-fluid d-flex align-items-center justify-content-center" id="MostrarProductos">
+    <section class="container-fluid d-flex align-items-center justify-content-center col-8" id="MostrarProductos">
       
     </section>
   </main>

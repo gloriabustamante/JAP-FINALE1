@@ -205,13 +205,13 @@ a.custom-card:hover {
 .navbar {
   background-color: #ffffffc5;
   font-weight: 600;
-  font-family: "Lexand Deca";
   text-transform: uppercase;
 }
 
 .nav-item{
   flex-grow: 1;
   text-align: center;
+  font-family: "Lexend Deca" !important;
 }
 
 .liIndex{
@@ -569,14 +569,7 @@ a.custom-card:hover {
 .filtro-2 {
   font-size: 1.5em; 
   cursor: pointer; 
-  margin: 0 8px; 
-}
-
-.filtro-3 {
-  width: 22rem;
-  height: 1.6rem;
-  border-radius: 2rem;
-  margin: 0.1rem;
+  margin: 0.4em; 
 }
 
 /***************************************INFO PRODUCTO***************************************/
@@ -600,7 +593,15 @@ a.custom-card:hover {
   background-color: #F09100;
   margin-top: 5%;
 }
-    
+
+.sideBarSection {
+  padding: 1em;
+  margin: 0.3em;
+  margin-bottom: 1em;
+  width: 70%;
+  border-radius: 1em;
+  background-color: #f7e6cd;
+}
 
 .strongText {
   color: rgb(14, 13, 13);
