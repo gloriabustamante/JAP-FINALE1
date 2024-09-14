@@ -323,9 +323,6 @@ a.custom-card:hover {
   background-color: #fff5e8;
 }
 
-#btnsPrefenciaProductos {
-  width: 30%;
-}
 
 .sectionProductosLineal, .articuloProductosLineal {
   box-shadow: 3px 3px 3px 3px #f3d2a2;
@@ -573,6 +570,13 @@ a.custom-card:hover {
   font-size: 1.5em; 
   cursor: pointer; 
   margin: 0 8px; 
+}
+
+.filtro-3 {
+  width: 22rem;
+  height: 1.6rem;
+  border-radius: 2rem;
+  margin: 0.1rem;
 }
 
 /***************************************INFO PRODUCTO***************************************/
