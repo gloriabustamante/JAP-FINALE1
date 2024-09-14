@@ -17,26 +17,33 @@
 
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
-    <div class="container">
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container position-relative" id="divContainer">
+      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
         <span class="navbar-toggler-icon"></span>
+        <i id="icon-bars" class="fa-solid fa-bars" style="font-size: 24px; cursor: pointer;"></i>
+        <i id="icon-xmark" class="fa-solid fa-xmark hidden" style="font-size: 24px; cursor: pointer;"></i>
       </button>
+      
+      <a href="index.html" class="logo-centered d-lg-none">
+        <img src="img/logo.svg" id="imgNavBar">
+      </a>
+      
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
+        <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
+          <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item" id="navName">
+          <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
+            <a class="nav-link active" href="index.html">
+              <img src="img/logo.svg" id="imgNavBar">
+            </a>
           </li>
-          <li class="nav-item" id="logout">
-          </li>
+          <li class="nav-item liIndex mx-1 my-1" id="navName"></li>
+          <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
         </ul>
       </div>
     </div>
@@ -231,6 +238,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/sell.js"></script>
+  <script src="js/shared.js"></script>
 </body>
 
 </html>

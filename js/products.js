@@ -1,4 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalName = document.getElementById("modalName");
+const modalDescription = document.getElementById("modalDescription");
+const modalSoldCount = document.getElementById("modalSoldCount");
+const modalPrice = document.getElementById("modalPrice");
+const closeBtn = document.getElementsByClassName("close");
+
+document.addEventListener("DOMContentLoaded", function () {
     ajustarPreferenciaPorTamañoVentana();
     window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
     GetProductos();
@@ -32,12 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function ajustarPreferenciaPorTamañoVentana() {
     let anchoVentana = window.innerWidth;
-    let largoventana = window.innerHeight;
 
     if (anchoVentana < 768) {
         mostrarProductosCuadrado();
     }
-
     GetProductos();
 }
 
@@ -54,14 +60,15 @@ function GetProductos() {
 
     fetch(`${PRODUCTS_URL}${idProducto}${EXT_TYPE}`, {
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         if (response.ok) {
             return response.json();
         }
         throw new Error("Error al acceder a la URL");
-    }).then(function(data) {
+    }).then(function (data) {
         mostrarProductosEnFormato(data.products);
-    }).catch(function(error) {
+        buscarProducto(data.products)
+    }).catch(function (error) {
         console.error(error);
     });
 }
@@ -130,12 +137,11 @@ function mostrarProductosEnFormato(productos) {
     let preferencia = sessionStorage.getItem("preferenciaProductos");
 
     cadena = `<section id="productosSection" class="container-fluid my-4 d-flex flex-wrap justify-content-center">`;
-
     for (let p of productos) {
         const dataPriceAttr = `data-price="${p.cost}" data-sold="${p.soldCount}"`;
         if (preferencia === "lineal") {
             cadena += `
-                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}', '${p.cost}',  '${p.id}')">
                         <figure class="col-2 m-auto">
                             <img src="${p.image}" class="img-fluid imgProductosLineal p-2">
                         </figure>
@@ -146,13 +152,14 @@ function mostrarProductosEnFormato(productos) {
                         <div class="col-6 m-0">
                             <p class="">${p.description}</p>
                         </div>
-                        <div class="col-2 text-end">
+                        <div class="col-2 text-end d-flex justify-content-center flex-wrap">
                             <h5 class="text-muted">${p.currency}${p.cost}</h5>
+                            <button class="btnVerDetalle"onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
                         </div>
-                    </article>`;
+                </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}${p.cost}')">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', ${p.soldCount}, '${p.currency}$', '${p.id}, '${p.cost})">
                     <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>
@@ -161,6 +168,9 @@ function mostrarProductosEnFormato(productos) {
                         <p class="p4 col-12"> ${p.soldCount} <strong>VENDIDOS</strong></p>
                         <p class="col-12"><strong>Descripción:</strong> ${p.description}</p>
                         <p class="p5 col-12 text-center">${p.currency}${p.cost}</p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mb-3">
+                        <button class="col-7 btnVerDetalle" onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
                     </div>
                 </article>`;
         }
@@ -176,15 +186,24 @@ function mostrarProductosEnFormato(productos) {
     document.querySelector("#MostrarProductos").innerHTML = cadena;
 }
 
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const modalName = document.getElementById("modalName");
-const modalDescription = document.getElementById("modalDescription");
-const modalSoldCount = document.getElementById("modalSoldCount");
-const modalPrice = document.getElementById("modalPrice");
-const closeBtn = document.getElementsByClassName("close")[0];
+function redirecionAInfoProducto(id){
+    localStorage.setItem('prodId', id);
+    window.location.href = "product-info.html";
+}
 
-function openModal(imgSrc, name, description, soldCount, price) {
+function buscarProducto(products) {
+    let searchBar = document.querySelector('#buscarProducto');
+    searchBar.addEventListener('input', function () {
+        const query = searchBar.value.toLowerCase();
+        const filteredProducts = products.filter(product => 
+          product.name.toLowerCase().includes(query) || 
+          product.description.toLowerCase().includes(query)
+        );
+        mostrarProductosEnFormato(filteredProducts);
+    })
+}
+
+function openModal(imgSrc, name, description, soldCount, price, id) {
     modal.style.display = "block";
     modalImg.src = imgSrc;
     modalName.innerHTML = name;
@@ -197,41 +216,10 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target === modal) {
         closeModal();
     }
 }
 
 closeBtn.onclick = closeModal;
-
-document.addEventListener("DOMContentLoaded", function () {
-    function displayNavBarName() {
-        let navListItem = document.querySelector('#navName');
-        let navUsername = localStorage.getItem("username");
-
-    if (navUsername) {
-            let navLink = document.createElement('a');
-            navLink.textContent = navUsername;
-            navListItem.appendChild(navLink);
-            navLink.setAttribute('class', 'nav-link')
-            navLink.setAttribute('href', 'my-profile.html')
-        }
-    }
-
-    function displayLogOut() {
-        let navListItem = document.querySelector('#logout');
-        let navUsername = localStorage.getItem("username");
-       
-    if (navUsername) {
-            let navLink = document.createElement('a');
-            navLink.textContent = 'Cerrar Sesión';
-            navListItem.appendChild(navLink);
-            navLink.setAttribute('class', 'nav-link')
-            navLink.setAttribute('href', 'login.html')
-        }
-    }
-    displayNavBarName()
-    displayLogOut()
-});
-

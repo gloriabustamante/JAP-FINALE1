@@ -30,21 +30,32 @@ nav a {
 
 .jumbotron {
   height: 50vh;
-  padding: 5em inherit;
+  padding: 5em;
   margin-bottom: 0;
   background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background: url('../img/cover_back.png') no-repeat center center;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 900px) {
   .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    background-position: 20% 0 ; 
+    background-size: cover;
+  }
+}
+
+@media (max-width: 475px) {
+  .jumbotron {
+    background-position: center center; /* Centra la imagen completamente */
+    background-size: contain; /* Muestra la imagen completamente */
+    background-color: #f8f8f8;
+    height: auto;
   }
 }
 
@@ -190,10 +201,72 @@ a.custom-card:hover {
 }
 
 /***************************************NAV BAR***************************************/
+
 .navbar {
-  background-color: #eb8a01c5;
+  background-color: #ffffffc5;
   font-weight: 600;
+  font-family: "Lexand Deca";
+  text-transform: uppercase;
 }
+
+.nav-item{
+  flex-grow: 1;
+  text-align: center;
+}
+
+.liIndex{
+  background-color: #f7c77e;
+  width: 22%;
+  height: 6vh;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .liIndex{
+    background-color: #f7c77e;
+    width: 8rem;
+    height: 6vh;
+    text-align: center;
+    font-size: .8rem;
+  }
+}
+
+#liInicio{
+  background-color: transparent;
+  width: 3rem;
+}
+
+#imgNavBar{
+  width: 3rem;
+}
+
+#navName {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+#menuHamburguesa{
+  background-color: #f7c77e;
+}
+
+.navbar-toggler-icon {
+  background-image: url(../img/menu.png);
+}
+
+.navbar-toggler.toggler-open .navbar-toggler-icon {
+  background-image: url(../img/circulo-marca-x.png);
+}
+
+@media (max-width: 991px) {
+  .logo-centered {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 
 /***************************************PRODUCTS***************************************/
 
@@ -248,6 +321,10 @@ a.custom-card:hover {
 
 #bodyProductos {
   background-color: #fff5e8;
+}
+
+#btnsPrefenciaProductos {
+  width: 30%;
 }
 
 .sectionProductosLineal, .articuloProductosLineal {
@@ -496,4 +573,32 @@ a.custom-card:hover {
   font-size: 1.5em; 
   cursor: pointer; 
   margin: 0 8px; 
+}
+
+/***************************************INFO PRODUCTO***************************************/
+#imagenPrincipal{
+  width: 35em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.fontKantumruy{
+  font-family: "Kantumruy Pro";
+} 
+
+.accentText{
+  /*poner color naranja y arreglarlo un poco(tamaño o esas cosas)*/
+}
+
+.strongText{
+  /*Poner negrita la letra y arreglarla un poco(tamaño)*/
+}
+
+.lightText{
+  /*Poner un gris mas clarito como color y font family Inconsolata*/
+}
+
+.btnInfoProducto{
+  /*Agregarle la decoracion a los botones(naranjita y bordeado)*/
 }
