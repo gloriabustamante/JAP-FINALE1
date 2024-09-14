@@ -19,6 +19,8 @@ function GetProductos() {
     });
 }
 
+GetProductos();
+
 function productosInfo(productos) {
     let contenedor = document.querySelector("#divProductosInfo");
 
