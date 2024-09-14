@@ -587,18 +587,40 @@ a.custom-card:hover {
   font-family: "Kantumruy Pro";
 } 
 
-.accentText{
-  /*poner color naranja y arreglarlo un poco(tamaño o esas cosas)*/
-}
-
-.strongText{
-  /*Poner negrita la letra y arreglarla un poco(tamaño)*/
-}
-
-.lightText{
-  /*Poner un gris mas clarito como color y font family Inconsolata*/
-}
 
 .btnInfoProducto{
-  /*Agregarle la decoracion a los botones(naranjita y bordeado)*/
+  padding: .3em 5em;
+  border-radius: .5em;
+  border-color: #fd9d0d;
+  color:#F09100;
+  background-color: #F09100;
+  margin-top: 5%;
+}
+    
+
+.strongText {
+  color: rgb(14, 13, 13);
+  font-size: 35px; 
+  font-weight: bold;
+
+}
+
+.accentText {
+  color: #F09100;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2rem;
+
+}
+.lightText {
+  font-size: 18px; 
+  color: #918e8c;
+  font-family: 'Inconsolata';
+
+}
+
+.btnVerDetalle {
+border-color: #fd9d0d;
+border-radius: .5em;
+background-color: #F09100;
 }
