@@ -629,3 +629,54 @@ border-color: #fd9d0d;
 border-radius: .5em;
 background-color: #F09100;
 }
+
+
+
+.titulo-calificacion {
+  font-size: 3rem;
+  text-align: center;
+  justify-content: center;
+  color: #000000;
+  font-family: "Kantumruy Pro"
+}
+
+.star-rating {
+  display: flex;
+  gap: 15px;
+  font-size: 3rem; 
+  justify-content: center;
+  align-items: center;
+  color:#706b6b;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+.star-rating label:hover,
+.star-rating input[type="radio"]:checked + label {
+  transform: scale(1.2);
+  color: #f38c16;
+}
+
+
+.comentarios {
+  width: 70%;
+  padding: 2rem;
+  margin-top: 20px;
+  text-align: center;
+  border: 3.5px solid #030303;
+  margin-left: 12rem;
+  
+}
+
+.btn-calificacion {
+  padding: .1em 2em;
+  border-radius: .5em;
+  border-color: #fd9d0d;
+  color:#000000;
+  background-color: #F09100;
+  margin-top:1%;
+  font-family: 'Inconsolata';
+  margin-left: 30rem;
+}
+
