@@ -11,6 +11,7 @@
 
 nav a {
   text-decoration: none;
+  font-size: calc(12px + .2vw);
 }
 
 .bd-placeholder-img {
@@ -45,15 +46,15 @@ nav a {
 
 @media (max-width: 900px) {
   .jumbotron {
-    background-position: 20% 0 ; 
+    background-position: 20% 0;
     background-size: cover;
   }
 }
 
 @media (max-width: 475px) {
   .jumbotron {
-    background-position: center center; /* Centra la imagen completamente */
-    background-size: contain; /* Muestra la imagen completamente */
+    background-position: center center;
+    background-size: contain;
     background-color: #f8f8f8;
     height: auto;
   }
@@ -208,13 +209,13 @@ a.custom-card:hover {
   text-transform: uppercase;
 }
 
-.nav-item{
+.nav-item {
   flex-grow: 1;
   text-align: center;
   font-family: "Lexend Deca" !important;
 }
 
-.liIndex{
+.liIndex {
   background-color: #f7c77e;
   width: 22%;
   height: 6vh;
@@ -222,7 +223,7 @@ a.custom-card:hover {
 }
 
 @media (max-width: 991px) {
-  .liIndex{
+  .liIndex {
     background-color: #f7c77e;
     width: 8rem;
     height: 6vh;
@@ -231,22 +232,22 @@ a.custom-card:hover {
   }
 }
 
-#liInicio{
+#liInicio {
   background-color: transparent;
   width: 3rem;
 }
 
-#imgNavBar{
+#imgNavBar {
   width: 3rem;
 }
 
 #navName {
   white-space: nowrap;
-  overflow: hidden; 
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-#menuHamburguesa{
+#menuHamburguesa {
   background-color: #f7c77e;
 }
 
@@ -270,18 +271,26 @@ a.custom-card:hover {
 
 /***************************************PRODUCTS***************************************/
 
+.custom-card {
+  padding: 1em;
+  text-align: center;
+  border-radius: .5em;
+}
+
+.card-img-top {
+  border-radius: .5em;
+}
+
 .card-text {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 30px;
+  font-size: calc(16px + .3vw);
 }
 
 .ArticuloProductos {
-  box-shadow: 3px 3px 3px 3px #f3d2a2;
+  box-shadow: 2px 2px #f3d2a2;
   background-color: rgb(243, 243, 243);
-  border-radius: 20px;
+  border-radius: .5em;
   cursor: pointer;
-  width: 100px auto;
-  height: 100px auto;
+
 }
 
 .ArticuloProductos:hover {
@@ -290,12 +299,12 @@ a.custom-card:hover {
 
 .imagenProductosCuadrado {
   width: 100%;
-  border-radius: 20px;
+  border-radius: .5em;
 }
 
 .h2Cuadrado {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 30px;
+  font-size: calc(16px + .3vw);
   color: #4F4F4F;
 }
 
@@ -305,16 +314,29 @@ a.custom-card:hover {
 }
 
 .p4 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 20px;
   color: #4F4F4F;
 }
 
-.p5 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  letter-spacing: 3px;
-  font-size: 25px;
-  color: #4F4F4F;
+
+.cantidadVendidos {
+  font-size: calc(.7rem + .1vw);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #9a9494;
+}
+
+.descripcion {
+  height: fit-content;
+}
+
+
+.currency {
+  font-size: calc(.5rem + .1vw);
+}
+
+.precio {
+  font-size: calc(1rem + .1vw);
 }
 
 /**********Estilo Productos en Linea************/
@@ -324,19 +346,22 @@ a.custom-card:hover {
 }
 
 
-.sectionProductosLineal, .articuloProductosLineal {
-  box-shadow: 3px 3px 3px 3px #f3d2a2;
-  border-radius: 20px;
+.sectionProductosLineal,
+.articuloProductosLineal {
+  padding: .5em;
+  border-radius: .5em;
+  box-shadow: 2px 2px #f3d2a2;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.563);
 }
 
-.sectionProductosLineal:hover {
-  background-color: #ffdeac;
+.articuloProductosLineal:hover {
+  background-color: #f6dfbd;
 }
 
 .imgProductosLineal {
-  border-radius: 20px;
+  width: 100px;
+  border-radius: 1em;
 }
 
 /************Modal Productos**************/
@@ -375,23 +400,24 @@ a.custom-card:hover {
 
 #modalName {
   margin-top: 0;
-  margin-left: 20px;
-  font-size: 30px;
+  font-size: calc(25px + .3vw);  
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #modalDescription {
   font-size: 20px;
-  font-family: inconsolate;
+  font-family: 'Inconsolata', 'montserrat', serif !important;
 }
 
 #modalSoldCount {
-  font-size: 18px;
+  font-size: calc(.8rem + .1vw);
   font-weight: bold;
+  font-family: 'Inconsolata', 'montserrat', serif !important;
+
 }
 
 #modalPrice {
-  font-size: 25px;
+  font-size: calc(1.3rem + .1vw);
   font-weight: bold;
   text-align: end;
 }
@@ -560,36 +586,36 @@ a.custom-card:hover {
 }
 
 .filtro-1 {
-  font-size: 1.3em; 
-  cursor: pointer; 
-  margin: 0 8px; 
-  vertical-align: middle; 
+  font-size: 1.3em;
+  cursor: pointer;
+  margin: 0 8px;
+  vertical-align: middle;
 }
 
 .filtro-2 {
-  font-size: 1.5em; 
-  cursor: pointer; 
-  margin: 0.4em; 
+  font-size: 1.5em;
+  cursor: pointer;
+  margin: 0.4em;
 }
 
 /***************************************INFO PRODUCTO***************************************/
-#imagenPrincipal{
+#imagenPrincipal {
   width: 35em;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-.fontKantumruy{
+.fontKantumruy {
   font-family: "Kantumruy Pro";
-} 
+}
 
 
-.btnInfoProducto{
+.btnInfoProducto {
   padding: .3em 5em;
   border-radius: .5em;
   border-color: #fd9d0d;
-  color:#F09100;
+  color: #F09100;
   background-color: #F09100;
   margin-top: 5%;
 }
@@ -600,12 +626,15 @@ a.custom-card:hover {
   margin-bottom: 1em;
   width: 70%;
   border-radius: 1em;
-  background-color: #f7e6cd;
+  background-color: #FCEBD1;
 }
 
+.sideBarSection > h3 {
+  font-size: calc(16px + .3vw);
+}
 .strongText {
   color: rgb(14, 13, 13);
-  font-size: 35px; 
+  font-size: 35px;
   font-weight: bold;
 
 }
@@ -617,20 +646,23 @@ a.custom-card:hover {
   font-size: 1.2rem;
 
 }
+
 .lightText {
-  font-size: 18px; 
+  font-size: 18px;
   color: #918e8c;
   font-family: 'Inconsolata';
 
 }
 
 .btnVerDetalle {
-border-color: #fd9d0d;
-border-radius: .5em;
-background-color: #F09100;
+  width: fit-content;
+  padding: .4em;
+  border-color: #fd9d0d;
+  border-radius: .5em;
+  background-color: #F09100;
+  font-size: calc(.75rem + .1vw);
+  text-wrap: nowrap;
 }
-
-
 
 .titulo-calificacion {
   font-size: 3rem;
@@ -643,21 +675,21 @@ background-color: #F09100;
 .star-rating {
   display: flex;
   gap: 15px;
-  font-size: 3rem; 
+  font-size: 3rem;
   justify-content: center;
   align-items: center;
-  color:#706b6b;
+  color: #706b6b;
 }
 
 .star-rating input[type="radio"] {
   display: none;
 }
+
 .star-rating label:hover,
-.star-rating input[type="radio"]:checked + label {
+.star-rating input[type="radio"]:checked+label {
   transform: scale(1.2);
   color: #f38c16;
 }
-
 
 .comentarios {
   width: 70%;
@@ -666,17 +698,16 @@ background-color: #F09100;
   text-align: center;
   border: 3.5px solid #030303;
   margin-left: 12rem;
-  
+
 }
 
 .btn-calificacion {
   padding: .1em 2em;
   border-radius: .5em;
   border-color: #fd9d0d;
-  color:#000000;
+  color: #000000;
   background-color: #F09100;
-  margin-top:1%;
+  margin-top: 1%;
   font-family: 'Inconsolata';
   margin-left: 30rem;
 }
-

@@ -95,13 +95,13 @@ function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
                 </figure>
                 <div class="col-12 col-md-2">
                     <h5 class="mb-1">${productoRelacionado.name}</h5>
-                    <p class="m-0"><strong>${productoRelacionado.soldCount} VENDIDOS</strong></p>
+                    <p class="cantidadVendidos m-0">${productoRelacionado.soldCount} vendidos</p>
                 </div>
                 <div class="col-12 col-md-6 m-0">
                     <p class="">${productoRelacionado.description}</p>
                 </div>
                 <div class="col-12 col-md-2 text-end">
-                    <h5 class="text-muted">${productoRelacionado.currency}${productoRelacionado.cost}</h5>
+                    <p class="price text-muted"><span class="currency">${productoRelacionado.currency}</span>${productoRelacionado.cost}</p>
                 </div>
             </article>
             `;
