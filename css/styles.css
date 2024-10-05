@@ -317,6 +317,20 @@ a.custom-card:hover {
   color: #4F4F4F;
 }
 
+#asideP {
+  margin-top: 50px;
+}
+
+@media (max-width: 992px) {
+  #asideP {
+    margin-top: 3em;
+  }
+}
+
+#labelBuscarProducto, #labelMinimo, #labelMaximo{
+  width: auto !important;
+}
+
 /**********Estilo Productos en Linea************/
 
 #bodyProductos {
@@ -409,6 +423,21 @@ a.custom-card:hover {
 .close:hover,
 .close:focus {
   color: #666;
+}
+
+/************Modal Productos**************/
+
+#asideP * {
+  width: 100%;
+}
+
+.filtro-2 {
+  font-size: 1.5em; 
+  cursor: pointer; 
+}
+
+#filter-price, #delete-filter, #sortRelevanceDescIcon, #sortPriceAscIcon, #sortPriceDescIcon, #sortCompactLine, #sortCompactIcon{
+  width: auto;
 }
 
 /***************************************LOGIN***************************************/

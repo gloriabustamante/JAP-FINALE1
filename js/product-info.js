@@ -49,7 +49,7 @@ function productosInfo(productos) {
     </section>
     `;
 
-    setTimeout(() => { //Hay que esperar a que el dom este cargado porqeu sino no funciona el click del boton ya que no encuentra las iamgenes
+    setTimeout(() => { 
         let miniaturas = document.querySelectorAll('.miniatura');
 
         miniaturas.forEach(img => {
