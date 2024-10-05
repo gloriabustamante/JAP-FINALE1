@@ -34,8 +34,6 @@ function displayLogOut() {
     })
 }
 
-
-
 function authentication() {
     if (localStorage.getItem("username") == null) {
         window.location = "login.html"

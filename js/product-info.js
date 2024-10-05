@@ -159,28 +159,28 @@ function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
 function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
   let cadena = "";
 
-  arrayProductosRelacionados.forEach((element) => {
-    let productoRelacionado = productos.find((p) => p.id === element.id);
-    if (productoRelacionado) {
-      cadena += `
-      <article class="row align-items-center articuloProductosLineal col-12 my-3 mx-1" onclick="mostrarProductoRelacionado(${productoRelacionado.id})">
-        <figure class="col-12 col-md-2 m-auto">
-          <img src="${productoRelacionado.image}" class="img-fluid imgProductosLineal p-2">
-        </figure>
-        <div class="col-12 col-md-2">
-          <h5 class="mb-1">${productoRelacionado.name}</h5>
-          <p class="m-0"><strong>${productoRelacionado.soldCount} VENDIDOS</strong></p>
-        </div>
-        <div class="col-12 col-md-6 m-0">
-          <p class="">${productoRelacionado.description}</p>
-        </div>
-        <div class="col-12 col-md-2 text-end">
-          <h5 class="text-muted">${productoRelacionado.currency}${productoRelacionado.cost}</h5>
-        </div>
-      </article>
-      `;
-    }
-  });
+    arrayProductosRelacionados.forEach(element => {
+        let productoRelacionado = productos.find(p => p.id === element.id);
+        if (productoRelacionado) {
+            cadena += `
+            <article class="row align-items-center articuloProductosLineal col-12 my-3 mx-1" onclick="mostrarProductoRelacionado(${productoRelacionado.id})">
+                <figure class="col-12 col-md-2 m-auto">
+                    <img src="${productoRelacionado.image}" class="img-fluid imgProductosLineal p-2">
+                </figure>
+                <div class="col-12 col-md-2">
+                    <h5 class="mb-1">${productoRelacionado.name}</h5>
+                    <p class="cantidadVendidos m-0">${productoRelacionado.soldCount} vendidos</p>
+                </div>
+                <div class="col-12 col-md-6 m-0">
+                    <p class="">${productoRelacionado.description}</p>
+                </div>
+                <div class="col-12 col-md-2 text-end">
+                    <p class="price text-muted"><span class="currency">${productoRelacionado.currency}</span>${productoRelacionado.cost}</p>
+                </div>
+            </article>
+            `;
+        }
+    });
 
   let section = document.querySelector("#sectionInfoProducto");
   section.innerHTML += cadena;
