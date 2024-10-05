@@ -57,7 +57,6 @@ function productosInfo(productos) {
       <button class="btnInfoProducto">Boton 1</button>
       <button class="btnInfoProducto">Boton 2</button>
       </div>
-      <h3 class="accentText px-5 py-2">Productos relacionados</h3>
       </section>
       `;
 
@@ -156,7 +155,7 @@ function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
 }
 
 function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
-  let cadena = "";
+  let cadena = `<h3 class="accentText px-5 py-2">Productos relacionados</h3>`;
 
     arrayProductosRelacionados.forEach(element => {
         let productoRelacionado = productos.find(p => p.id === element.id);

@@ -466,6 +466,13 @@ a.custom-card:hover {
   width: auto;
 }
 
+#toggleAsideButton {
+  position: fixed; 
+  z-index: 1000;
+  background-color: #f6dfbd;
+  color: white;
+}
+
 /***************************************LOGIN***************************************/
 
 .loginBody {
