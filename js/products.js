@@ -147,13 +147,13 @@ function mostrarProductosEnFormato(productos) {
                         </figure>
                         <div class="col-2">
                             <h5 class="mb-1">${p.name}</h5>
-                            <p class="m-0"><strong>${p.soldCount} VENDIDOS</strong></p>
+                            <p class="cantidadVendidos m-0">${p.soldCount} vendidos</p>
                         </div>
                         <div class="col-6 m-0">
-                            <p class="">${p.description}</p>
+                            <p class="descripcion">${p.description}</p>
                         </div>
                         <div class="col-2 text-end d-flex justify-content-center flex-wrap">
-                            <h5 class="text-muted">${p.currency}${p.cost}</h5>
+                            <p class="precio text-muted"><span class="currency">${p.currency}</span>${p.cost}</p>
                             <button class="btnVerDetalle"onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
                         </div>
                 </article>`;
@@ -165,9 +165,9 @@ function mostrarProductosEnFormato(productos) {
                     </figure>
                     <div class="divProductos col-12 d-flex flex-wrap justify-content-start align-items-start">
                         <h2 class="h2Cuadrado col-12">${p.name}</h2>
-                        <p class="p4 col-12"> ${p.soldCount} <strong>VENDIDOS</strong></p>
-                        <p class="col-12"><strong>Descripción:</strong> ${p.description}</p>
-                        <p class="p5 col-12 text-center">${p.currency}${p.cost}</p>
+                        <p class="cantidadVendidos p4 col-12"> ${p.soldCount} vendidos</p>
+                        <p class="descripcion col-12"><strong>Descripción:</strong> ${p.description}</p>
+                        <p class="precio p5 col-12 text-center"><span class="currency">${p.currency}</span>${p.cost}</p>
                     </div>
                     <div class="col-12 d-flex justify-content-center mb-3">
                         <button class="col-7 btnVerDetalle" onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
@@ -203,7 +203,7 @@ function buscarProducto(products) {
     })
 }
 
-function openModal(imgSrc, name, description, soldCount, price, id) {
+function openModal(imgSrc, name, description, soldCount, price) {
     modal.style.display = "block";
     modalImg.src = imgSrc;
     modalName.innerHTML = name;
