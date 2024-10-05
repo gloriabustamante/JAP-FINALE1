@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function ajustarPreferenciaPorTamañoVentana() {
     let anchoVentana = window.innerWidth;
 
-    if (anchoVentana < 768) {
+    if (anchoVentana < 991) {
         mostrarProductosCuadrado();
     }
     GetProductos();
@@ -159,7 +159,7 @@ function mostrarProductosEnFormato(productos) {
                 </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-md-4 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', '${p.soldCount}', '${p.currency}${p.cost}', '${p.id}')">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-5 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', '${p.soldCount}', '${p.currency}${p.cost}', '${p.id}')">
                     <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>

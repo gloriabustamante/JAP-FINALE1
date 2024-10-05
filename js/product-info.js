@@ -57,13 +57,11 @@ function productosInfo(productos) {
       <button class="btnInfoProducto">Boton 1</button>
       <button class="btnInfoProducto">Boton 2</button>
       </div>
-      <h3 class="accentText px-5 py-2">Productos relacionados</h3>
       </section>
       `;
 
-  setTimeout(() => {
-    //Hay que esperar a que el dom este cargado porqeu sino no funciona el click del boton ya que no encuentra las iamgenes
-    let miniaturas = document.querySelectorAll(".miniatura");
+    setTimeout(() => { 
+        let miniaturas = document.querySelectorAll('.miniatura');
 
     miniaturas.forEach((img) => {
       img.addEventListener("click", function () {
@@ -157,7 +155,7 @@ function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
 }
 
 function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
-  let cadena = "";
+  let cadena = `<h3 class="accentText px-5 py-2">Productos relacionados</h3>`;
 
     arrayProductosRelacionados.forEach(element => {
         let productoRelacionado = productos.find(p => p.id === element.id);

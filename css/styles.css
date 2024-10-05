@@ -339,6 +339,20 @@ a.custom-card:hover {
   font-size: calc(1rem + .1vw);
 }
 
+#asideP {
+  margin-top: 50px;
+}
+
+@media (max-width: 992px) {
+  #asideP {
+    margin-top: 3em;
+  }
+}
+
+#labelBuscarProducto, #labelMinimo, #labelMaximo{
+  width: auto !important;
+}
+
 /**********Estilo Productos en Linea************/
 
 #bodyProductos {
@@ -435,6 +449,28 @@ a.custom-card:hover {
 .close:hover,
 .close:focus {
   color: #666;
+}
+
+/************Modal Productos**************/
+
+#asideP * {
+  width: 100%;
+}
+
+.filtro-2 {
+  font-size: 1.5em; 
+  cursor: pointer; 
+}
+
+#filter-price, #delete-filter, #sortRelevanceDescIcon, #sortPriceAscIcon, #sortPriceDescIcon, #sortCompactLine, #sortCompactIcon{
+  width: auto;
+}
+
+#toggleAsideButton {
+  position: fixed; 
+  z-index: 1000;
+  background-color: #f6dfbd;
+  color: white;
 }
 
 /***************************************LOGIN***************************************/
@@ -708,6 +744,53 @@ a.custom-card:hover {
   color: #000000;
   background-color: #F09100;
   margin-top: 1%;
+  font-family: 'Inconsolata';
+  margin-left: 30rem;
+}
+
+.titulo-calificacion {
+  font-size: 3rem;
+  text-align: center;
+  justify-content: center;
+  color: #000000;
+  font-family: "Kantumruy Pro"
+}
+
+.star-rating {
+  display: flex;
+  gap: 15px;
+  font-size: 3rem; 
+  justify-content: center;
+  align-items: center;
+  color:#706b6b;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+.star-rating label:hover,
+.star-rating input[type="radio"]:checked + label {
+  transform: scale(1.2);
+  color: #f38c16;
+}
+
+
+.comentarios {
+  width: 70%;
+  padding: 2rem;
+  margin-top: 20px;
+  text-align: center;
+  border: 3.5px solid #030303;
+  margin-left: 12rem;
+}
+
+.btn-calificacion {
+  padding: .1em 2em;
+  border-radius: .5em;
+  border-color: #fd9d0d;
+  color:#000000;
+  background-color: #F09100;
+  margin-top:1%;
   font-family: 'Inconsolata';
   margin-left: 30rem;
 }
