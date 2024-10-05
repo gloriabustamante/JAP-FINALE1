@@ -48,10 +48,46 @@
     </div>
   </nav>
   <main>
+    
     <div class="container-fluid d-flex align-items-center justify-content-center" id="divProductosInfo">
-      
 
     </div>
+
+    <div >
+      <h2 class="titulo-calificacion">Califica el producto</h2>
+
+      <div class="star-rating">
+          <input id="emoji-1" type="radio" name="rating" value="1"/>
+          <label for="emoji-1" title="Muy insatisfecho">
+              <i class="far fa-frown-open"></i> 
+          </label>
+
+          <input id="emoji-2" type="radio" name="rating" value="2"/>
+          <label for="emoji-2" title="Insatisfecho">
+              <i class="far fa-frown"></i> 
+          </label>
+
+          <input id="emoji-3" type="radio" name="rating" value="3"/>
+          <label for="emoji-3" title="Neutral">
+              <i class="far fa-meh"></i> 
+          </label>
+
+          <input id="emoji-4" type="radio" name="rating" value="4"/>
+          <label for="emoji-4" title="Satisfecho">
+              <i class="far fa-smile"></i> 
+          </label>
+
+          <input id="emoji-5" type="radio" name="rating" value="5"/>
+          <label for="emoji-5" title="Muy satisfecho">
+              <i class="far fa-grin-beam"></i> 
+          </label>
+      </div>
+      <input  class="comentarios" placeholder="Escribe un comentario" />
+
+      <div>
+          <button  class="btn-calificacion">Enviar calificación</button>
+      </div>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -75,16 +111,4 @@
   <script src="js/shared.js"></script>
 </body>
 
-</html>ltros";
-        } else {
-          toggleAsideButton.textContent = "Ocultar Filtros";
-        }
-
-        window.scrollTo({
-          top: 0,
-          behavior:"smooth",
-        });
-      });
-    </script>
-  </body>
 </html>
