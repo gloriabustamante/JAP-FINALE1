@@ -677,7 +677,7 @@ a.custom-card:hover {
 
 .accentText {
   color: #F09100;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 700;
   font-size: 1.2rem;
 

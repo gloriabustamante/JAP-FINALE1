@@ -242,21 +242,24 @@ document.getElementById('btnAgregarComentarios').addEventListener('click', (even
             rating: parseInt(ratingValue),
             user: username, 
             date: fechaActual
-        };
+      };
 
-        ComentariosData.push(nuevoComentario);
-        sessionStorage.setItem('comentarios', JSON.stringify(ComentariosData));
-        mostrarComentariosNuevos(ComentariosData);
+      ComentariosData.push(nuevoComentario);
+      sessionStorage.setItem('comentarios', JSON.stringify(ComentariosData));
+      mostrarComentariosNuevos(ComentariosData);
 
-        document.getElementById('ComentarioInput').value = '';
-        ratingValue = 0;
-        emojis.forEach(emoji => emoji.checked = false);
+      document.getElementById('ComentarioInput').value = '';
+      ratingValue = 0;
+      emojis.forEach(emoji => emoji.checked = false);
 
-        var modal = bootstrap.Modal.getInstance(document.getElementById('comentarioModal'));
-        modal.hide();
+      var modal = bootstrap.Modal.getInstance(document.getElementById('comentarioModal'));
+      modal.hide();
+      setTimeout(() => {
+        location.reload();
+      }, 10);
     } else {
-        alert('Por favor, completa todos los campos y selecciona un puntaje.');
-    }
+          alert('Por favor, completa todos los campos y selecciona un puntaje.');
+      }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
