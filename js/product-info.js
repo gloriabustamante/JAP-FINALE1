@@ -217,13 +217,13 @@ function mostrarComentariosNuevos(comments) {
         estrellas += '<i class="fas fa-star" style="color: grey;"></i>';
     }
         listaItem.innerHTML = 
-            `<div class="accentText px-5 pt-3">
-        <span>${estrellas}</span>
-            <p class="text-muted" style="font-size: 16px;">${comentario.date}</p>
-        <div>
-        <p style="color: black; font-size: 16px;">${comentario.user}</p>
-        </div>
-        <p class="text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
+          `<div class="accentText px-5 pt-3">
+          <span>${estrellas}</span>
+          <p class="text-muted" style="font-size: 16px;">${comentario.date}</p>
+          <div>
+          <p style="color: black; font-size: 16px;">${comentario.user}</p>
+          </div>
+          <p class="text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
           </div>`
 
         ListaComentarios.appendChild(listaItem);
