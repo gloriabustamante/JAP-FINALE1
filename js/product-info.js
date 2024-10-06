@@ -60,8 +60,8 @@ function productosInfo(productos) {
       </section>
       `;
 
-    setTimeout(() => { 
-        let miniaturas = document.querySelectorAll('.miniatura');
+  setTimeout(() => {
+    let miniaturas = document.querySelectorAll(".miniatura");
 
     miniaturas.forEach((img) => {
       img.addEventListener("click", function () {
@@ -100,15 +100,14 @@ function mostrarComentarios(comentarios) {
     .map(
       (com) =>
         (sectionComentarios += `
-          <article class="comentario">
-              <div class="estrellas">
-  
-              </div>
-              <p class="text-muted">${com.dateTime}</p>
+          <article class="comentario calificaciones">
               <p class="fw-bold">${com.user}</p>
-              <p>${com.description}</p>
-          </article>
-      `)
+              <div class="estrellas">
+              </div>
+              <p class="fechaComentario text-muted">${com.dateTime}</p>
+              <p class="comentario">${com.description}</p>
+          </article>`
+        )
     )
     .join("");
 
@@ -157,10 +156,10 @@ function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
 function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
   let cadena = `<h3 class="accentText px-5 py-2">Productos relacionados</h3>`;
 
-    arrayProductosRelacionados.forEach(element => {
-        let productoRelacionado = productos.find(p => p.id === element.id);
-        if (productoRelacionado) {
-            cadena += `
+  arrayProductosRelacionados.forEach((element) => {
+    let productoRelacionado = productos.find((p) => p.id === element.id);
+    if (productoRelacionado) {
+      cadena += `
             <article class="row align-items-center articuloProductosLineal col-12 my-3 mx-1" onclick="mostrarProductoRelacionado(${productoRelacionado.id})">
                 <figure class="col-12 col-md-2 m-auto">
                     <img src="${productoRelacionado.image}" class="img-fluid imgProductosLineal p-2">
@@ -177,8 +176,8 @@ function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
                 </div>
             </article>
             `;
-        }
-    });
+    }
+  });
 
   let section = document.querySelector("#sectionInfoProducto");
   section.innerHTML += cadena;
@@ -189,85 +188,87 @@ function mostrarProductoRelacionado(id) {
   window.location.href = window.location.href;
 }
 
-//FUNCION PARA LOS COMENTARIOS 
+//FUNCION PARA LOS COMENTARIOS
 
 let ComentariosData = [];
 let ratingValue = 0;
 
-const emojis = document.querySelectorAll('.star-rating input');
-emojis.forEach(emoji => {
-    emoji.addEventListener('change', () => {
-        ratingValue = emoji.value;
-    });
+const emojis = document.querySelectorAll(".star-rating input");
+emojis.forEach((emoji) => {
+  emoji.addEventListener("change", () => {
+    ratingValue = emoji.value;
+  });
 });
 
 function mostrarComentariosNuevos(comments) {
-    const ListaComentarios = document.getElementById('ListaComentarios');
-    ListaComentarios.innerHTML = ''; 
+  const ListaComentarios = document.getElementById("ListaComentarios");
+  ListaComentarios.innerHTML = "";
 
-    comments.forEach(comentario => {
-      const listaItem = document.createElement('li');
-      listaItem.classList.add('list-group-item');
-    let estrellas = '';
+  comments.forEach((comentario) => {
+    const listaItem = document.createElement("li");
+    listaItem.classList.add("list-group-item");
+    let estrellas = "";
 
     for (let i = 0; i < comentario.rating; i++) {
-        estrellas += '<i class="fas fa-star" style="color: yellow;"></i>';
+      estrellas += '<i class="fas fa-star" style="color: yellow;"></i>';
     }
     for (let j = comentario.rating; j < 5; j++) {
-        estrellas += '<i class="fas fa-star" style="color: grey;"></i>';
+      estrellas += '<i class="fas fa-star" style="color: grey;"></i>';
     }
-        listaItem.innerHTML = 
-          `<div class="accentText px-5 pt-3">
-          <span>${estrellas}</span>
-          <p class="text-muted" style="font-size: 16px;">${comentario.date}</p>
-          <div>
+    listaItem.innerHTML = `<article class="calificaciones"><div class="accentText px-5 pt-3">
           <p style="color: black; font-size: 16px;">${comentario.user}</p>
+          <span>${estrellas}</span>
+          <p class="fechaComentario text-muted" style="font-size: 16px;">${comentario.date}</p>
+          <div>
           </div>
-          <p class="text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
-          </div>`
+          <p class= "comentario text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
+          </div> </article>`;
 
-        ListaComentarios.appendChild(listaItem);
-    });
+    ListaComentarios.appendChild(listaItem);
+  });
 }
 
-document.getElementById('btnAgregarComentarios').addEventListener('click', (event) => {
+document
+  .getElementById("btnAgregarComentarios")
+  .addEventListener("click", (event) => {
     event.preventDefault();
-    const commentInput = document.getElementById('ComentarioInput').value;
-    const username = localStorage.getItem('username');
-    const fechaActual = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const commentInput = document.getElementById("ComentarioInput").value;
+    const username = localStorage.getItem("username");
+    const fechaActual = new Date().toISOString().slice(0, 19).replace("T", " ");
 
     if (commentInput && ratingValue) {
-        const nuevoComentario = {
-            comment: commentInput,
-            rating: parseInt(ratingValue),
-            user: username, 
-            date: fechaActual
+      const nuevoComentario = {
+        comment: commentInput,
+        rating: parseInt(ratingValue),
+        user: username,
+        date: fechaActual,
       };
 
       ComentariosData.push(nuevoComentario);
-      sessionStorage.setItem('comentarios', JSON.stringify(ComentariosData));
+      sessionStorage.setItem("comentarios", JSON.stringify(ComentariosData));
       mostrarComentariosNuevos(ComentariosData);
 
-      document.getElementById('ComentarioInput').value = '';
+      document.getElementById("ComentarioInput").value = "";
       ratingValue = 0;
-      emojis.forEach(emoji => emoji.checked = false);
+      emojis.forEach((emoji) => (emoji.checked = false));
 
-      var modal = bootstrap.Modal.getInstance(document.getElementById('comentarioModal'));
+      var modal = bootstrap.Modal.getInstance(
+        document.getElementById("comentarioModal")
+      );
       modal.hide();
       setTimeout(() => {
         location.reload();
       }, 10);
     } else {
-          alert('Por favor, completa todos los campos y selecciona un puntaje.');
-      }
-});
+      alert("Por favor, completa todos los campos y selecciona un puntaje.");
+    }
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const savedComments = sessionStorage.getItem('comentarios');
+document.addEventListener("DOMContentLoaded", () => {
+  const savedComments = sessionStorage.getItem("comentarios");
   if (savedComments) {
     ComentariosData = JSON.parse(savedComments);
     mostrarComentariosNuevos(ComentariosData);
-    sessionStorage.removeItem('comentarios');
+    sessionStorage.removeItem("comentarios");
   }
-  
 });
