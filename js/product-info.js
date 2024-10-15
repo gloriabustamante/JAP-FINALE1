@@ -13,7 +13,6 @@ function obtenerProductos() {
       throw new Error("Error");
     })
     .then((data) => {
-      console.log(data);
       productosInfo(data);
     })
     .catch((error) => {
@@ -36,16 +35,15 @@ function productosInfo(productos) {
   contenedor.innerHTML = `
       <section id="sectionInfoProducto" class="row d-flex align-items-center justify-content-between m-4">
       <figure class="col-12 flex-wrap col-lg-7 d-flex justify-content-center flex-lg-wrap">
-      <img id="imagenPrincipal" src="${
-        imagenes[0]
-      }" alt="${nombre}" class="col-12 col-lg-6 img-fluid m-2">
+      <img id="imagenPrincipal" src="${imagenes[0]
+    }" alt="${nombre}" class="col-12 col-lg-6 img-fluid m-2">
       <div class="col-12 d-flex flex-wrap justify-content-center">
       ${imagenes
-        .map(
-          (imagen, pos) =>
-            `<img src="${imagen}" alt="${nombre}" class="col-3 col-sm-2 m-1 miniatura p-0" data-index="${pos}">`
-        )
-        .join("")}
+      .map(
+        (imagen, pos) =>
+          `<img src="${imagen}" alt="${nombre}" class="col-3 col-sm-2 m-1 miniatura p-0" data-index="${pos}">`
+      )
+      .join("")}
       </div>
       </figure>
       <div class="col-12 col-lg-5 pb-2">
@@ -84,7 +82,7 @@ function obtenerComentarios() {
       throw new Error("Error en la solicitud");
     })
     .then((data) => {
-      mostrarComentarios(data);
+      mostrarComentarios(data);      
     })
     .catch((error) => {
       throw new Error("Ocurrio un error:", error);
@@ -97,18 +95,19 @@ function mostrarComentarios(comentarios) {
       <section class="px-5">`;
 
   comentarios
-    .map(
-      (com) =>
-        (sectionComentarios += `
-          <article class="comentario calificaciones">
-              <p class="fw-bold">${com.user}</p>
-              <div class="estrellas">
-              </div>
-              <p class="fechaComentario text-muted">${com.dateTime}</p>
-              <p class="comentario">${com.description}</p>
-          </article>`
-        )
-    )
+    .map((com) => {
+      let dateObj = new Date(com.dateTime);
+      let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
+      let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
+
+      sectionComentarios += `
+          <article class="calificaciones">
+              <p class="userCalificaciones fw-bold">${com.user}</p>
+              <div class="estrellas"></div>
+              <p class="fechaCalificaciones text-muted">${fechaFormateada}</p>
+              <p class="comentarioCalificaciones">${com.description}</p>
+          </article>`;
+    })
     .join("");
 
   let section = document.querySelector("#sectionInfoProducto");
@@ -132,6 +131,7 @@ function mostrarComentarios(comentarios) {
     }
   });
 }
+
 
 function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
   let idProducto = localStorage.getItem("catID");
@@ -215,14 +215,15 @@ function mostrarComentariosNuevos(comments) {
     for (let j = comentario.rating; j < 5; j++) {
       estrellas += '<i class="fas fa-star" style="color: grey;"></i>';
     }
-    listaItem.innerHTML = `<article class="calificaciones"><div class="accentText px-5 pt-3">
-          <p style="color: black; font-size: 16px;">${comentario.user}</p>
+    listaItem.innerHTML = `
+    <article class="calificaciones">
+      <div class="calificacion px-5 pt-3">
+          <p class="userCalificaciones" style="color: black; font-size: 16px;">${comentario.user}</p>
           <span>${estrellas}</span>
-          <p class="fechaComentario text-muted" style="font-size: 16px;">${comentario.date}</p>
-          <div>
-          </div>
-          <p class= "comentario text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
-          </div> </article>`;
+          <p class="fechaCalificaciones text-muted" style="font-size: 16px;">${comentario.date}</p>
+          <p class= "comentarioCalificaciones text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
+      </div> 
+    </article>`;
 
     ListaComentarios.appendChild(listaItem);
   });
@@ -234,14 +235,17 @@ document
     event.preventDefault();
     const commentInput = document.getElementById("ComentarioInput").value;
     const username = localStorage.getItem("username");
-    const fechaActual = new Date().toISOString().slice(0, 19).replace("T", " ");
-
+    const fechaActual = new Date();
+    const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
+    
+    const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+    
     if (commentInput && ratingValue) {
       const nuevoComentario = {
         comment: commentInput,
         rating: parseInt(ratingValue),
         user: username,
-        date: fechaActual,
+        date: fechaFormateada,
       };
 
       ComentariosData.push(nuevoComentario);
