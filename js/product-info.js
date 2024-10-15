@@ -102,9 +102,11 @@ function mostrarComentarios(comentarios) {
 
       sectionComentarios += `
           <article class="calificaciones">
+            <div class='contenedorSuperiorClasificaciones'>
               <p class="userCalificaciones fw-bold">${com.user}</p>
-              <div class="estrellas"></div>
               <p class="fechaCalificaciones text-muted">${fechaFormateada}</p>
+            </div>
+              <div class="estrellas"></div>
               <p class="comentarioCalificaciones">${com.description}</p>
           </article>`;
     })
@@ -218,9 +220,11 @@ function mostrarComentariosNuevos(comments) {
     listaItem.innerHTML = `
     <article class="calificaciones">
       <div class="calificacion px-5 pt-3">
-          <p class="userCalificaciones" style="color: black; font-size: 16px;">${comentario.user}</p>
+          <div class="contenedorSuperiorClasificaciones">
+            <p class="userCalificaciones" style="color: black; font-size: 16px;">${comentario.user}</p>
+            <p class="fechaCalificaciones text-muted" style="font-size: 16px;">${comentario.date}</p>
+          </div>
           <span>${estrellas}</span>
-          <p class="fechaCalificaciones text-muted" style="font-size: 16px;">${comentario.date}</p>
           <p class= "comentarioCalificaciones text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
       </div> 
     </article>`;

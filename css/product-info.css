@@ -113,11 +113,20 @@
   font-family: "Inconsolata", "montserrat", serif;
 }
 
+.contenedorSuperiorClasificaciones {
+  display: flex;
+  justify-content: space-between;
+}
+
 .fechaCalificaciones {
   align-self: flex-end;
   width: fit-content;
   text-align: right;
   color: #c9beb8;
+}
+
+.estrellas{
+  margin-bottom: 1em;
 }
 /********************MODAL CALIFICACION***********************/
 
