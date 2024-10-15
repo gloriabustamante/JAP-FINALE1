@@ -1,0 +1,217 @@
+.ArticuloProductos {
+  box-shadow: 2px 2px #f3d2a2;
+  background-color: rgb(243, 243, 243);
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.ArticuloProductos:hover {
+  background-color: #f6dfbd;
+}
+
+.imagenProductosCuadrado {
+  width: 100%;
+  border-radius: 0.5em;
+}
+
+.h2Cuadrado {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: calc(16px + 0.3vw);
+  color: #4f4f4f;
+}
+
+.p4 {
+  font-size: 20px;
+  color: #4f4f4f;
+}
+
+.cantidadVendidos {
+  font-size: calc(0.7rem + 0.1vw);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #9a9494;
+}
+
+.descripcion {
+  height: fit-content;
+}
+
+.currency {
+  font-size: calc(0.5rem + 0.1vw);
+}
+
+.precio {
+  font-size: calc(1rem + 0.1vw);
+}
+
+.btnVerDetalle {
+  width: fit-content;
+  padding: 0.4em;
+  border-color: #fd9d0d;
+  border-radius: 0.5em;
+  background-color: #f09100;
+  font-size: calc(0.75rem + 0.1vw);
+  text-wrap: nowrap;
+}
+
+#asideP {
+  margin-top: 50px;
+}
+
+@media (max-width: 992px) {
+  #asideP {
+    margin-top: 3em;
+  }
+}
+
+#labelBuscarProducto,
+#labelMinimo,
+#labelMaximo {
+  width: auto !important;
+}
+
+
+/**********Estilo Productos en Linea************/
+
+#bodyProductos {
+  background-color: #fff5e8;
+}
+
+.articuloProductosLineal {
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px #f3d2a2;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.563);
+}
+
+.articuloProductosLineal:hover {
+  background-color: #f6dfbd;
+}
+
+.imgProductosLineal {
+  width: 100px;
+  border-radius: 1em;
+}
+
+/************Modal Productos**************/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  margin: 5% auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-details {
+  padding: 10px;
+}
+
+#modalName {
+  margin-top: 0;
+  font-size: calc(25px + 0.3vw);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#modalDescription {
+  font-size: 20px;
+  font-family: "Inconsolata", "montserrat", serif !important;
+}
+
+#modalSoldCount {
+  font-size: calc(0.8rem + 0.1vw);
+  font-weight: bold;
+  font-family: "Inconsolata", "montserrat", serif !important;
+}
+
+#modalPrice {
+  font-size: calc(1.3rem + 0.1vw);
+  font-weight: bold;
+  text-align: end;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #000;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #666;
+}
+
+/************Aside**************/
+
+.sideBarSection {
+  padding: 1em;
+  margin: 0.3em;
+  margin-bottom: 1em;
+  width: 70%;
+  border-radius: 1em;
+  background-color: #fcebd1;
+}
+
+.sideBarSection>h3 {
+  font-size: calc(16px + 0.3vw);
+}
+
+#asideP * {
+  width: 100%;
+}
+
+.filtro-1 {
+  font-size: 1.3em;
+  cursor: pointer;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+.filtro-2 {
+  font-size: 1.5em;
+  cursor: pointer;
+  margin: 0.4em;
+}
+
+
+#filter-price,
+#delete-filter,
+#sortRelevanceDescIcon,
+#sortPriceAscIcon,
+#sortPriceDescIcon,
+#sortCompactLine,
+#sortCompactIcon {
+  width: auto;
+}
+
+#toggleAsideButton {
+  position: fixed;
+  z-index: 1000;
+  background-color: #f6dfbd;
+  color: white;
+}
