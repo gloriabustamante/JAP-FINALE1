@@ -48,12 +48,12 @@ function productosInfo(productos) {
       </figure>
       <div class="col-12 col-lg-5 pb-2">
       <p class="accentText">${categoria}</p>
-      <h2 class="strongText">${nombre}</h2>
+      <h1 class="strongText">${nombre}</h1>
       <p>${descripcion}</p>
       <p class="strongText">${moneda} ${costo}</p>
       <p class="lightText">${vendidos} vendidos</p>
-      <button class="btnInfoProducto">Boton 1</button>
-      <button class="btnInfoProducto">Boton 2</button>
+      <button class="botonNaranja">WIP</button>
+      <button class="botonNaranja">WIP</button>
       </div>
       </section>
       `;

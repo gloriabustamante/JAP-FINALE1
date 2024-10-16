@@ -201,6 +201,18 @@ a.custom-card:hover {
   color: orange;
 }
 
+.accentText {
+  color: #f09100;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.lightText {
+  font-size: 18px;
+  color: #918e8c;
+  font-family: "Inconsolata";
+}
 /***************************************NAV BAR***************************************/
 
 .navbar {
@@ -283,7 +295,25 @@ a.custom-card:hover {
 }
 
 
+/***************************************FORM***************************************/
 
+
+.form {
+  width: 40%;
+  margin: 3em;
+  padding: 1.5em;
+  background-color: #fcebd1;
+  border: 0.09em solid #f09100;
+  border-radius: 1.5em;
+}
+
+.form>h2 {
+  text-align: center;
+}
+
+.form>button {
+  align-self: flex-end;
+}
 
 /***************************************LABEL***************************************/
 
@@ -377,6 +407,23 @@ a.custom-card:hover {
   cursor: not-allowed;
 }
 
+.botonNaranja {
+  width: fit-content;
+  padding: 0.5em 0.6em;
+  border: 1px solid #fd9d0d;
+  border-radius: 0.5em;
+  background-color: #f09100;
+  font-size: calc(0.75rem + 0.1vw);
+  color: black;
+  text-wrap: nowrap;
+}
+
+.botonNaranja:disabled {
+  background-color: #f090006e;
+  color: gray;
+
+}
+
 .buttonDisabled:hover,
 .buttonDisabled:active,
 .buttonDisabled:focus {
@@ -384,3 +431,4 @@ a.custom-card:hover {
   border-color: #9ca3af;
   color: #9ca3af;
 }
+ 
