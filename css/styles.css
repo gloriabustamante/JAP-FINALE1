@@ -418,6 +418,12 @@ a.custom-card:hover {
   text-wrap: nowrap;
 }
 
+.botonNaranja:disabled {
+  background-color: #f090006e;
+  color: gray;
+
+}
+
 .buttonDisabled:hover,
 .buttonDisabled:active,
 .buttonDisabled:focus {
