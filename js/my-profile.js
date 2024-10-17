@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   displayData();
   alternarInputs();
+  actualizarEstadoBoton(); 
+  cargarImagen()
 });
 
 //Creo la funcion para mostrar el username en el perfil, pero la llamo displayData ya que luego la usariamos para traer otros datos también.
@@ -32,6 +34,13 @@ flechas.forEach(flecha => {
 
 // Función para reconocer si los inputs tienen error
 
+let camposInteractuados = {
+  firstName: false,
+  firstlastName: false,
+  email: false
+};
+
+// Función para alternar los estilos de error.
 const alternarEstados = (input, label) => {
   const esEmail = input.type === 'email';
   const tieneError = !input.value.trim() || (esEmail && input.validating && !validarEmail(input.value)); // Valida si el email es inválido o el campo está vacío
@@ -59,14 +68,18 @@ const actualizarEstadoBoton = () => {
   let todoValido = true;
 
   inputs.forEach(({ input, label }) => {
-    const esValido = alternarEstados(input, label);
-    if (!esValido) {
-      todoValido = false;
+    if (input.value.trim()) {
+      const esValido = alternarEstados(input, label);
+      if (!esValido) {
+        todoValido = false;
+      }
+    } else {
+      todoValido = false; 
     }
   });
 
   const button = document.querySelector('#buttonEditarPerfil');
-  button.disabled = !todoValido;  
+  button.disabled = !todoValido; 
 };
 
 // Función para cambiar los estilos de los inputs y labels
@@ -82,6 +95,7 @@ const alternarInputs = () => {
     input.validating = false;
 
     input.addEventListener('blur', function () {
+      camposInteractuados[input.name] = true; // Marcar el campo como interactuado.
       input.validating = true;
       alternarEstados(input, label);
       actualizarEstadoBoton(); 
@@ -95,9 +109,7 @@ const alternarInputs = () => {
   });
 };
 
-
-// Función para guardar datos en localStorage solo si los inputs son válidos
-
+// Guardar cambios solo si los inputs son válidos.
 const guardarCambios = () => {
   const inputs = [
     { input: firstName, label: firstNameLabel },
@@ -107,8 +119,8 @@ const guardarCambios = () => {
 
   let todoValido = true;
 
-
   inputs.forEach(({ input, label }) => {
+    camposInteractuados[input.name] = true; 
     const esValido = alternarEstados(input, label); 
     if (!esValido) {
       todoValido = false; 
@@ -127,3 +139,35 @@ const guardarCambios = () => {
 }
 
 document.querySelector('#buttonEditarPerfil').addEventListener('click', guardarCambios);
+
+//Funcion que obtiene la imagen seleccionada del explorador de archivos y la actualiza
+function cargarImagen() {
+  let imagen = document.querySelector("#FotoPerfil");
+  let subirArchivo = document.querySelector("#SubirArchivo");
+
+  const imagenGuardada = localStorage.getItem("imagenPerfil");
+  if (imagenGuardada) {
+      imagen.src = imagenGuardada; 
+  }
+
+  imagen.addEventListener("click", () => {
+    subirArchivo.click();
+  });
+
+  subirArchivo.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imagen.src = e.target.result; 
+
+        localStorage.setItem("imagenPerfil", e.target.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Por favor selecciona un archivo de imagen válido.");
+    }
+  });
+}
+
