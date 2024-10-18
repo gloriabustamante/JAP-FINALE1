@@ -35,7 +35,7 @@
   </style>
 </head>
 
-<body>
+<body class="dark">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
     <div class="container position-relative" id="divContainer">
       <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -144,11 +144,11 @@
                                     <div class="form-row">
                                         <div class="inputContainer col">
                                             <div class="input themeInput text-center">
-                                                <i class="flecha icon fa-solid fa-angle-left"></i>
-                                                <i id="icon" class="icon fa-solid fa-moon"></i>
-                                                <i class="flecha icon fa-solid fa-angle-right"></i>
-                                            </div>
-                                            <p class="label">Tema</p>
+                                              <i id="leftArrow" class="flecha icon fa-solid fa-angle-left"></i>
+                                              <label for="toggle" id="label_toggle"><i class="fa-solid fa-moon"></i></label>                                  
+                                              <i id="rightArrow" class="flecha icon fa-solid fa-angle-right"></i>
+                                          </div>
+                                          <label id="temaLabel" for="tema" class="label">Tema</label>
                                         </div>
                                     </div>
                                 </div>

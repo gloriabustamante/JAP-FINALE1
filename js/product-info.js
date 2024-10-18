@@ -58,19 +58,25 @@ function productosInfo(productos) {
       </section>
       `;
 
-  setTimeout(() => {
-    let miniaturas = document.querySelectorAll(".miniatura");
-
-    miniaturas.forEach((img) => {
-      img.addEventListener("click", function () {
-        let pos = this.getAttribute("data-index");
-        document.querySelector("#imagenPrincipal").src = imagenes[pos];
-      });
-    });
-  }, 100);
-
+  configurarMiniaturas(imagenes);
   obtenerComentarios();
   obtenerDatosProductosRelacionados(productosRelacionados);
+}
+
+function configurarMiniaturas(imagenes) {
+  let miniaturas = document.querySelectorAll(".miniatura");
+  
+  miniaturas.forEach((img) => {
+    img.removeEventListener("click", cambiarImagen); 
+    img.addEventListener("click", cambiarImagen);
+  });
+
+  function cambiarImagen(event) {
+    event.preventDefault();
+
+    let pos = this.getAttribute("data-index");
+    document.querySelector("#imagenPrincipal").src = imagenes[pos];
+  }
 }
 
 function obtenerComentarios() {
@@ -90,29 +96,25 @@ function obtenerComentarios() {
 }
 
 function mostrarComentarios(comentarios) {
-  let sectionComentarios = `
-      <h2 class="accentText px-5 pt-3">Comentarios</h2>
-      <section class="px-5">`;
+  let sectionComentarios = ``;
 
-  comentarios
-    .map((com) => {
+    comentarios.forEach(com => {
       let dateObj = new Date(com.dateTime);
       let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
       let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
 
       sectionComentarios += `
-          <article class="calificaciones">
+          <article class="comentario-calificaciones">
             <div class='contenedorSuperiorClasificaciones'>
               <p class="userCalificaciones fw-bold">${com.user}</p>
-              <p class="fechaCalificaciones text-muted">${fechaFormateada}</p>
+              <p class="fechaCalificaciones">${fechaFormateada}</p>
             </div>
               <div class="estrellas"></div>
               <p class="comentarioCalificaciones">${com.description}</p>
           </article>`;
-    })
-    .join("");
+  });
 
-  let section = document.querySelector("#sectionInfoProducto");
+  let section = document.querySelector("#ListaComentarios");
   section.innerHTML += sectionComentarios;
 
   let estrellasDivs = section.querySelectorAll(".estrellas");
@@ -181,7 +183,7 @@ function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
     }
   });
 
-  let section = document.querySelector("#sectionInfoProducto");
+  let section = document.querySelector("#sectionProductosRelacionados");
   section.innerHTML += cadena;
 }
 
@@ -208,7 +210,7 @@ function mostrarComentariosNuevos(comments) {
 
   comments.forEach((comentario) => {
     const listaItem = document.createElement("li");
-    listaItem.classList.add("list-group-item");
+    listaItem.classList.add("comentario");
     let estrellas = "";
 
     for (let i = 0; i < comentario.rating; i++) {
@@ -218,14 +220,13 @@ function mostrarComentariosNuevos(comments) {
       estrellas += '<i class="fas fa-star" style="color: grey;"></i>';
     }
     listaItem.innerHTML = `
-    <article class="calificaciones">
-      <div class="calificacion px-5 pt-3">
+    <article class="comentario-calificaciones">
           <div class="contenedorSuperiorClasificaciones">
-            <p class="userCalificaciones" style="color: black; font-size: 16px;">${comentario.user}</p>
-            <p class="fechaCalificaciones text-muted" style="font-size: 16px;">${comentario.date}</p>
+            <p class="userCalificaciones">${comentario.user}</p>
+            <p class="fechaCalificaciones">${comentario.date}</p>
           </div>
           <span>${estrellas}</span>
-          <p class= "comentarioCalificaciones text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
+          <p class= "comentarioCalificaciones">${comentario.comment}</p>
       </div> 
     </article>`;
 
@@ -233,12 +234,10 @@ function mostrarComentariosNuevos(comments) {
   });
 }
 
-document
-  .getElementById("btnAgregarComentarios")
-  .addEventListener("click", (event) => {
-    event.preventDefault();
-    const commentInput = document.getElementById("ComentarioInput").value;
-    const username = localStorage.getItem("username");
+document.getElementById("btnAgregarComentarios").addEventListener("click", (event) => {
+  event.preventDefault();
+  const commentInput = document.getElementById("ComentarioInput").value;
+  const username = localStorage.getItem("username");
     const fechaActual = new Date();
     const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
     

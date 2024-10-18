@@ -68,14 +68,14 @@
   font-size: .8rem;
 }
 
-.calificaciones {
+.comentario-calificaciones {
   display: flex;
   flex-direction: column;
   margin: 1em;
   padding: 1.5em 2em;
   background-color: #fde29e;
   border-radius: 0.5em;
-  width: 80%;
+  width: 60%;
   font-size: calc(12px + .2vw);
   font-family: "Inconsolata", "montserrat", serif;
 }
@@ -89,12 +89,22 @@
   align-self: flex-end;
   width: fit-content;
   text-align: right;
-  color: #c9beb8;
+  color: #000000;
+  font-size: 16px;
 }
 
 .estrellas{
   margin-bottom: 1em;
 }
+
+#ListaComentarios {
+  list-style-type: none;
+}
+
+.comentarioCalificaciones {
+  padding-top: 25px;
+}
+
 /********************MODAL CALIFICACION***********************/
 
 

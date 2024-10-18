@@ -19,13 +19,12 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="dark">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
     <div class="container position-relative" id="divContainer">
       <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
         <span class="navbar-toggler-icon"></span>
-        <i id="icon-xmark" class="fa-solid fa-xmark hidden" style="font-size: 24px; cursor: pointer;"></i>
       </button>
       
       <a href="index.html" class="logo-centered d-lg-none">
@@ -72,7 +71,7 @@
     </div>
 
     <section class="comentario">
-      <ul id="ListaComentarios" class="list-group mb-3"></ul>
+      <section class="comentario px-5" id="ListaComentarios"></section>
       <div class="text-center">
       <button type="input" class="botonNaranja" data-bs-toggle="modal" data-bs-target="#comentarioModal">Agregar Calificación</button>
       </div>
@@ -112,7 +111,10 @@
               <button type="button" class="botonNaranja" id="btnAgregarComentarios">Enviar Calificación</button>
             </div>
           </div>
-      </div>
+        </div>
+      </section>
+        <div id="sectionProductosRelacionados"></div>
+      </section>
     </section>
   </main>
   <footer class="text-muted">
