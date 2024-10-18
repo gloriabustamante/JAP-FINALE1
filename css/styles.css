@@ -460,7 +460,7 @@ body.dark .comentario-calificaciones, body.dark .navbar {
   color: white;
 }
 
-body.dark .nav-item {
+body.dark .nav-item, body.dark .modal-content, body.dark #comentarioModalLabel {
   background-color: #666;
   color: white;
 }
@@ -489,7 +489,15 @@ body.dark #imgNavBar {
 }
 
 body.dark #usernameLabel, body.dark #firstNameLabel, body.dark #firstlastNameLabel, body.dark #phoneLabel, body.dark #emailLabel, body.dark #secondNameLabel,
-body.dark #labelBuscarProducto, body.dark #labelMinimo, body.dark #labelMaximo, body.dark #temaLabel, body.dark #secondlastNameLabel {
+body.dark #labelBuscarProducto, body.dark #labelMinimo, body.dark #labelMaximo, body.dark #temaLabel, body.dark #secondlastNameLabel, body.dark #ComentarioInput {
   background-color: #3f3f3f;
   color: white;
+}
+
+body.dark .star-rating {
+  color: white;
+}
+
+body.dark .star-rating label:hover { 
+  color: rgba(192, 189, 23, 0.733);
 }
