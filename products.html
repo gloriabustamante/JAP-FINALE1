@@ -1,68 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/products.css" rel="stylesheet" />
-  </head>
 
-  <body id="bodyProductos">
-    <!-- Contenedor del modal -->
-    <div id="modal" class="modal">
-      <span class="close">&times;</span>
-      <div class="modal-content">
-        <img id="modalImg" class="modal-image" />
-        <div id="modalDetails" class="modal-details">
-          <h2 id="modalName"></h2>
-          <p id="modalSoldCount"></p>
-          <p id="modalDescription"></p>
-          <p id="modalPrice"></p>
-        </div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/products.css" rel="stylesheet" />
+</head>
+
+<body id="bodyProductos">
+  <!-- Contenedor del modal -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+      <img id="modalImg" class="modal-image" />
+      <div id="modalDetails" class="modal-details">
+        <h2 id="modalName"></h2>
+        <p id="modalSoldCount"></p>
+        <p id="modalDescription"></p>
+        <p id="modalPrice"></p>
       </div>
     </div>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
-      <div class="container position-relative" id="divContainer">
-        <button
-          class="navbar-toggler my-3"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          id="menuHamburguesa"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  </div>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
+    <div class="container position-relative" id="divContainer">
+      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <a href="index.html" class="logo-centered d-lg-none">
-          <img src="img/logo.svg" id="imgNavBar" />
-        </a>
+      <a href="index.html" class="logo-centered d-lg-none">
+        <img src="img/logo.svg" id="imgNavBar" />
+      </a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul
@@ -80,6 +62,20 @@
               </a>
             </li>
             <li class="nav-item liIndex mx-1 my-1" id="navName"></li>
+          </li>
+          <li class="nav-item">
+          
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="emailDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">              
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="login.html" >Cerrar sesión</a></li>
+
+            </ul>
+            </li>
             <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
           </ul>
         </div>
@@ -182,56 +178,53 @@
         </section>
       </aside>
 
-      <section
-        class="container-fluid d-flex align-items-center justify-content-center col-9"
-        id="MostrarProductos"
-      ></section>
-    </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+    <section class="container-fluid d-flex align-items-center justify-content-center col-9" id="MostrarProductos">
+    </section>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/shared.js"></script>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/shared.js"></script>
 
-    <script>
-      const toggleAsideButton = document.getElementById("toggleAsideButton");
-      const aside = document.getElementById("asideP");
+  <script>
+    const toggleAsideButton = document.getElementById("toggleAsideButton");
+    const aside = document.getElementById("asideP");
 
-      toggleAsideButton.addEventListener("click", () => {
-        aside.classList.toggle("d-none");
-        aside.classList.toggle("d-block");
+    toggleAsideButton.addEventListener("click", () => {
+      aside.classList.toggle("d-none");
+      aside.classList.toggle("d-block");
 
-        if (aside.classList.contains("d-none")) {
-          toggleAsideButton.textContent = "Filtros";
-        } else {
-          toggleAsideButton.textContent = "Ocultar Filtros";
-        }
+      if (aside.classList.contains("d-none")) {
+        toggleAsideButton.textContent = "Filtros";
+      } else {
+        toggleAsideButton.textContent = "Ocultar Filtros";
+      }
 
-        window.scrollTo({
-          top: 0,
-          behavior:"smooth",
-        });
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

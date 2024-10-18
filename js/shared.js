@@ -31,6 +31,12 @@ function displayLogOut() {
 
     navListItem.addEventListener('click', function () {
         localStorage.removeItem('username')
+        localStorage.removeItem('secondlastName')
+        localStorage.removeItem('secondName')
+        localStorage.removeItem('email')
+        localStorage.removeItem('phone')
+        localStorage.removeItem('firstlastName')
+        localStorage.removeItem('firstName')
     })
 }
 

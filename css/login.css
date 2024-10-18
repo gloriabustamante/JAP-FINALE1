@@ -8,23 +8,6 @@
     margin: 0;
 }
 
-.form {
-    width: 40%;
-    margin: 3em;
-    padding: 1.5em;
-    background-color: #fcebd1;
-    border: 0.09em solid #f09100;
-    border-radius: 1.5em;
-}
-
-.form>h2 {
-    text-align: center;
-}
-
-.form>button {
-    align-self: flex-end;
-}
-
 @media (max-width: 320px) {
     .loginContainer {
         padding: 10px;

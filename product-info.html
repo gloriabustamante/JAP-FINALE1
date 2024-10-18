@@ -46,7 +46,21 @@
             </a>
           </li>
           <li class="nav-item liIndex mx-1 my-1" id="navName"></li>
-          <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
+          </li>
+          <li class="nav-item">
+          
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="emailDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">              
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="login.html" >Cerrar sesión</a></li>
+
+            </ul>
+            </li>
+            <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
         </ul>
       </div>
     </div>
@@ -60,7 +74,7 @@
     <section class="comentario">
       <ul id="ListaComentarios" class="list-group mb-3"></ul>
       <div class="text-center">
-      <button type="input" class="btnInfoProducto" data-bs-toggle="modal" data-bs-target="#comentarioModal">Agregar Calificación</button>
+      <button type="input" class="botonNaranja" data-bs-toggle="modal" data-bs-target="#comentarioModal">Agregar Calificación</button>
       </div>
       <div class="modal fade" id="comentarioModal" tabindex="-1" aria-labelledby="comentarioModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -95,7 +109,7 @@
                 <textarea id="ComentarioInput" class="form-control mt-3" placeholder="Escribe tus comentarios" required></textarea>
               </div>
             <div class="modal-footer justify-content-center">
-              <button type="button" class="btnInfoProducto" id="btnAgregarComentarios">Enviar Calificación</button>
+              <button type="button" class="botonNaranja" id="btnAgregarComentarios">Enviar Calificación</button>
             </div>
           </div>
       </div>

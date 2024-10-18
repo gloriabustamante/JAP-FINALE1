@@ -1,1 +1,24 @@
-/*MY PROFILE CSS FILE/*
+.form {
+    width: 100%;
+    background-color: #fcebd1;
+}
+
+.profilePicture {
+    width: 50%;
+    border-radius: 3em;
+    border: .2em solid wheat;
+}
+
+.themeInput {
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon {
+    margin-top: .3em;
+    font-size: 1.5rem;
+}
+
+.flecha {
+    cursor: pointer;
+}

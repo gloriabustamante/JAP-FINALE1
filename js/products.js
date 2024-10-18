@@ -154,7 +154,7 @@ function mostrarProductosEnFormato(productos) {
                         </div>
                         <div class="col-2 text-end d-flex justify-content-center flex-wrap">
                             <p class="precio text-muted"><span class="currency">${p.currency}</span>${p.cost}</p>
-                            <button class="btnVerDetalle"onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
+                            <button class="botonNaranja"onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
                         </div>
                 </article>`;
         } else {
@@ -170,7 +170,7 @@ function mostrarProductosEnFormato(productos) {
                         <p class="precio p5 col-12 text-center"><span class="currency">${p.currency}</span>${p.cost}</p>
                     </div>
                     <div class="col-12 d-flex justify-content-center mb-3">
-                        <button class="col-7 btnVerDetalle" onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
+                        <button class="col-7 botonNaranja" onClick="redirecionAInfoProducto(${p.id}); event.stopPropagation();">Ver detalles</button>
                     </div>
                 </article>`;
         }
