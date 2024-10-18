@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const idProducto = localStorage.getItem("prodId");
 
+// Esta función obtiene los detalles de un producto específico desde un API y los envía a productosInfo.
+
 function obtenerProductos() {
   fetch(`${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`)
     .then((response) => {
@@ -19,6 +21,8 @@ function obtenerProductos() {
       throw new Error(error);
     });
 }
+
+// Esta función toma los datos del producto y los muestra en la página.
 
 function productosInfo(productos) {
   let contenedor = document.querySelector("#divProductosInfo");
@@ -63,6 +67,8 @@ function productosInfo(productos) {
   obtenerDatosProductosRelacionados(productosRelacionados);
 }
 
+// Esta función agrega un evento click a cada miniatura de imagen para cambiar la imagen principal del producto.
+
 function configurarMiniaturas(imagenes) {
   let miniaturas = document.querySelectorAll(".miniatura");
   
@@ -79,6 +85,8 @@ function configurarMiniaturas(imagenes) {
   }
 }
 
+// Esta función obtiene los comentarios del producto desde un API y los muestra.
+
 function obtenerComentarios() {
   fetch(`${PRODUCT_INFO_COMMENTS_URL}${idProducto}${EXT_TYPE}`)
     .then((resp) => {
@@ -94,6 +102,8 @@ function obtenerComentarios() {
       throw new Error("Ocurrio un error:", error);
     });
 }
+
+// Esta función muestra los comentarios obtenidos, incluyendo la fecha y las estrellas de calificación.
 
 function mostrarComentarios(comentarios) {
   let sectionComentarios = ``;
@@ -136,6 +146,7 @@ function mostrarComentarios(comentarios) {
   });
 }
 
+// Función que obtiene los datos de los productos relacionados utilizando un array de IDs
 
 function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
   let idProducto = localStorage.getItem("catID");
@@ -187,12 +198,14 @@ function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
   section.innerHTML += cadena;
 }
 
+// Función para mostrar el producto relacionado cuando se selecciona uno de la lista
+
 function mostrarProductoRelacionado(id) {
   localStorage.setItem("prodId", id);
   window.location.href = window.location.href;
 }
 
-//FUNCION PARA LOS COMENTARIOS
+//FUNCION PARA LOS COMENTARIOS NUEVOS
 
 let ComentariosData = [];
 let ratingValue = 0;
@@ -203,6 +216,8 @@ emojis.forEach((emoji) => {
     ratingValue = emoji.value;
   });
 });
+
+// Función que muestra los nuevos comentarios agregados dinámicamente en la lista de comentarios
 
 function mostrarComentariosNuevos(comments) {
   const ListaComentarios = document.getElementById("ListaComentarios");
@@ -233,6 +248,8 @@ function mostrarComentariosNuevos(comments) {
     ListaComentarios.appendChild(listaItem);
   });
 }
+
+// Evento que maneja el botón para agregar un nuevo comentario, verificando los campos y recargando la lista
 
 document.getElementById("btnAgregarComentarios").addEventListener("click", (event) => {
   event.preventDefault();
@@ -270,6 +287,8 @@ document.getElementById("btnAgregarComentarios").addEventListener("click", (even
       alert("Por favor, completa todos los campos y selecciona un puntaje.");
     }
   });
+
+  // Carga los comentarios guardados en sessionStorage al cargar la página
 
 document.addEventListener("DOMContentLoaded", () => {
   const savedComments = sessionStorage.getItem("comentarios");

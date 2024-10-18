@@ -51,7 +51,7 @@ navbarToggler.addEventListener('click', function () {
     navbarToggler.classList.toggle('toggler-open');
 });
 
-//FUNCION MODO OSCURO
+// Función para habilitar el modo oscuro
 
 let leftArrow = document.getElementById('leftArrow');
 let rightArrow = document.getElementById('rightArrow');
@@ -72,8 +72,6 @@ function aplicarModoDesdeLocalStorage() {
 }
 
     document.addEventListener('DOMContentLoaded', aplicarModoDesdeLocalStorage);
-
-// Función para habilitar el modo oscuro
 
 function enableDarkMode() {
     document.body.classList.add('dark');
