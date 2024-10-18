@@ -142,12 +142,15 @@ document.querySelector('#buttonEditarPerfil').addEventListener('click', guardarC
 
 //Funcion que obtiene la imagen seleccionada del explorador de archivos y la actualiza
 function cargarImagen() {
+  const usuarioActual = localStorage.getItem("username"); 
   let imagen = document.querySelector("#FotoPerfil");
   let subirArchivo = document.querySelector("#SubirArchivo");
 
-  const imagenGuardada = localStorage.getItem("imagenPerfil");
-  if (imagenGuardada) {
+  if (usuarioActual) {
+    const imagenGuardada = localStorage.getItem(`imagenPerfil_${usuarioActual}`);
+    if (imagenGuardada) {
       imagen.src = imagenGuardada; 
+    }
   }
 
   imagen.addEventListener("click", () => {
@@ -162,7 +165,9 @@ function cargarImagen() {
       reader.onload = function (e) {
         imagen.src = e.target.result; 
 
-        localStorage.setItem("imagenPerfil", e.target.result);
+        if (usuarioActual) {
+          localStorage.setItem(`imagenPerfil_${usuarioActual}`, e.target.result);
+        }
       };
       reader.readAsDataURL(file);
     } else {
@@ -170,4 +175,5 @@ function cargarImagen() {
     }
   });
 }
+
 
