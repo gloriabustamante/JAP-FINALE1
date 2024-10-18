@@ -51,3 +51,43 @@ navbarToggler.addEventListener('click', function () {
     navbarToggler.classList.toggle('toggler-open');
 });
 
+// Función para habilitar el modo oscuro
+
+let leftArrow = document.getElementById('leftArrow');
+let rightArrow = document.getElementById('rightArrow');
+let label_toggle = document.getElementById('label_toggle');
+
+function aplicarModoDesdeLocalStorage() {
+    const modoOscuro = localStorage.getItem('modoOscuro') === 'true';
+
+    if (modoOscuro) {
+        document.body.classList.add('dark');
+        label_toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        label_toggle.style.color = "orange";
+    } else {
+        document.body.classList.remove('dark');
+        label_toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        label_toggle.style.color = "black";
+    }
+}
+
+    document.addEventListener('DOMContentLoaded', aplicarModoDesdeLocalStorage);
+
+function enableDarkMode() {
+    document.body.classList.add('dark');
+    label_toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    label_toggle.style.color = "orange";
+    localStorage.setItem('modoOscuro', 'true');
+}
+
+// Función para deshabilitar el modo oscuro (modo normal)
+
+function disableDarkMode() {
+    document.body.classList.remove('dark');
+    label_toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    label_toggle.style.color = "black";
+    localStorage.setItem('modoOscuro', 'false');
+}
+
+rightArrow.addEventListener('click', enableDarkMode);
+leftArrow.addEventListener('click', disableDarkMode);

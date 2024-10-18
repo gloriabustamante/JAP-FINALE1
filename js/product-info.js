@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const idProducto = localStorage.getItem("prodId");
 
+// Esta función obtiene los detalles de un producto específico desde un API y los envía a productosInfo.
+
 function obtenerProductos() {
   fetch(`${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`)
     .then((response) => {
@@ -19,6 +21,8 @@ function obtenerProductos() {
       throw new Error(error);
     });
 }
+
+// Esta función toma los datos del producto y los muestra en la página.
 
 function productosInfo(productos) {
   let contenedor = document.querySelector("#divProductosInfo");
@@ -58,20 +62,30 @@ function productosInfo(productos) {
       </section>
       `;
 
-  setTimeout(() => {
-    let miniaturas = document.querySelectorAll(".miniatura");
-
-    miniaturas.forEach((img) => {
-      img.addEventListener("click", function () {
-        let pos = this.getAttribute("data-index");
-        document.querySelector("#imagenPrincipal").src = imagenes[pos];
-      });
-    });
-  }, 100);
-
+  configurarMiniaturas(imagenes);
   obtenerComentarios();
   obtenerDatosProductosRelacionados(productosRelacionados);
 }
+
+// Esta función agrega un evento click a cada miniatura de imagen para cambiar la imagen principal del producto.
+
+function configurarMiniaturas(imagenes) {
+  let miniaturas = document.querySelectorAll(".miniatura");
+  
+  miniaturas.forEach((img) => {
+    img.removeEventListener("click", cambiarImagen); 
+    img.addEventListener("click", cambiarImagen);
+  });
+
+  function cambiarImagen(event) {
+    event.preventDefault();
+
+    let pos = this.getAttribute("data-index");
+    document.querySelector("#imagenPrincipal").src = imagenes[pos];
+  }
+}
+
+// Esta función obtiene los comentarios del producto desde un API y los muestra.
 
 function obtenerComentarios() {
   fetch(`${PRODUCT_INFO_COMMENTS_URL}${idProducto}${EXT_TYPE}`)
@@ -89,30 +103,28 @@ function obtenerComentarios() {
     });
 }
 
-function mostrarComentarios(comentarios) {
-  let sectionComentarios = `
-      <h2 class="accentText px-5 pt-3">Comentarios</h2>
-      <section class="px-5">`;
+// Esta función muestra los comentarios obtenidos, incluyendo la fecha y las estrellas de calificación.
 
-  comentarios
-    .map((com) => {
+function mostrarComentarios(comentarios) {
+  let sectionComentarios = ``;
+
+    comentarios.forEach(com => {
       let dateObj = new Date(com.dateTime);
       let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
       let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
 
       sectionComentarios += `
-          <article class="calificaciones">
+          <article class="comentario-calificaciones">
             <div class='contenedorSuperiorClasificaciones'>
               <p class="userCalificaciones fw-bold">${com.user}</p>
-              <p class="fechaCalificaciones text-muted">${fechaFormateada}</p>
+              <p class="fechaCalificaciones">${fechaFormateada}</p>
             </div>
               <div class="estrellas"></div>
               <p class="comentarioCalificaciones">${com.description}</p>
           </article>`;
-    })
-    .join("");
+  });
 
-  let section = document.querySelector("#sectionInfoProducto");
+  let section = document.querySelector("#ListaComentarios");
   section.innerHTML += sectionComentarios;
 
   let estrellasDivs = section.querySelectorAll(".estrellas");
@@ -134,6 +146,7 @@ function mostrarComentarios(comentarios) {
   });
 }
 
+// Función que obtiene los datos de los productos relacionados utilizando un array de IDs
 
 function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
   let idProducto = localStorage.getItem("catID");
@@ -181,16 +194,18 @@ function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
     }
   });
 
-  let section = document.querySelector("#sectionInfoProducto");
+  let section = document.querySelector("#sectionProductosRelacionados");
   section.innerHTML += cadena;
 }
+
+// Función para mostrar el producto relacionado cuando se selecciona uno de la lista
 
 function mostrarProductoRelacionado(id) {
   localStorage.setItem("prodId", id);
   window.location.href = window.location.href;
 }
 
-//FUNCION PARA LOS COMENTARIOS
+//FUNCION PARA LOS COMENTARIOS NUEVOS
 
 let ComentariosData = [];
 let ratingValue = 0;
@@ -202,13 +217,15 @@ emojis.forEach((emoji) => {
   });
 });
 
+// Función que muestra los nuevos comentarios agregados dinámicamente en la lista de comentarios
+
 function mostrarComentariosNuevos(comments) {
   const ListaComentarios = document.getElementById("ListaComentarios");
   ListaComentarios.innerHTML = "";
 
   comments.forEach((comentario) => {
     const listaItem = document.createElement("li");
-    listaItem.classList.add("list-group-item");
+    listaItem.classList.add("comentario");
     let estrellas = "";
 
     for (let i = 0; i < comentario.rating; i++) {
@@ -218,14 +235,13 @@ function mostrarComentariosNuevos(comments) {
       estrellas += '<i class="fas fa-star" style="color: grey;"></i>';
     }
     listaItem.innerHTML = `
-    <article class="calificaciones">
-      <div class="calificacion px-5 pt-3">
+    <article class="comentario-calificaciones">
           <div class="contenedorSuperiorClasificaciones">
-            <p class="userCalificaciones" style="color: black; font-size: 16px;">${comentario.user}</p>
-            <p class="fechaCalificaciones text-muted" style="font-size: 16px;">${comentario.date}</p>
+            <p class="userCalificaciones">${comentario.user}</p>
+            <p class="fechaCalificaciones">${comentario.date}</p>
           </div>
           <span>${estrellas}</span>
-          <p class= "comentarioCalificaciones text-muted" style="color: black; font-size: 14px;">${comentario.comment}</p>
+          <p class= "comentarioCalificaciones">${comentario.comment}</p>
       </div> 
     </article>`;
 
@@ -233,12 +249,12 @@ function mostrarComentariosNuevos(comments) {
   });
 }
 
-document
-  .getElementById("btnAgregarComentarios")
-  .addEventListener("click", (event) => {
-    event.preventDefault();
-    const commentInput = document.getElementById("ComentarioInput").value;
-    const username = localStorage.getItem("username");
+// Evento que maneja el botón para agregar un nuevo comentario, verificando los campos y recargando la lista
+
+document.getElementById("btnAgregarComentarios").addEventListener("click", (event) => {
+  event.preventDefault();
+  const commentInput = document.getElementById("ComentarioInput").value;
+  const username = localStorage.getItem("username");
     const fechaActual = new Date();
     const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
     
@@ -271,6 +287,8 @@ document
       alert("Por favor, completa todos los campos y selecciona un puntaje.");
     }
   });
+
+  // Carga los comentarios guardados en sessionStorage al cargar la página
 
 document.addEventListener("DOMContentLoaded", () => {
   const savedComments = sessionStorage.getItem("comentarios");

@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
     GetProductos();
 
+    // Asignación de eventos para los botones de orden y filtrado de productos
+
     document.querySelector("#sortCompactLine").addEventListener("click", function() {
         mostrarProductosEnLinea();
         GetProductos();
@@ -55,6 +57,8 @@ function mostrarProductosCuadrado() {
     sessionStorage.setItem("preferenciaProductos", "cuadrado");
 }
 
+// Función que obtiene productos desde una API y los muestra en el formato preferido
+
 function GetProductos() {
     let idProducto = localStorage.getItem("catID");
 
@@ -73,6 +77,8 @@ function GetProductos() {
     });
 }
 
+// Función para ordenar los productos por precio
+
 function ordenarProductosPorPrecio(order) {
     const contenedorProductos = document.querySelector('#productosSection');
     const productos = Array.from(contenedorProductos.children);
@@ -87,6 +93,8 @@ function ordenarProductosPorPrecio(order) {
     productos.forEach(producto => contenedorProductos.appendChild(producto));
 }
 
+// Función para ordenar productos por relevancia (basada en cantidad vendida)
+
 function ordenarProductosPorRelevancia(order) {
     const contenedorProductos = document.querySelector('#productosSection');
     const productos = Array.from(contenedorProductos.children);
@@ -100,6 +108,8 @@ function ordenarProductosPorRelevancia(order) {
     contenedorProductos.innerHTML = ''; 
     productos.forEach(producto => contenedorProductos.appendChild(producto));
 }
+
+// Función que filtra productos según un rango de precios
 
 function filtrarProductosPorPrecio(event) {
     const minPriceInput = document.getElementById('minPriceInput').value;
@@ -130,6 +140,20 @@ function filtrarProductosPorPrecio(event) {
     contenedorProductos.innerHTML = ''; 
     productosFiltrados.forEach(producto => contenedorProductos.appendChild(producto));
 }
+
+function buscarProducto(products) {
+    let searchBar = document.querySelector('#buscarProducto');
+    searchBar.addEventListener('input', function () {
+        const query = searchBar.value.toLowerCase();
+        const filteredProducts = products.filter(product => 
+          product.name.toLowerCase().includes(query) || 
+          product.description.toLowerCase().includes(query)
+        );
+        mostrarProductosEnFormato(filteredProducts);
+    })
+}
+
+// Función que muestra los productos en el formato seleccionado (lineal o cuadrado)
 
 function mostrarProductosEnFormato(productos) {
     let cadena = "";
@@ -191,17 +215,7 @@ function redirecionAInfoProducto(id){
     window.location.href = "product-info.html";
 }
 
-function buscarProducto(products) {
-    let searchBar = document.querySelector('#buscarProducto');
-    searchBar.addEventListener('input', function () {
-        const query = searchBar.value.toLowerCase();
-        const filteredProducts = products.filter(product => 
-          product.name.toLowerCase().includes(query) || 
-          product.description.toLowerCase().includes(query)
-        );
-        mostrarProductosEnFormato(filteredProducts);
-    })
-}
+// Funcion de apertura y cierre del modal
 
 function openModal(imgSrc, name, description, soldCount, price) {
     modal.style.display = "block";

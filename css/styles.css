@@ -251,6 +251,7 @@ a.custom-card:hover {
 
 #imgNavBar {
   width: 3rem;
+  filter:none;
 }
 
 #navName {
@@ -431,4 +432,72 @@ a.custom-card:hover {
   border-color: #9ca3af;
   color: #9ca3af;
 }
- 
+
+/*ESTILO MODO OSCURO*/
+
+.dark, body.dark .list-group-item, body.dark footer, body.dark main {
+  background-color: #19152c;
+  color: white;
+}
+
+body.dark p, body.dark h1, body.dark h2, body.dark h3, 
+body.dark h4 {
+  color: white;
+}
+
+body.dark a {
+  color: #bb86fc;
+}
+
+body.dark .btnInfoProducto, body.dark .article {
+  background-color: #333;
+  border-color: #333;
+  color: #333;
+}
+
+body.dark .comentario-calificaciones, body.dark .navbar {
+  background-color: #3f3f3f;
+  color: white;
+}
+
+body.dark .nav-item, body.dark .modal-content, body.dark #comentarioModalLabel {
+  background-color: #666;
+  color: white;
+}
+
+body.dark .btn-calificacion, body.dark .botonNaranja, body.dark #menuHamburguesa {
+  background-color: #666;
+  color: white;
+  border-color: #333;
+}
+
+body.dark .articuloProductosLineal, body.dark .sideBarSection, body.dark .ArticuloProductos, body.dark .form, 
+body.dark #muebles, body.dark #juguetes, body.dark #autos {
+  background-color: #3f3f3f;
+  color: white;
+  box-shadow: 2px 2px #666;
+}
+
+body.dark #imgNavBar {
+  filter: brightness(1) invert(0.8) saturate(0);
+}
+
+#label_toggle {
+  color: black;
+  font-size: 1.7em;
+  margin-top: 0px;
+}
+
+body.dark #usernameLabel, body.dark #firstNameLabel, body.dark #firstlastNameLabel, body.dark #phoneLabel, body.dark #emailLabel, body.dark #secondNameLabel,
+body.dark #labelBuscarProducto, body.dark #labelMinimo, body.dark #labelMaximo, body.dark #temaLabel, body.dark #secondlastNameLabel, body.dark #ComentarioInput {
+  background-color: #3f3f3f;
+  color: white;
+}
+
+body.dark .star-rating {
+  color: white;
+}
+
+body.dark .star-rating label:hover { 
+  color: rgba(192, 189, 23, 0.733);
+}
