@@ -51,16 +51,11 @@ navbarToggler.addEventListener('click', function () {
     navbarToggler.classList.toggle('toggler-open');
 });
 
-//FUNCION MODO OSCURO
+// Función para habilitar el modo oscuro
 
 let leftArrow = document.getElementById('leftArrow');
 let rightArrow = document.getElementById('rightArrow');
 let label_toggle = document.getElementById('label_toggle');
-let saveButton = document.getElementById('buttonEditarPerfil');
-
-// Variable para almacenar temporalmente el modo seleccionado
-
-let modoOscuroSeleccionado;
 
 function aplicarModoDesdeLocalStorage() {
     const modoOscuro = localStorage.getItem('modoOscuro') === 'true';
@@ -76,34 +71,23 @@ function aplicarModoDesdeLocalStorage() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', aplicarModoDesdeLocalStorage);
+    document.addEventListener('DOMContentLoaded', aplicarModoDesdeLocalStorage);
 
-
-function toggleDarkMode() {
-    const modoOscuro = document.body.classList.contains('dark');
-
-    if (modoOscuro) {
-        document.body.classList.remove('dark');
-        label_toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        label_toggle.style.color = "black";
-        modoOscuroSeleccionado = false;
-    } else {
-        document.body.classList.add('dark');
-        label_toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
-        label_toggle.style.color = "orange";
-        modoOscuroSeleccionado = true; 
-    }
+function enableDarkMode() {
+    document.body.classList.add('dark');
+    label_toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    label_toggle.style.color = "orange";
+    localStorage.setItem('modoOscuro', 'true');
 }
 
-// Guardar el estado del modo en localStorage solo cuando se presiona el botón "Guardar cambios"
+// Función para deshabilitar el modo oscuro (modo normal)
 
-saveButton.addEventListener('click', () => {
-    if (typeof modoOscuroSeleccionado !== 'undefined') {
-        localStorage.setItem('modoOscuro', modoOscuroSeleccionado.toString());
-    }
-});
+function disableDarkMode() {
+    document.body.classList.remove('dark');
+    label_toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    label_toggle.style.color = "black";
+    localStorage.setItem('modoOscuro', 'false');
+}
 
-// Asignar la función de toggle a los clics de las flechas
-
-leftArrow.addEventListener('click', toggleDarkMode);
-rightArrow.addEventListener('click', toggleDarkMode);
+rightArrow.addEventListener('click', enableDarkMode);
+leftArrow.addEventListener('click', disableDarkMode);

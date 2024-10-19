@@ -132,15 +132,3 @@
   width: 100px;
   border-radius: 1em;
 } 
-
-@media (min-width: 468px) {
-  .fechaCalificaciones {
-    font-size: 13px;
-  }
-}
-
-@media (min-width: 992px) {
-  .fechaCalificaciones {
-    font-size: 16px;
-  }
-}

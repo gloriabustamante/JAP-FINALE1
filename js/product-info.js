@@ -114,7 +114,7 @@ function mostrarComentarios(comentarios) {
       let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
 
       sectionComentarios += `
-          <article class="comentario-calificaciones col-12 col-md-6 col-lg-4">
+          <article class="comentario-calificaciones">
             <div class='contenedorSuperiorClasificaciones'>
               <p class="userCalificaciones fw-bold">${com.user}</p>
               <p class="fechaCalificaciones">${fechaFormateada}</p>
@@ -237,7 +237,7 @@ function mostrarComentariosNuevos(comments) {
     listaItem.innerHTML = `
     <article class="comentario-calificaciones">
           <div class="contenedorSuperiorClasificaciones">
-            <p class="userCalificaciones fw-bold">${comentario.user}</p>
+            <p class="userCalificaciones">${comentario.user}</p>
             <p class="fechaCalificaciones">${comentario.date}</p>
           </div>
           <span>${estrellas}</span>
@@ -257,6 +257,7 @@ document.getElementById("btnAgregarComentarios").addEventListener("click", (even
   const username = localStorage.getItem("username");
     const fechaActual = new Date();
     const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
+    
     const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
     
     if (commentInput && ratingValue) {
