@@ -13,25 +13,6 @@ const displayData = () => {
   usernameInput.value = username || ''; 
 }
 
-// Función para cambiar el icono
-
-const flechas = document.querySelectorAll('.flecha'); 
-const icon = document.getElementById('icon');
-
-const toggleIcon = () =>  {
-  if (icon.classList.contains('fa-moon')) {
-    icon.classList.remove('fa-moon'); 
-    icon.classList.add('fa-sun'); 
-  } else {
-    icon.classList.remove('fa-sun'); 
-    icon.classList.add('fa-moon');
-  }
-}
-
-flechas.forEach(flecha => {
-  flecha.addEventListener('click', toggleIcon);
-});
-
 // Función para reconocer si los inputs tienen error
 
 let camposInteractuados = {
