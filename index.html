@@ -1,120 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-</head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
+      <div class="container position-relative" id="divContainer">
+        <button
+          class="navbar-toggler my-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          id="menuHamburguesa"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-<body>
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
-    <div class="container position-relative" id="divContainer">
-      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <a href="index.html" class="logo-centered d-lg-none">
-        <img src="img/logo.svg" id="imgNavBar">
-      </a>
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
-          <li class="nav-item liIndex mx-1 my-1">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item liIndex mx-1 my-1">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
-            <a class="nav-link active" href="index.html">
-              <img src="img/logo.svg" id="imgNavBar">
-            </a>
-            <li class="nav-item liIndex mx-1 my-1" id="navName"></li>
-          </li>
-          <li class="nav-item">
-          
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="emailDropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">              
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><a class="dropdown-item" href="login.html" >Cerrar sesión</a></li>
+        <a href="index.html" class="logo-centered d-lg-none">
+          <img src="img/logo.svg" id="imgNavBar" />
+        </a>
 
-            </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul
+            class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center"
+          >
+            <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
+              <a class="nav-link active" href="index.html">
+                <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
+              </a>
             </li>
-            <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-  <main>
-    <div class="jumbotron text-center"></div>
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
-              <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
-                alt="Imagen representativa de la categoría 'Autos'">
-              <h3 class="m-3">Autos</h3>
-              <div class="card-body">
-                <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
-              <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
-                alt="Imgagen representativa de la categoría 'Juguetes'">
-              <h3 class="m-3">Juguetes</h3>
-              <div class="card-body">
-                <p class="card-text">Encuentra aquí los mejores precios para niños/as de cualquier edad.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
-              <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
-                alt="Imgagen representativa de la categoría 'Muebles'">
-              <h3 class="m-3">Muebles</h3>
-              <div class="card-body">
-                <p class="card-text">Muebles antiguos, nuevos y para ser armados por uno mismo.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
+            <li class="nav-item liIndex mx-1 my-1">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item liIndex mx-1 my-1">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
+              <a
+                class="nav-link dropdownButton"
+                href="#"
+                id="userDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="img/user-icon.svg" alt="User Icon" />
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li>
+                  <a class="dropdown-item" href="cart.html">Mi carrito</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                </li>
+                <li id="liLogout">
+                  <a class="dropdown-item" href="login.html">Cerrar Sesión</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
-    </div>
-  </footer>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/index.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/shared.js"></script>
-</body>
+    </nav>
 
+    <main>
+      <div class="jumbotron text-center"></div>
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div
+                class="card mb-4 shadow-sm custom-card cursor-active"
+                id="autos"
+              >
+                <img
+                  class="bd-placeholder-img card-img-top"
+                  src="img/cars_index.jpg"
+                  alt="Imagen representativa de la categoría 'Autos'"
+                />
+                <h3 class="m-3">Autos</h3>
+                <div class="card-body">
+                  <p class="card-text">
+                    Los mejores precios en autos 0 kilómetro, de alta y media
+                    gama.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="card mb-4 shadow-sm custom-card cursor-active"
+                id="juguetes"
+              >
+                <img
+                  class="bd-placeholder-img card-img-top"
+                  src="img/toys_index.jpg"
+                  alt="Imgagen representativa de la categoría 'Juguetes'"
+                />
+                <h3 class="m-3">Juguetes</h3>
+                <div class="card-body">
+                  <p class="card-text">
+                    Encuentra aquí los mejores precios para niños/as de
+                    cualquier edad.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="card mb-4 shadow-sm custom-card cursor-active"
+                id="muebles"
+              >
+                <img
+                  class="bd-placeholder-img card-img-top"
+                  src="img/furniture_index.jpg"
+                  alt="Imgagen representativa de la categoría 'Muebles'"
+                />
+                <h3 class="m-3">Muebles</h3>
+                <div class="card-body">
+                  <p class="card-text">
+                    Muebles antiguos, nuevos y para ser armados por uno mismo.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <a class="btn btn-light btn-lg btn-block" href="categories.html"
+              >Y mucho más!</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/shared.js"></script>
+  </body>
 </html>
