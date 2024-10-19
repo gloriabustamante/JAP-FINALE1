@@ -37,6 +37,7 @@ function displayLogOut() {
         localStorage.removeItem('phone')
         localStorage.removeItem('firstlastName')
         localStorage.removeItem('firstName')
+        localStorage.removeItem('modoOscuro');
     })
 }
 
