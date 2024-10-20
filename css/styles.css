@@ -226,6 +226,10 @@ a.custom-card:hover {
   text-align: center;
   font-family: "Lexend Deca" !important;
 }
+.dropdownButton{
+border: none;
+background-color: transparent;
+}
 
 .liIndex {
   background-color: #f7c77e;

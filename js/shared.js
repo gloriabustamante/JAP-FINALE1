@@ -1,34 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
     displayNavBarName()
-    displayLogOut()
+    logout()
     authentication()
 });
 
 function displayNavBarName() {
-    let navListItem = document.querySelector('#navName');
     let navUsername = localStorage.getItem("username");
-
+    const btnMenu= document.getElementById('userDropdown')
     if (navUsername) {
-        let navLink = document.createElement('a');
-        navLink.textContent = navUsername;
-        navListItem.appendChild(navLink);
-        navLink.setAttribute('class', 'nav-link')
-        navLink.setAttribute('href', 'my-profile.html')
-    }
-}
+        btnMenu.textContent=navUsername       
+} }
 
-function displayLogOut() {
+function logout () {
     let navListItem = document.querySelector('#logout');
-    let navUsername = localStorage.getItem("username");
-
-    if (navUsername) {
-        let navLink = document.createElement('a');
-        navLink.textContent = 'Cerrar Sesión';
-        navListItem.appendChild(navLink);
-        navLink.setAttribute('class', 'nav-link')
-        navLink.setAttribute('href', 'login.html')
-    }
-
     navListItem.addEventListener('click', function () {
         localStorage.removeItem('username')
         localStorage.removeItem('secondlastName')

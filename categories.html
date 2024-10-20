@@ -20,48 +20,65 @@
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
     <div class="container position-relative" id="divContainer">
-      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
+      <button
+        class="navbar-toggler my-3"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        id="menuHamburguesa"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <a href="index.html" class="logo-centered d-lg-none">
-        <img src="img/logo.svg" id="imgNavBar">
+        <img src="img/logo.svg" id="imgNavBar" />
       </a>
-      
+
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
+        <ul
+          class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center"
+        >
+          <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
+            <a class="nav-link active" href="index.html">
+              <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
+            </a>
+          </li>
           <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
           <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
-            <a class="nav-link active" href="index.html">
-              <img src="img/logo.svg" id="imgNavBar">
+          <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
+            <a
+              class="nav-link dropdownButton"
+              href="#"
+              id="userDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img src="img/user-icon.svg" alt="User Icon" />
             </a>
-          </li>
-          <li class="nav-item liIndex mx-1 my-1" id="navName"></li>
-          </li>
-          <li class="nav-item">
-          
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="emailDropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">              
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><a class="dropdown-item" href="login.html" >Cerrar sesión</a></li>
-
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li>
+                <a class="dropdown-item" href="cart.html">Mi carrito</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+              </li>
+              <li id="liLogout">
+                <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
+              </li>
             </ul>
-            </li>
-            <li class="nav-item liIndex mx-1 my-1" id="logout"></li>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main class="pb-5">
     <div class="text-center p-4">
       <h1 class="accentText">Categorías</h1>
