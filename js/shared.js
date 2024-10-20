@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     displayNavBarName()
-    logOut()
+    logout()
     authentication()
 });
 
@@ -11,7 +11,7 @@ function displayNavBarName() {
         btnMenu.textContent=navUsername       
 } }
 
-document.querySelector('#aLogOut').addEventListener( 'click', () => {
+function logout () {
     let navListItem = document.querySelector('#logout');
     navListItem.addEventListener('click', function () {
         localStorage.removeItem('username')
@@ -23,7 +23,7 @@ document.querySelector('#aLogOut').addEventListener( 'click', () => {
         localStorage.removeItem('firstName')
         localStorage.removeItem('modoOscuro');
     })
-})
+}
 
 function authentication() {
     if (localStorage.getItem("username") == null) {
