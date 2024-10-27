@@ -213,6 +213,15 @@ function mostrarProductosEnFormato(productos) {
 function redirecionAInfoProducto(id){
     localStorage.setItem('prodId', id);
     window.location.href = "product-info.html";
+
+    if(!localStorage.getItem("proRel1")){
+        localStorage.setItem("proRel1", id)
+    }else{
+        if(localStorage.getItem("proRel1") != id){
+            localStorage.setItem("proRel2", localStorage.getItem("proRel1"))
+            localStorage.setItem("proRel1", id)
+        }
+    }
 }
 
 // Funcion de apertura y cierre del modal
