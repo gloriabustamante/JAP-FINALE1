@@ -1,0 +1,173 @@
+h1 {
+  color: #f09100;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.PrecioProducto {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#divCarrito1 section {
+  background-color: antiquewhite;
+  border-radius: 20px;
+}
+
+article {
+  border-top: 2px solid black;
+}
+
+.divCantidad {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: max-content;
+}
+
+.cantidadProducto {
+  text-align: center;
+  border: none;
+  padding: 5px;
+  font-size: 16px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 15vh !important;
+  height: 2em !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btnSumaResta {
+  background-color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  height: 1.78em !important;
+  display: flex;
+  align-items: center;
+}
+
+.btn-suma {
+  border-right: 2px solid black;
+}
+
+.btn-resta {
+  border-left: 2px solid black;
+}
+
+.btnSumaResta:hover {
+  background-color: #ddd;
+}
+
+#cantMonto {
+  font-size: 1.3em;
+}
+
+#Monto {
+  font-size: 1.55em;
+  font-weight: bold;
+}
+
+#articloMonto {
+  border-bottom: 2px solid black;
+}
+
+#btnComprar {
+  background-color: #f09100;
+  border-radius: 10px;
+  width: 40%;
+  height: 3em;
+  border: none;
+}
+
+#btnComprar:hover {
+  background-color: #ffbd5b;
+}
+
+#tituloProdInteres {
+  color: #f09100;
+  font-size: 1.1em;
+}
+
+.articuloProductosLineal {
+  border-radius: 0.5em;
+  box-shadow: 2px 2px #f3d2a2;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.563);
+  border: none;
+}
+
+.articuloProductosLineal:hover {
+  background-color: #f6dfbd;
+}
+
+.articuloProductosLineal {
+  background-color: #ffe8c5;
+}
+
+.divNameSoldCount h3 {
+  font-size: 1.4em;
+}
+
+.divNameSoldCount p {
+  color: rgb(93, 93, 93);
+}
+
+@media (min-width: 990px) {
+  .montoTotal {
+    height: 40% !important;
+  }
+}
+
+#divCarrito1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#carritoProductos {
+  background-color: antiquewhite;
+  border-radius: 20px;
+}
+
+#montoTotal {
+  background-color: antiquewhite;
+  border-radius: 20px;
+  height: auto; 
+  align-self: flex-start;
+  display: inline-block;
+}
+
+.flechitaCarrito{
+  color: black;
+}
+
+@media (min-width: 990px){
+  
+
+.aCarrusel1{
+  display: flex;
+  justify-content: end;
+}
+
+.aCarrusel{
+  display: flex;
+  justify-content: start;
+}
+}
