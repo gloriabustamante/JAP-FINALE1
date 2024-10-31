@@ -11,28 +11,27 @@ document.addEventListener("DOMContentLoaded", () => {
 //Funcion para la carga de Productos. Nomas es un ejemplo para ver como queda.
 //Se tiene que actualizar el articulo en base a los productos nomas.
 function CargaProductos() {
-  let nroRandom = Math.random() * (4 - 1 + 1) + 1;
+  const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
   let cadena = "";
 
-  for (let i = 0; i < nroRandom; i++) {
+  productosCarrito.forEach(producto => {
     cadena += `
                <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfrK6zWaEwOnXjdDaDC5VrnGN1DWPQ6nEtQ&s" class="col-3">
                     <div class="col-6 col-md-5">
-                        <h3 class="pt-3">Nombre Producto</h3>
+                        <h3 class="pt-3">${producto.nombre}</h3>
                         <div class="divCantidad pt-4">
                             <button class="btn-resta btnSumaResta">-</button>
-                            <input type="number" class="cantidadProducto" value="1" min="1">
+                            <input type="number" class="cantidadProducto" value="${producto.cantidad}" min="1">
                             <button class="btn-suma btnSumaResta">+</button>
                         </div>
                     </div>
-                    <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">$140</p>
+                    <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">${producto.precio}</p>
                 </article>
             `;
-  }
-
-  document.querySelector("#carritoProductos").innerHTML += cadena;
-} 
+  })
+}
 
 //Funcion que permite aumentar y decrecer cantidad de un producto, con los botones
 function CargarCantidadesProducto() {
@@ -121,7 +120,7 @@ async function CargarProductosInteres() {
   }
 
   let productosContainer = document.querySelector("#productosDeInteres");
-  
+
   if (prod1 && !prod2) {
     productosContainer.innerHTML += crearArticuloProducto(prod1);
   } else if (!prod1 && prod2) {
@@ -154,7 +153,7 @@ async function CargarProductosInteres() {
 }
 
 
-function redirecionAInfoProducto(id){
+function redirecionAInfoProducto(id) {
   localStorage.setItem('prodId', id);
   window.location.href = "product-info.html";
 }

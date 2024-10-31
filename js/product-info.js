@@ -56,7 +56,11 @@ function productosInfo(productos) {
       <p>${descripcion}</p>
       <p class="strongText">${moneda} ${costo}</p>
       <p class="lightText">${vendidos} vendidos</p>
-      <button class="botonNaranja">WIP</button>
+      <div class="divCantidad pt-4">
+        <button class="btn-resta btnSumaResta">-</button>
+        <input type="number" class="cantidadProducto" value="1" min="1">
+        <button class="btn-suma btnSumaResta">+</button>
+      </div>
       <button class="botonNaranja">WIP</button>
       </div>
       </section>
