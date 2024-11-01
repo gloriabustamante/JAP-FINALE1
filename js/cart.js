@@ -1,6 +1,3 @@
-//Todo lo que realice aca es a modo de ejemplo noma, igual agarren los articulos y modifiquen el
-//contenido nomas
-
 document.addEventListener("DOMContentLoaded", () => {
   CargaProductos();
   CargarCantidadesProducto();
@@ -8,47 +5,56 @@ document.addEventListener("DOMContentLoaded", () => {
   CargarProductosInteres();
 });
 
-
 function CargaProductos() {
-  const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const productos = JSON.parse(localStorage.getItem("carrito")) || [];
   let cadena = "";
 
-  productosCarrito.forEach(producto => {
+  productos.forEach((producto, index) => {
     cadena += `
       <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
-        <img src="${producto.imagen}" class="col-3">
-        <div class="col-6 col-md-5">
-          <h3 class="pt-3">${producto.nombre}</h3>
-          <div class="divCantidad pt-4">
-            <button class="btn-resta btnSumaResta">-</button>
-            <input type="number" class="cantidadProducto" value="${producto.cantidad}" min="1">
-            <button class="btn-suma btnSumaResta">+</button>
+          <img src="${producto.imagen}" class="col-3">
+          <div class="col-6 col-md-5">
+              <h3 class="pt-3">${producto.nombre}</h3>
+              <div class="divCantidad pt-4">
+                  <button class="btn-resta btnSumaResta">-</button>
+                  <input type="number" class="cantidadProducto" value="${producto.cantidad}" min="1" data-index="${index}">
+                  <button class="btn-suma btnSumaResta">+</button>
+              </div>
+              <p class="subtotal" id="subtotal-${index}">Subtotal: $${(producto.precio * producto.cantidad).toFixed(2)}</p>
           </div>
-        </div>
-        <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">${producto.moneda} ${producto.costo}</p>
+          <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">$${producto.precio}</p>
       </article>
     `;
   });
 
-  document.querySelector("#carritoProductos").innerHTML = cadena;
+  document.querySelector("#carritoProductos").innerHTML += cadena;
 }
-
 
 //Funcion que permite aumentar y decrecer cantidad de un producto, con los botones
 function CargarCantidadesProducto() {
   document.addEventListener("click", (event) => {
+    const productos = JSON.parse(localStorage.getItem("carrito")) || [];
+
     if (event.target.classList.contains("btn-suma")) {
       let cantidadInput = event.target.previousElementSibling;
       cantidadInput.value = parseInt(cantidadInput.value) + 1;
+      ActualizaCarrito(cantidadInput.dataset.index, cantidadInput.value);
     } else if (event.target.classList.contains("btn-resta")) {
       let cantidadInput = event.target.nextElementSibling;
       if (cantidadInput.value > 1) {
         cantidadInput.value = parseInt(cantidadInput.value) - 1;
+        ActualizaCarrito(cantidadInput.dataset.index, cantidadInput.value);
       }
     }
   });
 }
 
+// Función para actualizar el localStorage
+function ActualizaCarrito(index, nuevaCantidad) {
+  const productos = JSON.parse(localStorage.getItem("carrito")) || [];
+  productos[index].cantidad = nuevaCantidad; // Actualiza la cantidad en el carrito
+  localStorage.setItem("carrito", JSON.stringify(productos)); // Guarda los cambios en localStorage
+}
 
 
 //Function del resumen de compra
@@ -68,8 +74,6 @@ function ResumenCompra() {
     "#montoTotal"
   ).innerHTML += `<button id="btnComprar" class="d-flex justify-content-center align-items-center mx-auto my-2">Comprar</button>`;
 }
-
-
 
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
@@ -121,7 +125,7 @@ async function CargarProductosInteres() {
   }
 
   let productosContainer = document.querySelector("#productosDeInteres");
-
+  
   if (prod1 && !prod2) {
     productosContainer.innerHTML += crearArticuloProducto(prod1);
   } else if (!prod1 && prod2) {
@@ -154,7 +158,7 @@ async function CargarProductosInteres() {
 }
 
 
-function redirecionAInfoProducto(id) {
+function redirecionAInfoProducto(id){
   localStorage.setItem('prodId', id);
   window.location.href = "product-info.html";
 }
