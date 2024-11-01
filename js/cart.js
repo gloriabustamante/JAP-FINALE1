@@ -8,30 +8,31 @@ document.addEventListener("DOMContentLoaded", () => {
   CargarProductosInteres();
 });
 
-//Funcion para la carga de Productos. Nomas es un ejemplo para ver como queda.
-//Se tiene que actualizar el articulo en base a los productos nomas.
+
 function CargaProductos() {
   const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
   let cadena = "";
 
   productosCarrito.forEach(producto => {
     cadena += `
-               <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfrK6zWaEwOnXjdDaDC5VrnGN1DWPQ6nEtQ&s" class="col-3">
-                    <div class="col-6 col-md-5">
-                        <h3 class="pt-3">${producto.nombre}</h3>
-                        <div class="divCantidad pt-4">
-                            <button class="btn-resta btnSumaResta">-</button>
-                            <input type="number" class="cantidadProducto" value="${producto.cantidad}" min="1">
-                            <button class="btn-suma btnSumaResta">+</button>
-                        </div>
-                    </div>
-                    <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">${producto.precio}</p>
-                </article>
-            `;
-  })
+      <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
+        <img src="${producto.imagen}" class="col-3">
+        <div class="col-6 col-md-5">
+          <h3 class="pt-3">${producto.nombre}</h3>
+          <div class="divCantidad pt-4">
+            <button class="btn-resta btnSumaResta">-</button>
+            <input type="number" class="cantidadProducto" value="${producto.cantidad}" min="1">
+            <button class="btn-suma btnSumaResta">+</button>
+          </div>
+        </div>
+        <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">${producto.moneda} ${producto.costo}</p>
+      </article>
+    `;
+  });
+
+  document.querySelector("#carritoProductos").innerHTML = cadena;
 }
+
 
 //Funcion que permite aumentar y decrecer cantidad de un producto, con los botones
 function CargarCantidadesProducto() {

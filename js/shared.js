@@ -21,6 +21,7 @@ function logout () {
         localStorage.removeItem('firstlastName')
         localStorage.removeItem('firstName')
         localStorage.removeItem('modoOscuro');
+        localStorage.removeItem('carrito');
     })
 }
 

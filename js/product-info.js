@@ -37,47 +37,98 @@ function productosInfo(productos) {
   let productosRelacionados = productos.relatedProducts;
 
   contenedor.innerHTML = `
-      <section id="sectionInfoProducto" class="row d-flex align-items-center justify-content-between m-4">
-      <figure class="col-12 flex-wrap col-lg-7 d-flex justify-content-center flex-lg-wrap">
-      <img id="imagenPrincipal" src="${imagenes[0]
-    }" alt="${nombre}" class="col-12 col-lg-6 img-fluid m-2">
+  <section id="sectionInfoProducto" class="row d-flex align-items-center justify-content-between m-4">
+    <figure class="col-12 flex-wrap col-lg-7 d-flex justify-content-center flex-lg-wrap">
+      <img id="imagenPrincipal" src="${imagenes[0]}" alt="${nombre}" class="col-12 col-lg-6 img-fluid m-2">
       <div class="col-12 d-flex flex-wrap justify-content-center">
-      ${imagenes
+        ${imagenes
       .map(
         (imagen, pos) =>
           `<img src="${imagen}" alt="${nombre}" class="col-3 col-sm-2 m-1 miniatura p-0" data-index="${pos}">`
       )
       .join("")}
       </div>
-      </figure>
-      <div class="col-12 col-lg-5 pb-2">
+    </figure>
+    <div class="col-12 col-lg-5 pb-2">
       <p class="accentText">${categoria}</p>
-      <h1 class="strongText">${nombre}</h1>
+      <h1 id="productName" class="strongText">${nombre}</h1>
       <p>${descripcion}</p>
-      <p class="strongText">${moneda} ${costo}</p>
+      <p class="strongText">${moneda} <span id="productPrice">${costo}</span></p>
       <p class="lightText">${vendidos} vendidos</p>
       <div class="divCantidad pt-4">
         <button class="btn-resta btnSumaResta">-</button>
         <input type="number" class="cantidadProducto" value="1" min="1">
         <button class="btn-suma btnSumaResta">+</button>
+        <button id="btnComprar" class="botonNaranja">Comprar</button>
       </div>
-      <button class="botonNaranja">WIP</button>
-      </div>
-      </section>
+    </div>
+  </section>
       `;
 
   configurarMiniaturas(imagenes);
   obtenerComentarios();
   obtenerDatosProductosRelacionados(productosRelacionados);
+
+  // Agregar listener al botón de compra
+  document.getElementById("btnComprar").addEventListener("click", comprarProducto);
+}
+
+function comprarProducto() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const productoComprado = {
+    id: idProducto,
+    nombre: document.querySelector("#productName").textContent,
+    costo: parseFloat(document.querySelector("#productPrice").textContent.replace(/[^0-9.-]+/g, "")),
+    imagen: document.querySelector("#imagenPrincipal").src
+  };
+
+  // Agregar el producto al carrito y guardarlo en localStorage
+  carrito.push(productoComprado);
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  mostrarModalCompra();
+}
+
+// Función para mostrar el modal
+function mostrarModalCompra() {
+  const modalHTML = `
+    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCompraLabel">Producto Añadido al Carrito</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>El producto ha sido añadido al carrito. ¿Qué deseas hacer ahora?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+            <button type="button" class="btn btn-primary" id="btnIrCarrito">Ir al Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Insertar el modal en el documento y mostrarlo
+  document.body.insertAdjacentHTML("beforeend", modalHTML);
+  const modal = new bootstrap.Modal(document.getElementById("modalCompra"));
+  modal.show();
+
+  // Asignar evento al botón "Ir al Carrito"
+  document.getElementById("btnIrCarrito").addEventListener("click", () => {
+    window.location.href = "cart.html";
+  });
 }
 
 // Esta función agrega un evento click a cada miniatura de imagen para cambiar la imagen principal del producto.
 
 function configurarMiniaturas(imagenes) {
   let miniaturas = document.querySelectorAll(".miniatura");
-  
+
   miniaturas.forEach((img) => {
-    img.removeEventListener("click", cambiarImagen); 
+    img.removeEventListener("click", cambiarImagen);
     img.addEventListener("click", cambiarImagen);
   });
 
@@ -100,7 +151,7 @@ function obtenerComentarios() {
       throw new Error("Error en la solicitud");
     })
     .then((data) => {
-      mostrarComentarios(data);      
+      mostrarComentarios(data);
     })
     .catch((error) => {
       throw new Error("Ocurrio un error:", error);
@@ -112,12 +163,12 @@ function obtenerComentarios() {
 function mostrarComentarios(comentarios) {
   let sectionComentarios = ``;
 
-    comentarios.forEach(com => {
-      let dateObj = new Date(com.dateTime);
-      let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
-      let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
+  comentarios.forEach(com => {
+    let dateObj = new Date(com.dateTime);
+    let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
+    let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
 
-      sectionComentarios += `
+    sectionComentarios += `
           <article class="comentario-calificaciones col-12 col-md-6 col-lg-4">
             <div class='contenedorSuperiorClasificaciones'>
               <p class="userCalificaciones fw-bold">${com.user}</p>
@@ -259,39 +310,39 @@ document.getElementById("btnAgregarComentarios").addEventListener("click", (even
   event.preventDefault();
   const commentInput = document.getElementById("ComentarioInput").value;
   const username = localStorage.getItem("username");
-    const fechaActual = new Date();
-    const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
-    const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-    
-    if (commentInput && ratingValue) {
-      const nuevoComentario = {
-        comment: commentInput,
-        rating: parseInt(ratingValue),
-        user: username,
-        date: fechaFormateada,
-      };
+  const fechaActual = new Date();
+  const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
+  const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
 
-      ComentariosData.push(nuevoComentario);
-      sessionStorage.setItem("comentarios", JSON.stringify(ComentariosData));
-      mostrarComentariosNuevos(ComentariosData);
+  if (commentInput && ratingValue) {
+    const nuevoComentario = {
+      comment: commentInput,
+      rating: parseInt(ratingValue),
+      user: username,
+      date: fechaFormateada,
+    };
 
-      document.getElementById("ComentarioInput").value = "";
-      ratingValue = 0;
-      emojis.forEach((emoji) => (emoji.checked = false));
+    ComentariosData.push(nuevoComentario);
+    sessionStorage.setItem("comentarios", JSON.stringify(ComentariosData));
+    mostrarComentariosNuevos(ComentariosData);
 
-      var modal = bootstrap.Modal.getInstance(
-        document.getElementById("comentarioModal")
-      );
-      modal.hide();
-      setTimeout(() => {
-        location.reload();
-      }, 10);
-    } else {
-      alert("Por favor, completa todos los campos y selecciona un puntaje.");
-    }
-  });
+    document.getElementById("ComentarioInput").value = "";
+    ratingValue = 0;
+    emojis.forEach((emoji) => (emoji.checked = false));
 
-  // Carga los comentarios guardados en sessionStorage al cargar la página
+    var modal = bootstrap.Modal.getInstance(
+      document.getElementById("comentarioModal")
+    );
+    modal.hide();
+    setTimeout(() => {
+      location.reload();
+    }, 10);
+  } else {
+    alert("Por favor, completa todos los campos y selecciona un puntaje.");
+  }
+});
+
+// Carga los comentarios guardados en sessionStorage al cargar la página
 
 document.addEventListener("DOMContentLoaded", () => {
   const savedComments = sessionStorage.getItem("comentarios");
