@@ -42,11 +42,11 @@ function productosInfo(productos) {
       <img id="imagenPrincipal" src="${imagenes[0]}" alt="${nombre}" class="col-12 col-lg-6 img-fluid m-2">
       <div class="col-12 d-flex flex-wrap justify-content-center">
         ${imagenes
-          .map(
-            (imagen, pos) =>
-              `<img src="${imagen}" alt="${nombre}" class="col-3 col-sm-2 m-1 miniatura p-0" data-index="${pos}">`
-          )
-          .join("")}
+      .map(
+        (imagen, pos) =>
+          `<img src="${imagen}" alt="${nombre}" class="col-3 col-sm-2 m-1 miniatura p-0" data-index="${pos}">`
+      )
+      .join("")}
       </div>
     </figure>
     <div class="col-12 col-lg-5 pb-2">
@@ -55,17 +55,22 @@ function productosInfo(productos) {
       <p>${descripcion}</p>
       <p class="strongText">${moneda} <span id="productPrice">${costo}</span></p>
       <p class="lightText">${vendidos} vendidos</p>
-      <button id="btnComprar" class="botonNaranja">Comprar</button>
+      <div class="divCantidad pt-4">
+        <button class="btn-resta btnSumaResta">-</button>
+        <input type="number" class="cantidadProducto" value="1" min="1">
+        <button class="btn-suma btnSumaResta">+</button>
+        <button id="btnComprar" class="botonNaranja">Comprar</button>
+      </div>
     </div>
   </section>
-`;
+      `;
 
-configurarMiniaturas(imagenes);
-obtenerComentarios();
-obtenerDatosProductosRelacionados(productosRelacionados);
+  configurarMiniaturas(imagenes);
+  obtenerComentarios();
+  obtenerDatosProductosRelacionados(productosRelacionados);
 
-// Agregar listener al botón de compra
-document.getElementById("btnComprar").addEventListener("click", comprarProducto);
+  // Agregar listener al botón de compra
+  document.getElementById("btnComprar").addEventListener("click", comprarProducto);
 }
 
 function comprarProducto() {
@@ -73,7 +78,7 @@ function comprarProducto() {
   const productoComprado = {
     id: idProducto,
     nombre: document.querySelector("#productName").textContent,
-    costo: parseFloat(document.querySelector("#productPrice").textContent.replace(/[^0-9.-]+/g,"")),
+    costo: parseFloat(document.querySelector("#productPrice").textContent.replace(/[^0-9.-]+/g, "")),
     imagen: document.querySelector("#imagenPrincipal").src
   };
 
@@ -121,9 +126,9 @@ function mostrarModalCompra() {
 
 function configurarMiniaturas(imagenes) {
   let miniaturas = document.querySelectorAll(".miniatura");
-  
+
   miniaturas.forEach((img) => {
-    img.removeEventListener("click", cambiarImagen); 
+    img.removeEventListener("click", cambiarImagen);
     img.addEventListener("click", cambiarImagen);
   });
 
@@ -146,7 +151,7 @@ function obtenerComentarios() {
       throw new Error("Error en la solicitud");
     })
     .then((data) => {
-      mostrarComentarios(data);      
+      mostrarComentarios(data);
     })
     .catch((error) => {
       throw new Error("Ocurrio un error:", error);
@@ -158,12 +163,12 @@ function obtenerComentarios() {
 function mostrarComentarios(comentarios) {
   let sectionComentarios = ``;
 
-    comentarios.forEach(com => {
-      let dateObj = new Date(com.dateTime);
-      let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
-      let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
+  comentarios.forEach(com => {
+    let dateObj = new Date(com.dateTime);
+    let opcionesFecha = { day: 'numeric', month: 'long', year: 'numeric' };
+    let fechaFormateada = dateObj.toLocaleDateString('es-ES', opcionesFecha);
 
-      sectionComentarios += `
+    sectionComentarios += `
           <article class="comentario-calificaciones col-12 col-md-6 col-lg-4">
             <div class='contenedorSuperiorClasificaciones'>
               <p class="userCalificaciones fw-bold">${com.user}</p>
@@ -305,39 +310,39 @@ document.getElementById("btnAgregarComentarios").addEventListener("click", (even
   event.preventDefault();
   const commentInput = document.getElementById("ComentarioInput").value;
   const username = localStorage.getItem("username");
-    const fechaActual = new Date();
-    const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
-    const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-    
-    if (commentInput && ratingValue) {
-      const nuevoComentario = {
-        comment: commentInput,
-        rating: parseInt(ratingValue),
-        user: username,
-        date: fechaFormateada,
-      };
+  const fechaActual = new Date();
+  const opciones = { day: '2-digit', month: 'long', year: 'numeric' };
+  const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
 
-      ComentariosData.push(nuevoComentario);
-      sessionStorage.setItem("comentarios", JSON.stringify(ComentariosData));
-      mostrarComentariosNuevos(ComentariosData);
+  if (commentInput && ratingValue) {
+    const nuevoComentario = {
+      comment: commentInput,
+      rating: parseInt(ratingValue),
+      user: username,
+      date: fechaFormateada,
+    };
 
-      document.getElementById("ComentarioInput").value = "";
-      ratingValue = 0;
-      emojis.forEach((emoji) => (emoji.checked = false));
+    ComentariosData.push(nuevoComentario);
+    sessionStorage.setItem("comentarios", JSON.stringify(ComentariosData));
+    mostrarComentariosNuevos(ComentariosData);
 
-      var modal = bootstrap.Modal.getInstance(
-        document.getElementById("comentarioModal")
-      );
-      modal.hide();
-      setTimeout(() => {
-        location.reload();
-      }, 10);
-    } else {
-      alert("Por favor, completa todos los campos y selecciona un puntaje.");
-    }
-  });
+    document.getElementById("ComentarioInput").value = "";
+    ratingValue = 0;
+    emojis.forEach((emoji) => (emoji.checked = false));
 
-  // Carga los comentarios guardados en sessionStorage al cargar la página
+    var modal = bootstrap.Modal.getInstance(
+      document.getElementById("comentarioModal")
+    );
+    modal.hide();
+    setTimeout(() => {
+      location.reload();
+    }, 10);
+  } else {
+    alert("Por favor, completa todos los campos y selecciona un puntaje.");
+  }
+});
+
+// Carga los comentarios guardados en sessionStorage al cargar la página
 
 document.addEventListener("DOMContentLoaded", () => {
   const savedComments = sessionStorage.getItem("comentarios");

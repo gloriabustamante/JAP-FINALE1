@@ -17,179 +17,153 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/my-profile.css" rel="stylesheet">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
 </head>
 
 <body class="dark">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
-      <div class="container position-relative" id="divContainer">
-        <button
-          class="navbar-toggler my-3"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          id="menuHamburguesa"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="container position-relative" id="divContainer">
+      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <a href="index.html" class="logo-centered d-lg-none">
-          <img src="img/logo.svg" id="imgNavBar" />
-        </a>
+      <a href="index.html" class="logo-centered d-lg-none">
+        <img src="img/logo.svg" id="imgNavBar" />
+      </a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul
-            class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center"
-          >
-            <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
-              <a class="nav-link active" href="index.html">
-                <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
-              </a>
-            </li>
-            <li class="nav-item liIndex mx-1 my-1">
-              <a class="nav-link" href="categories.html">Categorías</a>
-            </li>
-            <li class="nav-item liIndex mx-1 my-1">
-              <a class="nav-link" href="sell.html">Vender</a>
-            </li>
-            <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
-              <a
-                class="nav-link dropdownButton"
-                href="#"
-                id="userDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img src="img/user-icon.svg" alt="User Icon" />
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                <li>
-                  <a class="dropdown-item" href="cart.html">Mi carrito</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
-                </li>
-                <li id="liLogout">
-                  <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
+          <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
+            <a class="nav-link active" href="index.html">
+              <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
+            </a>
+          </li>
+          <li class="nav-item liIndex mx-1 my-1">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item liIndex mx-1 my-1">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
+            <a class="nav-link dropdownButton" href="#" id="userDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="img/user-icon.svg" alt="User Icon" />
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li>
+                <a class="dropdown-item" href="cart.html">Mi carrito</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+              </li>
+              <li id="liLogout">
+                <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-     <main>
-        <div class="container">
-            <div>
-                <h1 class="accentText text-center">Perfil</h1>
-                <form action="index.html" class="form">
-                    <div class="row">
-                      <div class="row">
-                        <div class="col-md-4 text-center">
-                          <div class="profile-container">
-                              <img src="img/blank-profile-picture-973460_960_720.webp" alt="profile picture" class="profilePicture" id="FotoPerfil">
-                              <span class="subir-texto">Subir imagen</span>
-                              <input type="file" id="SubirArchivo" class="d-none">
-                          </div>
+  <main>
+    <div class="container">
+      <div>
+        <h1 class="accentText text-center">Perfil</h1>
+        <form action="index.html" class="form">
+          <div class="row">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <div class="profile-container">
+                  <img src="img/blank-profile-picture-973460_960_720.webp" alt="profile picture" class="profilePicture"
+                    id="FotoPerfil">
+                  <span class="subir-texto">Subir imagen</span>
+                  <input type="file" id="SubirArchivo" class="d-none">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="username" type="text" class="input" name="username" placeholder="" required>
+                        <label id="usernameLabel" for="username" class="label">Usuario</label>
                       </div>
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="username" type="text" class="input" name="username" placeholder="" required>
-                                            <label id="usernameLabel" for="username" class="label">Usuario</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="firstName" type="text" class="input" name="firstName" placeholder="" required>
-                                            <label id="firstNameLabel" for="firstName" class="label">Nombre</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="firstlastName" type="text" class="input" name="firstlastName" placeholder="" required>
-                                            <label id="firstlastNameLabel" for="firstlastName" class="label">Apellido</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="phone" type="number" class="input" placeholder="">
-                                            <label id="phoneLabel" for="phone" class="label fs-6">Teléfono</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="email" type="email" class="input" name="username" placeholder="" required>
-                                            <label id="emailLabel" for="email" class="label">Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="secondName" type="text" class="input" name="secondName" placeholder="">
-                                            <label id="secondNameLabel" for="secondName" class="label">Segundo Nombre</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <input id="secondlastName" type="text" class="input" name="secondlastName" placeholder="">
-                                            <label id="secondlastNameLabel" for="secondlastName" class="label">Segundo Apellido</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="inputContainer col">
-                                            <div class="input themeInput text-center">
-                                              <i id="leftArrow" class="flecha icon fa-solid fa-angle-left"></i>
-                                              <label for="toggle" id="label_toggle"><i class="fa-solid fa-moon"></i></label>                                  
-                                              <i id="rightArrow" class="flecha icon fa-solid fa-angle-right"></i>
-                                          </div>
-                                          <label id="temaLabel" for="tema" class="label">Tema</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button class="botonNaranja" id="buttonEditarPerfil" disabled>Guardar cambios</button>
-                            </div>
-                        </div>
                     </div>
-                </form>
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="firstName" type="text" class="input" name="firstName" placeholder="" required>
+                        <label id="firstNameLabel" for="firstName" class="label">Nombre</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="firstlastName" type="text" class="input" name="firstlastName" placeholder=""
+                          required>
+                        <label id="firstlastNameLabel" for="firstlastName" class="label">Apellido</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="phone" type="number" class="input" placeholder="">
+                        <label id="phoneLabel" for="phone" class="label fs-6">Teléfono</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="email" type="email" class="input" name="username" placeholder="" required>
+                        <label id="emailLabel" for="email" class="label">Email</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="secondName" type="text" class="input" name="secondName" placeholder="">
+                        <label id="secondNameLabel" for="secondName" class="label">Segundo Nombre</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <input id="secondlastName" type="text" class="input" name="secondlastName" placeholder="">
+                        <label id="secondlastNameLabel" for="secondlastName" class="label">Segundo Apellido</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="inputContainer col">
+                        <div class="input themeInput text-center">
+                          <i id="leftArrow" class="flecha icon fa-solid fa-angle-left"></i>
+                          <label for="toggle" id="label_toggle"><i class="fa-solid fa-moon"></i></label>
+                          <i id="rightArrow" class="flecha icon fa-solid fa-angle-right"></i>
+                        </div>
+                        <label id="temaLabel" for="tema" class="label">Tema</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button class="botonNaranja" id="buttonEditarPerfil" disabled>Guardar cambios</button>
+                </div>
+              </div>
             </div>
-        </div>
-    </main>
-    <footer class="text-muted">
-        <div class="container">
-            <p class="float-end">
-                <a href="#">Volver arriba</a>
-            </p>
-            <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-        </div>
-    </footer>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/my-profile.js"></script>
-    <script src="js/shared.js"></script>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
+    </div>
+  </footer>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/my-profile.js"></script>
+  <script src="js/shared.js"></script>
 </body>
+
 </html>

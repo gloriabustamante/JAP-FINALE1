@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     displayNavBarName()
-    logout()
     authentication()
 });
 
@@ -12,7 +11,7 @@ function displayNavBarName() {
 } }
 
 function logout () {
-    let navListItem = document.querySelector('#logout');
+    let navListItem = document.querySelector('#liLogout');
     navListItem.addEventListener('click', function () {
         localStorage.removeItem('username')
         localStorage.removeItem('secondlastName')
@@ -22,6 +21,7 @@ function logout () {
         localStorage.removeItem('firstlastName')
         localStorage.removeItem('firstName')
         localStorage.removeItem('modoOscuro');
+        localStorage.removeItem('carrito');
     })
 }
 
