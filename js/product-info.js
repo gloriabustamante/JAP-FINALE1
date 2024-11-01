@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   obtenerProductos();
+  actualizarBadge()
 });
 
 const idProducto = localStorage.getItem("prodId");
@@ -73,20 +74,29 @@ function productosInfo(productos) {
   document.getElementById("btnComprar").addEventListener("click", comprarProducto);
 }
 
+//funcion para el boton de comprar producto
+
 function comprarProducto() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const productoComprado = {
     id: idProducto,
     nombre: document.querySelector("#productName").textContent,
     costo: parseFloat(document.querySelector("#productPrice").textContent.replace(/[^0-9.-]+/g, "")),
-    imagen: document.querySelector("#imagenPrincipal").src
+    imagen: document.querySelector("#imagenPrincipal").src,
+    cantidad: parseInt(document.querySelector(".cantidadProducto").value)
   };
 
-  // Agregar el producto al carrito y guardarlo en localStorage
-  carrito.push(productoComprado);
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  const productoExistente = carrito.find(producto => producto.id === idProducto);
 
+  if (productoExistente) {
+    productoExistente.cantidad += productoComprado.cantidad;
+  } else {
+    carrito.push(productoComprado);
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
   mostrarModalCompra();
+  actualizarBadge();
 }
 
 // Función para mostrar el modal

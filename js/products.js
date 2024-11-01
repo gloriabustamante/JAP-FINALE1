@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ajustarPreferenciaPorTamañoVentana();
     window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
     GetProductos();
+    actualizarBadge();
 
     // Asignación de eventos para los botones de orden y filtrado de productos
 

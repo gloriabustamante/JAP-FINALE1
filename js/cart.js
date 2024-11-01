@@ -3,35 +3,34 @@ document.addEventListener("DOMContentLoaded", () => {
   CargarCantidadesProducto();
   ResumenCompra();
   CargarProductosInteres();
+  actualizarBadge();
 });
 
-function agregarProductoAlCarrito(producto) {
-  // Obtener el carrito del localStorage o inicializar un array vacío
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+//Funcion para agregar productos al carrito 
 
-  // Buscar el producto en el carrito
+function agregarProductoAlCarrito(producto) {
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
   const index = carrito.findIndex(item => item.id === producto.id);
 
   if (index !== -1) {
-      // Si el producto ya existe, aumentar la cantidad
-      carrito[index].cantidad += 1; // o la cantidad deseada
+
+      carrito[index].cantidad += 1;
   } else {
-      // Si no existe, agregar el nuevo producto con la cantidad inicial
       carrito.push({
           ...producto,
-          cantidad: 1 // Inicializa la cantidad
+          cantidad: 1
       });
   }
 
-  // Guardar el carrito actualizado en localStorage
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  
-  // Actualiza la visualización del carrito
+  actualizarBadge();
   CargaProductos();
   ResumenCompra();
 }
 
-
+// Funcion para cargar los productos en la pagina del carrito
 function CargaProductos() {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
   let cadena = "";
@@ -47,17 +46,17 @@ function CargaProductos() {
                   <input type="number" class="cantidadProducto" value="${producto.cantidad || 1}" min="1" data-index="${index}">
                   <button class="btn-suma btnSumaResta">+</button>
               </div>
-              <p class="subtotal" id="subtotal-${index}">Subtotal: $${(producto.costo * producto.cantidad).toFixed(2)}</p>
+              <p class="subtotal" id="subtotal-${index}">Subtotal: <span class="currency">USD</span>${(producto.costo * producto.cantidad).toFixed(2)}</p>
           </div>
-          <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">$${producto.costo}</p>
+          <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto"><span class="currency">USD</span>${producto.costo}</p>
       </article>
     `;
   });
 
-  document.querySelector("#carritoProductos").innerHTML = cadena; // Cambié += por = para sobreescribir correctamente
+  document.querySelector("#carritoProductos").innerHTML = cadena; 
 }
 
-
+//Funcion para las cantidades 
 function CargarCantidadesProducto() {
   document.addEventListener("click", (event) => {
     const productos = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -80,17 +79,17 @@ function CargarCantidadesProducto() {
 
       productos[index].cantidad = cantidadActual;
       localStorage.setItem("carrito", JSON.stringify(productos));
+      actualizarBadge();
 
       const subtotalElement = document.querySelector(`#subtotal-${index}`);
       const precio = productos[index].precio || productos[index].costo || 0;
       const subtotal = cantidadActual * precio;
-      subtotalElement.textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+      subtotalElement.textContent = `Subtotal: USD ${subtotal.toFixed(2)}`;
 
       ResumenCompra();
     }
   });
 }
-
 
 //Function del resumen de compra
 function ResumenCompra() {
@@ -111,7 +110,7 @@ function ResumenCompra() {
   let cadena = `
     <article id="articloMonto">
       <p id="cantMonto" class="mx-4 mt-3 mb-2">Productos (${cantidadTotal})</p>
-      <p id="Monto" class="mx-5 ">$${precioTotal.toFixed(2)}</p>
+      <p id="Monto" class="mx-5 "><span class="currency">USD </span>${precioTotal.toFixed(2)}</p>
     </article>
     <button id="btnComprar" class="d-flex justify-content-center align-items-center mx-auto my-2">Comprar</button>
   `;
@@ -124,8 +123,6 @@ function ResumenCompra() {
     console.error("El contenedor #montoTotal no existe en el DOM.");
   }
 }
-
-
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
 async function ObtenerProductoInt1() {
