@@ -99,6 +99,24 @@ function comprarProducto() {
   actualizarBadge();
 }
 
+document.addEventListener("click", function(event) {
+  if (event.target.classList.contains("btn-suma") || event.target.classList.contains("btn-resta")) {
+    let cantidadInput = event.target.classList.contains("btn-suma")
+      ? event.target.previousElementSibling
+      : event.target.nextElementSibling;
+
+    let cantidadActual = parseInt(cantidadInput.value);
+
+    if (event.target.classList.contains("btn-suma")) {
+      cantidadActual += 1;
+    } else if (cantidadActual > 1) { 
+      cantidadActual -= 1;
+    }
+
+    cantidadInput.value = cantidadActual;
+  }
+});
+
 // Función para mostrar el modal
 function mostrarModalCompra() {
   const modalHTML = `
