@@ -1,76 +1,128 @@
-//Todo lo que realice aca es a modo de ejemplo noma, igual agarren los articulos y modifiquen el
-//contenido nomas
-
 document.addEventListener("DOMContentLoaded", () => {
   CargaProductos();
   CargarCantidadesProducto();
   ResumenCompra();
   CargarProductosInteres();
+  actualizarBadge();
 });
 
+//Funcion para agregar productos al carrito 
 
+function agregarProductoAlCarrito(producto) {
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
+  const index = carrito.findIndex(item => item.id === producto.id);
+
+  if (index !== -1) {
+
+      carrito[index].cantidad += 1;
+  } else {
+      carrito.push({
+          ...producto,
+          cantidad: 1
+      });
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarBadge();
+  CargaProductos();
+  ResumenCompra();
+}
+
+// Funcion para cargar los productos en la pagina del carrito
 function CargaProductos() {
-  const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const productos = JSON.parse(localStorage.getItem("carrito")) || [];
   let cadena = "";
 
-  productosCarrito.forEach(producto => {
+  productos.forEach((producto, index) => {
     cadena += `
       <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
-        <img src="${producto.imagen}" class="col-3">
-        <div class="col-6 col-md-5">
-          <h3 class="pt-3">${producto.nombre}</h3>
-          <div class="divCantidad pt-4">
-            <button class="btn-resta btnSumaResta">-</button>
-            <input type="number" class="cantidadProducto" value="${producto.cantidad}" min="1">
-            <button class="btn-suma btnSumaResta">+</button>
+          <img src="${producto.imagen}" class="col-4">
+          <div class="col-6 col-md-6">
+              <h3 class="pt-3">${producto.nombre}</h3>
+              <div class="divCantidad pt-4">
+                  <button class="btn-resta btnSumaResta">-</button>
+                  <input type="number" class="cantidadProducto" value="${producto.cantidad || 1}" min="1" data-index="${index}">
+                  <button class="btn-suma btnSumaResta">+</button>
+              </div>
+              <p class="subtotal" id="subtotal-${index}">Subtotal: <span class="currency">USD</span>${(producto.costo * producto.cantidad).toFixed(2)}</p>
           </div>
-        </div>
-        <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto">${producto.moneda} ${producto.costo}</p>
+          <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto"><span class="currency">USD</span>${producto.costo}</p>
       </article>
     `;
   });
 
-  document.querySelector("#carritoProductos").innerHTML = cadena;
+  document.querySelector("#carritoProductos").innerHTML = cadena; 
 }
 
-
-//Funcion que permite aumentar y decrecer cantidad de un producto, con los botones
+//Funcion para las cantidades 
 function CargarCantidadesProducto() {
   document.addEventListener("click", (event) => {
-    if (event.target.classList.contains("btn-suma")) {
-      let cantidadInput = event.target.previousElementSibling;
-      cantidadInput.value = parseInt(cantidadInput.value) + 1;
-    } else if (event.target.classList.contains("btn-resta")) {
-      let cantidadInput = event.target.nextElementSibling;
-      if (cantidadInput.value > 1) {
-        cantidadInput.value = parseInt(cantidadInput.value) - 1;
+    const productos = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    if (event.target.classList.contains("btn-suma") || event.target.classList.contains("btn-resta")) {
+
+      let cantidadInput = event.target.classList.contains("btn-suma")
+        ? event.target.previousElementSibling
+        : event.target.nextElementSibling;
+      
+      let index = cantidadInput.dataset.index;
+      let cantidadActual = parseInt(cantidadInput.value);
+
+      if (event.target.classList.contains("btn-suma")) {
+        cantidadActual += 1;
+      } else if (cantidadActual > 1) { 
+        cantidadActual -= 1;
       }
+      cantidadInput.value = cantidadActual;
+
+      productos[index].cantidad = cantidadActual;
+      localStorage.setItem("carrito", JSON.stringify(productos));
+      actualizarBadge();
+
+      const subtotalElement = document.querySelector(`#subtotal-${index}`);
+      const precio = productos[index].precio || productos[index].costo || 0;
+      const subtotal = cantidadActual * precio;
+      subtotalElement.textContent = `Subtotal: USD ${subtotal.toFixed(2)}`;
+
+      ResumenCompra();
     }
   });
 }
 
-
-
 //Function del resumen de compra
 function ResumenCompra() {
-  let nroRandom = Math.floor(Math.random() * (9 - 1 + 1) + 1);
-  let precioRandom = Math.floor(Math.random() * (10000 - 1 + 1) + 1);
+  const productos = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  let cantidadTotal = 0;
+  let precioTotal = 0;
+
+  productos.forEach((producto) => {
+
+    const precio = producto.costo || 0;
+    const cantidad = producto.cantidad || 1;
+
+    cantidadTotal += cantidad;
+    precioTotal += cantidad * precio;
+  });
 
   let cadena = `
-                <article id="articloMonto">
-                    <p id="cantMonto" class="mx-4 mt-3 mb-2">Productos (${nroRandom})</p>
-                    <p id="Monto" class="mx-5 ">$${precioRandom}</p>
-                </article>`;
+    <article id="articloMonto">
+      <p id="cantMonto" class="mx-4 mt-3 mb-2">Productos (${cantidadTotal})</p>
+      <p id="Monto" class="mx-5 "><span class="currency">USD </span>${precioTotal.toFixed(2)}</p>
+    </article>
+    <button id="btnComprar" class="d-flex justify-content-center align-items-center mx-auto my-2">Comprar</button>
+  `;
 
-  document.querySelector("#montoTotal").innerHTML += cadena;
-
-  document.querySelector(
-    "#montoTotal"
-  ).innerHTML += `<button id="btnComprar" class="d-flex justify-content-center align-items-center mx-auto my-2">Comprar</button>`;
+  const montoTotalContainer = document.querySelector("#montoTotal");
+  if (montoTotalContainer) {
+    montoTotalContainer.innerHTML = "";
+    montoTotalContainer.innerHTML = cadena;
+  } else {
+    console.error("El contenedor #montoTotal no existe en el DOM.");
+  }
 }
-
-
-
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
 async function ObtenerProductoInt1() {
@@ -121,7 +173,7 @@ async function CargarProductosInteres() {
   }
 
   let productosContainer = document.querySelector("#productosDeInteres");
-
+  
   if (prod1 && !prod2) {
     productosContainer.innerHTML += crearArticuloProducto(prod1);
   } else if (!prod1 && prod2) {
@@ -154,7 +206,7 @@ async function CargarProductosInteres() {
 }
 
 
-function redirecionAInfoProducto(id) {
+function redirecionAInfoProducto(id){
   localStorage.setItem('prodId', id);
   window.location.href = "product-info.html";
 }

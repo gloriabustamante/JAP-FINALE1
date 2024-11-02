@@ -469,14 +469,14 @@ body.dark .nav-item, body.dark .modal-content, body.dark #comentarioModalLabel {
   color: white;
 }
 
-body.dark .btn-calificacion, body.dark .botonNaranja, body.dark #menuHamburguesa {
+body.dark .btn-calificacion, body.dark #menuHamburguesa {
   background-color: #666;
   color: white;
   border-color: #333;
 }
 
 body.dark .articuloProductosLineal, body.dark .sideBarSection, body.dark .ArticuloProductos, body.dark .form, 
-body.dark #muebles, body.dark #juguetes, body.dark #autos {
+body.dark #muebles, body.dark #juguetes, body.dark #autos, body.dark #carritoProductos, body.dark #montoTotal {
   background-color: #3f3f3f;
   color: white;
   box-shadow: 2px 2px #666;

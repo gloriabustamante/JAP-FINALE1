@@ -92,3 +92,18 @@ saveButton.addEventListener('click', () => {
 
 leftArrow.addEventListener('click', toggleDarkMode);
 rightArrow.addEventListener('click', toggleDarkMode);
+
+function actualizarBadge() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let totalItems = 0;
+
+    carrito.forEach(item => {
+        totalItems += item.cantidad;
+    });
+
+    document.getElementById('cart-badge').textContent = totalItems;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    actualizarBadge();
+});
