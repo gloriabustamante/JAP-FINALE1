@@ -53,7 +53,7 @@ function CargaProductos() {
     `;
   });
 
-  document.querySelector("#carritoProductos").innerHTML = cadena; 
+  document.querySelector("#carritoProductos").innerHTML += cadena; 
 }
 
 //Funcion para las cantidades 
@@ -118,7 +118,8 @@ function ResumenCompra() {
   const montoTotalContainer = document.querySelector("#montoTotal");
   if (montoTotalContainer) {
     montoTotalContainer.innerHTML = "";
-    montoTotalContainer.innerHTML = cadena;
+    montoTotalContainer.innerHTML = "<h2 class='text-center pt-2'>Resumen de compra</h2>";
+    montoTotalContainer.innerHTML += cadena;
   } else {
     console.error("El contenedor #montoTotal no existe en el DOM.");
   }
