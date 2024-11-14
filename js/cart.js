@@ -40,8 +40,8 @@ const cargarProductos = () => {
 
   if (productos.length === 0) {
     cadena = `
-      <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
-          <div class="col-12 text-center">
+      <article>
+          <div class="text-center">
               <p class="mt-3">No hay productos en el carrito.</p>
           </div>
       </article>
@@ -49,8 +49,7 @@ const cargarProductos = () => {
   } else {
     productos.forEach((producto, index) => {
       cadena += `
-          <article class="row d-flex align-items-center justify-content-between p-2 w-md-75">
-            <!-- Contenedor de la imagen y la información del producto -->
+          <article class="d-flex align-items-center justify-content-between p-2 w-md-75">
             <div class="d-flex col-9">
               <img src="${producto.imagen}" class="col-4 me-5">
               <div class="col-8">
@@ -63,7 +62,6 @@ const cargarProductos = () => {
               </div>
             </div>
 
-            <!-- Contenedor de los precios -->
             <div class="precioSection col-3 text-center">
               <p class="PrecioProducto m-0 p-0"><span class="currency">USD</span>${producto.costo}</p>
               <p class="subtotal" id="subtotal-${index}">Subtotal: <span class="currency">USD</span>${(producto.costo * producto.cantidad).toFixed(2)}</p>

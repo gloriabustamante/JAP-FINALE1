@@ -18,8 +18,13 @@ h3 {
   font-family: Inconsolata;
 }
 
-#carritoProductos article {
-  margin: 2em;
+#carritoProductos article h2,
+#carritoProductos article .input {
+  margin: auto;
+}
+
+#carritoProductos article:first-of-type {
+  margin-top: 0;
 }
 
 .PrecioProducto {

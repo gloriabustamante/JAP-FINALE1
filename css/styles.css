@@ -377,6 +377,11 @@ background-color: transparent;
   font-weight: 600;
 }
 
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
 /***************************************BUTTON***************************************/
 
 .button {
