@@ -13,6 +13,15 @@ h3 {
   font-size: 1rem;
 }
 
+#carritoProductos {
+  padding: 0;
+  font-family: Inconsolata;
+}
+
+#carritoProductos article {
+  margin: 2em;
+}
+
 .PrecioProducto {
   font-weight: bold;
   font-size: 1.2em;
@@ -23,8 +32,51 @@ h3 {
   border-radius: 20px;
 }
 
+.sectionHeadings {
+  position: relative;
+}
+
+.prodHeading,
+.envioHeading {
+  margin: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.prodHeading {
+  border-radius: 20px 0 0 0;
+}
+
+.envioHeading {
+  border-radius: 0 20px 0 0;
+}
+
+#productosHeading.active {
+  background-color: rgba(178, 141, 83, 0.3);
+}
+
+#envioHeading.active {
+  background-color: rgba(178, 141, 83, 0.3);
+}
+
+.sectionHeadings::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 100%;
+  background-color: black;
+}
+
 article {
   border-top: 2px solid black;
+}
+
+.options {
+  font-family: "Inconsolata";
 }
 
 .divCantidad {
@@ -49,6 +101,10 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .btnSumaResta {
@@ -85,8 +141,22 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: bold;
 }
 
-#articloMonto {
+#articuloMonto {
   border-bottom: 2px solid black;
+  font-family: Inconsolata;
+}
+
+#montoTotal {
+  font-family: Inconsolata;
+}
+
+.subtotal {
+  margin: 0;
+}
+
+.currency {
+  font-size: calc(0.7rem + 0.1vw);
+  margin-right: .5em;
 }
 
 #btnComprar {
@@ -149,25 +219,25 @@ input[type="number"]::-webkit-outer-spin-button {
 #montoTotal {
   background-color: antiquewhite;
   border-radius: 20px;
-  height: auto; 
+  height: auto;
   align-self: flex-start;
   display: inline-block;
 }
 
-.flechitaCarrito{
+.flechitaCarrito {
   color: black;
 }
 
-@media (min-width: 990px){
-  
+@media (min-width: 990px) {
 
-.aCarrusel1{
-  display: flex;
-  justify-content: end;
-}
 
-.aCarrusel{
-  display: flex;
-  justify-content: start;
-}
+  .aCarrusel1 {
+    display: flex;
+    justify-content: end;
+  }
+
+  .aCarrusel {
+    display: flex;
+    justify-content: start;
+  }
 }

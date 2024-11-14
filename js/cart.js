@@ -1,63 +1,83 @@
+const envioHeading = document.getElementById("envioHeading");
+const envioSection = document.getElementById("envioSection");
+const submitEnvioButton = document.getElementById("submitEnvio");
+const productosHeading = document.getElementById("productosHeading");
+const productosSection = document.getElementById("productosSection");
+
 document.addEventListener("DOMContentLoaded", () => {
-  CargaProductos();
-  CargarCantidadesProducto();
-  ResumenCompra();
-  CargarProductosInteres();
+  cargarProductos();
+  cargarCantidadesProducto();
+  resumenCompra();
+  cargarProductosInteres();
   actualizarBadge();
+  alternarPestañas();
 });
 
 //Funcion para agregar productos al carrito 
-
-function agregarProductoAlCarrito(producto) {
-
+const agregarProductoAlCarrito = (producto) => {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  
   const index = carrito.findIndex(item => item.id === producto.id);
 
   if (index !== -1) {
-
-      carrito[index].cantidad += 1;
+    carrito[index].cantidad += 1;
   } else {
-      carrito.push({
-          ...producto,
-          cantidad: 1
-      });
+    carrito.push({
+      ...producto,
+      cantidad: 1
+    });
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
   actualizarBadge();
-  CargaProductos();
-  ResumenCompra();
+  cargarProductos();
+  resumenCompra();
 }
 
 // Funcion para cargar los productos en la pagina del carrito
-function CargaProductos() {
+const cargarProductos = () => {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
   let cadena = "";
 
-  productos.forEach((producto, index) => {
-    cadena += `
+  if (productos.length === 0) {
+    cadena = `
       <article class="row d-flex flex-wrap justify-content-between my-2 p-2 w-md-75">
-          <img src="${producto.imagen}" class="col-4">
-          <div class="col-6 col-md-6">
-              <h3 class="pt-3">${producto.nombre}</h3>
-              <div class="divCantidad pt-4">
+          <div class="col-12 text-center">
+              <p class="mt-3">No hay productos en el carrito.</p>
+          </div>
+      </article>
+    `;
+  } else {
+    productos.forEach((producto, index) => {
+      cadena += `
+          <article class="row d-flex align-items-center justify-content-between p-2 w-md-75">
+            <!-- Contenedor de la imagen y la información del producto -->
+            <div class="d-flex col-9">
+              <img src="${producto.imagen}" class="col-4 me-5">
+              <div class="col-8">
+                <h3 class="pt-3">${producto.nombre}</h3>
+                <div class="divCantidad pt-4 d-flex align-items-center">
                   <button class="btn-resta btnSumaResta">-</button>
                   <input type="number" class="cantidadProducto" value="${producto.cantidad || 1}" min="1" data-index="${index}">
                   <button class="btn-suma btnSumaResta">+</button>
+                </div>
               </div>
-              <p class="subtotal" id="subtotal-${index}">Subtotal: <span class="currency">USD</span>${(producto.costo * producto.cantidad).toFixed(2)}</p>
-          </div>
-          <p class="col-2 d-flex align-items-center m-0 p-0 PrecioProducto"><span class="currency">USD</span>${producto.costo}</p>
-      </article>
-    `;
-  });
+            </div>
 
-  document.querySelector("#carritoProductos").innerHTML += cadena; 
+            <!-- Contenedor de los precios -->
+            <div class="precioSection col-3 text-center">
+              <p class="PrecioProducto m-0 p-0"><span class="currency">USD</span>${producto.costo}</p>
+              <p class="subtotal" id="subtotal-${index}">Subtotal: <span class="currency">USD</span>${(producto.costo * producto.cantidad).toFixed(2)}</p>
+            </div>
+          </article>
+      `;
+    });
+  }
+
+  document.querySelector("#productosSection").innerHTML += cadena;
 }
 
 //Funcion para las cantidades 
-function CargarCantidadesProducto() {
+const cargarCantidadesProducto = () => {
   document.addEventListener("click", (event) => {
     const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -66,13 +86,13 @@ function CargarCantidadesProducto() {
       let cantidadInput = event.target.classList.contains("btn-suma")
         ? event.target.previousElementSibling
         : event.target.nextElementSibling;
-      
+
       let index = cantidadInput.dataset.index;
       let cantidadActual = parseInt(cantidadInput.value);
 
       if (event.target.classList.contains("btn-suma")) {
         cantidadActual += 1;
-      } else if (cantidadActual > 1) { 
+      } else if (cantidadActual > 1) {
         cantidadActual -= 1;
       }
       cantidadInput.value = cantidadActual;
@@ -86,13 +106,29 @@ function CargarCantidadesProducto() {
       const subtotal = cantidadActual * precio;
       subtotalElement.textContent = `Subtotal: USD ${subtotal.toFixed(2)}`;
 
-      ResumenCompra();
+      resumenCompra();
     }
   });
 }
 
-//Function del resumen de compra
-function ResumenCompra() {
+//Funcion que permite alternar entre las pestañas "Productos" y "Envío"
+const alternarPestañas = () => {
+  envioHeading.addEventListener("click", () => {
+    envioSection.style.display = "block";
+    productosSection.style.display = "none";
+    envioHeading.classList.add("active");
+    productosHeading.classList.remove("active");
+  });
+  productosHeading.addEventListener("click", () => {
+    productosSection.style.display = "block";
+    envioSection.style.display = "none";
+    productosHeading.classList.add("active");
+    envioHeading.classList.remove("active");
+  });
+};
+
+//Funcion del resumen de compra
+const resumenCompra = () => {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
   let cantidadTotal = 0;
@@ -108,7 +144,7 @@ function ResumenCompra() {
   });
 
   let cadena = `
-    <article id="articloMonto">
+    <article id="articuloMonto">
       <p id="cantMonto" class="mx-4 mt-3 mb-2">Productos (${cantidadTotal})</p>
       <p id="Monto" class="mx-5 "><span class="currency">USD </span>${precioTotal.toFixed(2)}</p>
     </article>
@@ -149,11 +185,11 @@ async function ObtenerProductoInt2() {
     console.error(error);
   }
 }
-async function CargarProductosInteres() {
+async function cargarProductosInteres() {
   let prod1 = await ObtenerProductoInt1();
   let prod2 = await ObtenerProductoInt2();
 
-  function crearArticuloProducto(prod) {
+  const crearArticuloProducto = (prod) => {
     return `
       <article class="row articuloProductosLineal col-12 col-lg-8 mx-auto px-3 articuloProductosInteres" onClick="redirecionAInfoProducto(${prod.id})">
         <figure class="col-10  mx-auto">
@@ -174,7 +210,7 @@ async function CargarProductosInteres() {
   }
 
   let productosContainer = document.querySelector("#productosDeInteres");
-  
+
   if (prod1 && !prod2) {
     productosContainer.innerHTML += crearArticuloProducto(prod1);
   } else if (!prod1 && prod2) {
@@ -203,11 +239,13 @@ async function CargarProductosInteres() {
       </div>
     `;
     productosContainer.innerHTML += carrusel;
+  } else {
+    tituloProdInteres.style.display = "none";
   }
 }
 
 
-function redirecionAInfoProducto(id){
+const redirecionAInfoProducto = (id) => {
   localStorage.setItem('prodId', id);
   window.location.href = "product-info.html";
 }
