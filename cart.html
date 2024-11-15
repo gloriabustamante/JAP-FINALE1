@@ -5,7 +5,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -17,16 +24,8 @@
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
     <div class="container position-relative" id="divContainer">
-      <button
-        class="navbar-toggler my-3"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        id="menuHamburguesa"
-      >
+      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -35,9 +34,7 @@
       </a>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul
-          class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center"
-        >
+        <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
           <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
             <a class="nav-link active" href="index.html">
               <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
@@ -50,22 +47,17 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
-            <a
-              class="nav-link dropdownButton"
-              href="#"
-              id="userDropdown"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <a class="nav-link dropdownButton" href="#" id="userDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
               <img src="img/user-icon.svg" alt="User Icon" />
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li>
                 <a class="dropdown-item" href="cart.html">
-                    Mi carrito 
-                    <span id="cart-badge" class="badge bg-danger">0</span>
+                  Mi carrito
+                  <span id="cart-badge" class="badge bg-danger">0</span>
                 </a>
-            </li>
+              </li>
               <li>
                 <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
               </li>
@@ -83,19 +75,94 @@
     <h1>Mi Carrito</h1>
 
     <div class="row mt-3 mx-2 d-md-flex justify-content-center" id="divCarrito1">
-      <section id="carritoProductos" class="col-12 col-md-9 col-lg-7 col-xl-5 my-3">
-        <h2 class="text-center text-capitalize pt-2">Productos</h2>
+      <section id="carritoProductos" class="col-12 col-md-9 col-lg-7 col-xl-5 my-3"> 
+        <div class="sectionHeadings d-flex justify-content-between align-items-center">
+          <h2 class="prodHeading active text-center text-capitalize py-2 flex-fill text-center bg-secondary-subtle"
+            id="productosHeading">Productos</h2>
+          <h2 class="envioHeading text-center text-capitalize py-2 flex-fill text-center bg-secondary-light"
+            id="envioHeading">Envío</h2>
+        </div>
 
+        <div id="productosSection">
+        </div>
+
+        <div id="envioSection" style="display: none;">
+          <article>
+            <h2 class="text-center mt-4">Tipo de envío:</h2>
+            <div class="inputContainer col mx-4">
+              <select name="select" class="input">
+                <option class="options" value="heading" selected disabled>Selecciona un tipo de envío</option>
+                <option value="standard">Standard - 12 a 15 días - (5%)</option>
+                <option value="express">Express - 5 a 8 días - (7%)</option>
+                <option value="premium">Premium - 2 a 5 días - (15%)</option>
+              </select>
+            </div>
+          </article>
+          <article>
+            <h2 class="text-center mt-4">Forma de pago:</h2>
+            <div class="inputContainer col mx-4">
+              <select name="select" class="input">
+                <option class="options" value="heading" selected disabled>Selecciona una forma de pago</option>
+                <option value="tarjeta_credito">Tarjeta de crédito</option>
+                <option value="transferencia_bancaria">Transferencia bancaria</option>
+              </select>
+            </div>
+          </article>
+          <article>
+            <h2 class="text-center mt-4">Dirección de envío:</h2>
+            <div class="inputContainer col mx-4">
+              <select name="select" class="input">
+                <option value="value1" selected disabled>Departamento</option>
+                <option value="artigas">Artigas</option>
+                <option value="canelones">Canelones</option>
+                <option value="cerro_largo">Cerro Largo</option>
+                <option value="colonia">Colonia</option>
+                <option value="durazno">Durazno</option>
+                <option value="flores">Flores</option>
+                <option value="florida">Florida</option>
+                <option value="lavalleja">Lavalleja</option>
+                <option value="maldonado">Maldonado</option>
+                <option value="montevideo">Montevideo</option>
+                <option value="paysandu">Paysandú</option>
+                <option value="rio_negro">Río Negro</option>
+                <option value="rivera">Rivera</option>
+                <option value="rocha">Rocha</option>
+                <option value="salto">Salto</option>
+                <option value="san_jose">San José</option>
+                <option value="soriano">Soriano</option>
+                <option value="tacuarembo">Tacuarembó</option>
+                <option value="treinta_y_tres">Treinta y Tres</option>                
+              </select>
+              <div class="inputContainer col">
+                <input id="localidad" type="text" class="input" placeholder="" required>
+                <label id="localidadLabel" for="localidad" class="label fs-6">Localidad:</label>
+              </div>
+              <div class="inputContainer col">
+                <input id="calle" type="text" class="input" placeholder="" required>
+                <label id="calleLabel" for="calle" class="label fs-6">Calle:</label>
+              </div>
+              <div class="inputContainer col">
+                <input id="numero" type="number" class="input" placeholder="" required>
+                <label id="numeroLabel" for="numero" class="label fs-6">Número:</label>
+              </div>
+              <div class="inputContainer col">
+                <input id="esquina" type="text" class="input" placeholder="" required>
+                <label id="esquinaLabel" for="esquina" class="label fs-6">Esquina:</label>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </section>
-    
+
       <div class="d-flex justify-content-start col-12 col-md-10 col-lg-3 col ms-md-5">
         <section id="montoTotal" class="col-12 col-md-4 col-lg-12 my-3">
           <h2 class="text-center pt-2">Resumen de compra</h2>
-          
+
         </section>
       </div>
     </div>
-    
+
 
     <div class="row mx-auto d-md-flex justify-content-center">
       <h2 class="text-uppercase px-4 my-2 text-lg-center pt-3" id="tituloProdInteres">Productos que te interesaron</h2>
@@ -103,14 +170,15 @@
 
       </section>
     </div>
-    
+
   </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
