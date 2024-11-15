@@ -53,7 +53,7 @@ function CargaProductos() {
     `;
   });
 
-  document.querySelector("#carritoProductos").innerHTML += cadena; 
+  document.querySelector("#carritoProductos").innerHTML = cadena; 
 }
 
 //Funcion para las cantidades 
@@ -62,7 +62,6 @@ function CargarCantidadesProducto() {
     const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
     if (event.target.classList.contains("btn-suma") || event.target.classList.contains("btn-resta")) {
-
       let cantidadInput = event.target.classList.contains("btn-suma")
         ? event.target.previousElementSibling
         : event.target.nextElementSibling;
@@ -72,9 +71,18 @@ function CargarCantidadesProducto() {
 
       if (event.target.classList.contains("btn-suma")) {
         cantidadActual += 1;
-      } else if (cantidadActual > 1) { 
+      } else {
         cantidadActual -= 1;
+        if (cantidadActual === 0) {
+          productos.splice(index, 1);
+          localStorage.setItem("carrito", JSON.stringify(productos));
+          actualizarBadge();
+          CargaProductos();
+          ResumenCompra();
+          return;
+        }
       }
+
       cantidadInput.value = cantidadActual;
 
       productos[index].cantidad = cantidadActual;
@@ -82,7 +90,7 @@ function CargarCantidadesProducto() {
       actualizarBadge();
 
       const subtotalElement = document.querySelector(`#subtotal-${index}`);
-      const precio = productos[index].precio || productos[index].costo || 0;
+      const precio = productos[index]?.precio || productos[index]?.costo || 0;
       const subtotal = cantidadActual * precio;
       subtotalElement.textContent = `Subtotal: USD ${subtotal.toFixed(2)}`;
 
@@ -118,8 +126,7 @@ function ResumenCompra() {
   const montoTotalContainer = document.querySelector("#montoTotal");
   if (montoTotalContainer) {
     montoTotalContainer.innerHTML = "";
-    montoTotalContainer.innerHTML = "<h2 class='text-center pt-2'>Resumen de compra</h2>";
-    montoTotalContainer.innerHTML += cadena;
+    montoTotalContainer.innerHTML = cadena;
   } else {
     console.error("El contenedor #montoTotal no existe en el DOM.");
   }
