@@ -226,15 +226,10 @@ a.custom-card:hover {
   text-align: center;
   font-family: "Lexend Deca" !important;
 }
-.dropdownButton{
-border: none;
-background-color: transparent;
-}
 
 .liIndex {
   background-color: #f7c77e;
   width: 22%;
-  height: 6vh;
   text-align: center;
 }
 
@@ -504,4 +499,65 @@ body.dark .star-rating {
 
 body.dark .star-rating label:hover { 
   color: rgba(192, 189, 23, 0.733);
+}
+
+.navbar .dropdown-menu {
+  background-color: #f7c77e; 
+  border: none; 
+  margin-top: 0;  
+  border-radius: 0; 
+  box-shadow: none; 
+  position: absolute;
+  left: 0;
+  min-width: 100%; 
+}
+
+.navbar .dropdown-item {
+  color: rgba(0,0,0,.55); 
+  padding: 10px 20px; 
+  border-radius: 0 !important;
+  box-shadow: none; 
+  border: none; 
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #dcb171;
+  color: #000; 
+}
+
+.navbar .dropdownButton {
+  margin-right: 15px;
+}
+
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown .nav-link {
+  padding-right: 0; 
+}
+
+@media (max-width: 768px) {
+  .navbar .dropdown-menu {
+    position: absolute;
+    right: 0; 
+    top: 35px;
+    width: auto;
+    padding-left: 0px;
+    font-size: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .dropdown-menu a {
+    padding: 10px 13px 10px 7px;
+    font-size: 12px; /* Ajustar el tamaño de fuente */
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar .dropdown-menu a {
+    padding: 10px 13px 10px 7px;
+    font-size: 12px; /* Ajustar el tamaño de fuente */
+  }
 }

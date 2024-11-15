@@ -45,23 +45,33 @@
           <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
-            <a class="nav-link dropdownButton" href="#" id="userDropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">
+          <li class="nav-item mx-1 my-1 dropdown liIndex">
+            <a
+              class="nav-link dropdownButton"
+              href="#"
+              id="userDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               <img src="img/user-icon.svg" alt="User Icon" />
+              <span class="d-lg-none">Usuario</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li>
                 <a class="dropdown-item" href="cart.html">
-                    Mi carrito 
-                    <span id="cart-badge" class="badge bg-danger">0</span>
+                  <i class="fas fa-shopping-cart"></i> Mi carrito
+                  <span id="cart-badge" class="badge bg-danger">0</span>
                 </a>
-            </li>
+              </li>
               <li>
-                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                <a class="dropdown-item" href="my-profile.html">
+                  <i class="fas fa-user"></i> Mi perfil
+                </a>
               </li>
               <li id="liLogout">
-                <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
+                <a class="dropdown-item" href="login.html" onclick="logout()">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
               </li>
             </ul>
           </li>

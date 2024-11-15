@@ -5,9 +5,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -55,7 +56,7 @@
           <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
+          <li class="nav-item mx-1 my-1 dropdown liIndex">
             <a
               class="nav-link dropdownButton"
               href="#"
@@ -64,19 +65,24 @@
               aria-expanded="false"
             >
               <img src="img/user-icon.svg" alt="User Icon" />
+              <span class="d-lg-none">Usuario</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li>
                 <a class="dropdown-item" href="cart.html">
-                    Mi carrito 
-                    <span id="cart-badge" class="badge bg-danger">0</span>
+                  <i class="fas fa-shopping-cart"></i> Mi carrito
+                  <span id="cart-badge" class="badge bg-danger">0</span>
                 </a>
-            </li>
+              </li>
               <li>
-                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                <a class="dropdown-item" href="my-profile.html">
+                  <i class="fas fa-user"></i> Mi perfil
+                </a>
               </li>
               <li id="liLogout">
-                <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
+                <a class="dropdown-item" href="login.html" onclick="logout()">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
               </li>
             </ul>
           </li>
