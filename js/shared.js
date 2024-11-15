@@ -1,17 +1,21 @@
+const navListItem = document.querySelector('#liLogout');
+const navbarToggler = document.querySelector('.navbar-toggler');
+
 document.addEventListener("DOMContentLoaded", function () {
     displayNavBarName()
     authentication()
+    aplicarModoDesdeLocalStorage()
+    actualizarBadge();
 });
 
-function displayNavBarName() {
+const displayNavBarName = () => {
     let navUsername = localStorage.getItem("username");
     const btnMenu= document.getElementById('userDropdown')
     if (navUsername) {
         btnMenu.textContent=navUsername       
 } }
 
-function logout () {
-    let navListItem = document.querySelector('#liLogout');
+const logout = () => {
     navListItem.addEventListener('click', function () {
         localStorage.removeItem('username')
         localStorage.removeItem('secondlastName')
@@ -22,15 +26,16 @@ function logout () {
         localStorage.removeItem('firstName')
         localStorage.removeItem('modoOscuro');
         localStorage.removeItem('carrito');
+        localStorage.removeItem('proRel1');
+        localStorage.removeItem('proRel2');
     })
 }
 
-function authentication() {
+const authentication = () => {
     if (localStorage.getItem("username") == null) {
         window.location = "login.html"
     }
 }
-const navbarToggler = document.querySelector('.navbar-toggler');
 
 navbarToggler.addEventListener('click', function () {
     navbarToggler.classList.toggle('toggler-open');
@@ -47,7 +52,7 @@ let saveButton = document.getElementById('buttonEditarPerfil');
 
 let modoOscuroSeleccionado;
 
-function aplicarModoDesdeLocalStorage() {
+const aplicarModoDesdeLocalStorage = () => {
     const modoOscuro = localStorage.getItem('modoOscuro') === 'true';
 
     if (modoOscuro) {
@@ -61,10 +66,7 @@ function aplicarModoDesdeLocalStorage() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', aplicarModoDesdeLocalStorage);
-
-
-function toggleDarkMode() {
+const toggleDarkMode = () => {
     const modoOscuro = document.body.classList.contains('dark');
 
     if (modoOscuro) {
@@ -103,7 +105,3 @@ function actualizarBadge() {
 
     document.getElementById('cart-badge').textContent = totalItems;
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    actualizarBadge();
-});
