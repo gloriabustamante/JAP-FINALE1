@@ -159,12 +159,13 @@ const resumenCompra = () => {
 
   const montoTotalContainer = document.querySelector("#montoTotal");
   if (montoTotalContainer) {
-    montoTotalContainer.innerHTML = "";
-    montoTotalContainer.innerHTML = "<h2 class='text-center pt-2'>Resumen de compra</h2>";
-    montoTotalContainer.innerHTML = cadena;
+    montoTotalContainer.innerHTML = `
+    <h2 class="text-center pt-2">Resumen de compra</h2>
+    ${cadena}
+  `;
   } else {
-    console.error("El contenedor #montoTotal no existe en el DOM.");
-  }
+  console.error("El contenedor #montoTotal no existe en el DOM.");
+}
 }
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.

@@ -556,13 +556,13 @@ body.dark .star-rating label:hover {
 @media (max-width: 768px) {
   .navbar .dropdown-menu a {
     padding: 10px 13px 10px 7px;
-    font-size: 12px; /* Ajustar el tamaño de fuente */
+    font-size: 12px; 
   }
 }
 
 @media (max-width: 991px) {
   .navbar .dropdown-menu a {
-    padding: 10px 13px 10px 7px;
-    font-size: 12px; /* Ajustar el tamaño de fuente */
+    padding: 10px 5px 10px 7px;
+    font-size: 12px; 
   }
 }
