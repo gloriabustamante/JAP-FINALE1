@@ -105,3 +105,10 @@ function actualizarBadge() {
 
     document.getElementById('cart-badge').textContent = totalItems;
 }
+
+function RedireccionarPorCategoriaAProducts(event){
+    event.preventDefault();
+    let idCategoria = event.currentTarget.getAttribute("data-id");
+    localStorage.setItem("catID", idCategoria);
+    window.location.href = "products.html";
+}

@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarProductosInteres();
   actualizarBadge();
   alternarPestañas();
+  let selectEnvio = document.querySelector("#SelectEnvio");
+  if (selectEnvio) {
+    selectEnvio.addEventListener("change", mostrarTotalCompra);
+  }
 });
 
 //Funcion para agregar productos al carrito 
@@ -133,12 +137,41 @@ const alternarPestañas = () => {
   });
 };
 
+function mostrarTotalCompra(){
+  let section = document.querySelector("#envioSection");
+  let selectEnvio = document.querySelector("#SelectEnvio");
+  let valorEnvio = parseFloat(selectEnvio?.value || 1); 
+
+  let total = precioTotal * valorEnvio;
+  let cadena = `<div class="text-end m-3" id="Monto">Total: USD ${total.toFixed(2)}</div>`;
+  const totalDiv = section.querySelector(".total-envio");
+  if (totalDiv) totalDiv.remove();
+  let div = document.createElement("div");
+  div.classList.add("total-envio");
+  div.innerHTML = cadena;
+  section.appendChild(div);
+
+
+  if(selectEnvio){
+    let valorEnvio = parseFloat(selectEnvio?.value || 1); 
+    let articulo = document.querySelector("#articuloEnvio");
+    let total = (precioTotal * valorEnvio) - precioTotal;
+    let cadena = `<p id="cantMonto" class="mx-4 mt-3 mb-2">Costo de envio</p>
+              <p id="Monto" class="mx-5 "><span class="currency">USD </span>${total}</p>`
+
+    articulo.style.borderBottom = "solid black 2px"
+    articulo.innerHTML += cadena
+  }
+}
+
+let precioTotal = 0;
+
 //Funcion del resumen de compra
 const resumenCompra = () => {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
   let cantidadTotal = 0;
-  let precioTotal = 0;
+  precioTotal = 0;
 
   productos.forEach((producto) => {
 
@@ -154,6 +187,7 @@ const resumenCompra = () => {
       <p id="cantMonto" class="mx-4 mt-3 mb-2">Productos (${cantidadTotal})</p>
       <p id="Monto" class="mx-5 "><span class="currency">USD </span>${precioTotal.toFixed(2)}</p>
     </article>
+    <article id="articuloEnvio" style="border: none"></article>
     <button id="btnComprar" class="d-flex justify-content-center align-items-center mx-auto my-2">Comprar</button>
   `;
 
