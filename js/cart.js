@@ -71,7 +71,7 @@ const cargarProductos = () => {
     });
   }
 
-  document.querySelector("#productosSection").innerHTML += cadena;
+  document.querySelector("#productosSection").innerHTML = cadena;
 }
 
 //Funcion para las cantidades 
@@ -90,8 +90,16 @@ const cargarCantidadesProducto = () => {
 
       if (event.target.classList.contains("btn-suma")) {
         cantidadActual += 1;
-      } else if (cantidadActual > 1) {
+      } else {
         cantidadActual -= 1;
+        if (cantidadActual === 0) {
+          productos.splice(index, 1);
+          localStorage.setItem("carrito", JSON.stringify(productos));
+          actualizarBadge();
+          cargarProductos();
+          resumenCompra();
+          return;
+        }
       }
       cantidadInput.value = cantidadActual;
 
@@ -100,7 +108,7 @@ const cargarCantidadesProducto = () => {
       actualizarBadge();
 
       const subtotalElement = document.querySelector(`#subtotal-${index}`);
-      const precio = productos[index].precio || productos[index].costo || 0;
+      const precio = productos[index]?.precio || productos[index]?.costo || 0;
       const subtotal = cantidadActual * precio;
       subtotalElement.textContent = `Subtotal: USD ${subtotal.toFixed(2)}`;
 
@@ -151,12 +159,13 @@ const resumenCompra = () => {
 
   const montoTotalContainer = document.querySelector("#montoTotal");
   if (montoTotalContainer) {
-    montoTotalContainer.innerHTML = "";
-    montoTotalContainer.innerHTML = "<h2 class='text-center pt-2'>Resumen de compra</h2>";
-    montoTotalContainer.innerHTML += cadena;
+    montoTotalContainer.innerHTML = `
+    <h2 class="text-center pt-2">Resumen de compra</h2>
+    ${cadena}
+  `;
   } else {
-    console.error("El contenedor #montoTotal no existe en el DOM.");
-  }
+  console.error("El contenedor #montoTotal no existe en el DOM.");
+}
 }
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.

@@ -2,20 +2,25 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bellefair&family=Inconsolata:wght@200..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sacramento&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/0d3f7e2579.js" crossorigin="anonymous"></script>
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
   <link href="css/product-info.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -23,16 +28,8 @@
 <body class="dark">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light p-1">
     <div class="container position-relative" id="divContainer">
-      <button
-        class="navbar-toggler my-3"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        id="menuHamburguesa"
-      >
+      <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuHamburguesa">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -41,21 +38,33 @@
       </a>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul
-          class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center"
-        >
+        <ul class="navbar-nav w-100 justify-content-between align-items-start align-items-lg-center">
           <li class="nav-item mx-0 d-none d-lg-block my-1" id="liInicio">
             <a class="nav-link active" href="index.html">
               <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
             </a>
           </li>
-          <li class="nav-item liIndex mx-1 my-1">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
+          <li class="nav-item dropdown mx-1 my-1 liIndex">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="categories.html" data-id="1">Ver todo</a></li>
+              <li><a class="dropdown-item" href="#" data-id="1">Autos</a></li>
+              <li><a class="dropdown-item" href="#" data-id="2">Juguetes</a></li>
+              <li><a class="dropdown-item" href="#" data-id="3">Muebles</a></li>
+              <li><a class="dropdown-item" href="#" data-id="4">Herramientas</a></li>
+              <li><a class="dropdown-item" href="#" data-id="5">Computadoras</a></li>
+              <li><a class="dropdown-item" href="#" data-id="6">Vestimenta</a></li>
+              <li><a class="dropdown-item" href="#" data-id="7">Electrodomésticos</a></li>
+              <li><a class="dropdown-item" href="#" data-id="8">Deporte</a></li>
+              <li><a class="dropdown-item" href="#" data-id="9">Celulares</a></li>
+            </ul>
+          </li>          
           <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
+          <li class="nav-item mx-1 my-1 dropdown liIndex">
             <a
               class="nav-link dropdownButton"
               href="#"
@@ -64,19 +73,24 @@
               aria-expanded="false"
             >
               <img src="img/user-icon.svg" alt="User Icon" />
+              <span class="d-lg-none">Usuario</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li>
                 <a class="dropdown-item" href="cart.html">
-                    Mi carrito 
-                    <span id="cart-badge" class="badge bg-danger">0</span>
+                  <i class="fas fa-shopping-cart"></i> Mi carrito
+                  <span id="cart-badge" class="badge bg-danger">0</span>
                 </a>
-            </li>
+              </li>
               <li>
-                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                <a class="dropdown-item" href="my-profile.html">
+                  <i class="fas fa-user"></i> Mi perfil
+                </a>
               </li>
               <li id="liLogout">
-                <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
+                <a class="dropdown-item" href="login.html" onclick="logout()">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
               </li>
             </ul>
           </li>

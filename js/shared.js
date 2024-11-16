@@ -82,7 +82,7 @@ const toggleDarkMode = () => {
     }
 }
 
-// Guardar el estado del modo en localStorage solo cuando se presiona el botón "Guardar cambios"
+// Guarda el estado del modo en localStorage solo cuando se presiona el botón "Guardar cambios"
 
 saveButton.addEventListener('click', () => {
     if (typeof modoOscuroSeleccionado !== 'undefined') {

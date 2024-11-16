@@ -226,15 +226,10 @@ a.custom-card:hover {
   text-align: center;
   font-family: "Lexend Deca" !important;
 }
-.dropdownButton{
-border: none;
-background-color: transparent;
-}
 
 .liIndex {
   background-color: #f7c77e;
   width: 22%;
-  height: 6vh;
   text-align: center;
 }
 
@@ -444,7 +439,7 @@ input[type=number] {
 
 /*ESTILO MODO OSCURO*/
 
-.dark, body.dark .list-group-item, body.dark footer, body.dark main {
+.dark, body.dark .list-group-item, body.dark footer, body.dark main{
   background-color: #19152c;
   color: white;
 }
@@ -469,7 +464,7 @@ body.dark .comentario-calificaciones, body.dark .navbar {
   color: white;
 }
 
-body.dark .nav-item, body.dark .modal-content, body.dark #comentarioModalLabel {
+body.dark .nav-item, body.dark .modal-content, body.dark #comentarioModalLabel, body.dark .dropdown-menu {
   background-color: #666;
   color: white;
 }
@@ -481,7 +476,7 @@ body.dark .btn-calificacion, body.dark #menuHamburguesa {
 }
 
 body.dark .articuloProductosLineal, body.dark .sideBarSection, body.dark .ArticuloProductos, body.dark .form, 
-body.dark #muebles, body.dark #juguetes, body.dark #autos, body.dark #carritoProductos, body.dark #montoTotal {
+body.dark #muebles, body.dark #juguetes, body.dark #autos, body.dark #carritoProductos, body.dark #montoTotal, body.dark .navbar .dropdown-item:hover {
   background-color: #3f3f3f;
   color: white;
   box-shadow: 2px 2px #666;
@@ -509,4 +504,65 @@ body.dark .star-rating {
 
 body.dark .star-rating label:hover { 
   color: rgba(192, 189, 23, 0.733);
+}
+
+.navbar .dropdown-menu {
+  background-color: #f7c77e; 
+  border: none; 
+  margin-top: 0;  
+  border-radius: 0; 
+  box-shadow: none; 
+  position: absolute;
+  left: 0;
+  min-width: 100%; 
+}
+
+.navbar .dropdown-item {
+  color: rgba(0,0,0,.55); 
+  padding: 10px 20px; 
+  border-radius: 0 !important;
+  box-shadow: none; 
+  border: none; 
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #dcb171;
+  color: #000; 
+}
+
+.navbar .dropdownButton {
+  margin-right: 15px;
+}
+
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown .nav-link {
+  padding-right: 0; 
+}
+
+@media (max-width: 768px) {
+  .navbar .dropdown-menu {
+    position: absolute;
+    right: 0; 
+    top: 35px;
+    width: auto;
+    padding-left: 0px;
+    font-size: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .dropdown-menu a {
+    padding: 10px 13px 10px 7px;
+    font-size: 12px; 
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar .dropdown-menu a {
+    padding: 10px 5px 10px 7px;
+    font-size: 12px; 
+  }
 }

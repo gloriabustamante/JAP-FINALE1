@@ -40,29 +40,53 @@
               <img src="img/logo.svg" id="imgNavBar" alt="Logo" />
             </a>
           </li>
-          <li class="nav-item liIndex mx-1 my-1">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
+          <li class="nav-item dropdown mx-1 my-1 liIndex">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="categories.html" data-id="1">Ver todo</a></li>
+              <li><a class="dropdown-item" href="#" data-id="1">Autos</a></li>
+              <li><a class="dropdown-item" href="#" data-id="2">Juguetes</a></li>
+              <li><a class="dropdown-item" href="#" data-id="3">Muebles</a></li>
+              <li><a class="dropdown-item" href="#" data-id="4">Herramientas</a></li>
+              <li><a class="dropdown-item" href="#" data-id="5">Computadoras</a></li>
+              <li><a class="dropdown-item" href="#" data-id="6">Vestimenta</a></li>
+              <li><a class="dropdown-item" href="#" data-id="7">Electrodomésticos</a></li>
+              <li><a class="dropdown-item" href="#" data-id="8">Deporte</a></li>
+              <li><a class="dropdown-item" href="#" data-id="9">Celulares</a></li>
+            </ul>
+          </li>          
           <li class="nav-item liIndex mx-1 my-1">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item mx-0 d-none d-lg-block my-1 dropdown liIndex">
-            <a class="nav-link dropdownButton" href="#" id="userDropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">
+          <li class="nav-item mx-1 my-1 dropdown liIndex">
+            <a
+              class="nav-link dropdownButton"
+              href="#"
+              id="userDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               <img src="img/user-icon.svg" alt="User Icon" />
+              <span class="d-lg-none">Usuario</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li>
                 <a class="dropdown-item" href="cart.html">
-                  Mi carrito
+                  <i class="fas fa-shopping-cart"></i> Mi carrito
                   <span id="cart-badge" class="badge bg-danger">0</span>
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                <a class="dropdown-item" href="my-profile.html">
+                  <i class="fas fa-user"></i> Mi perfil
+                </a>
               </li>
               <li id="liLogout">
-                <a class="dropdown-item" href="login.html" onclick="logout()">Cerrar Sesión</a>
+                <a class="dropdown-item" href="login.html" onclick="logout()">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
               </li>
             </ul>
           </li>
