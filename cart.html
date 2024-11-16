@@ -46,15 +46,15 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
               <li><a class="dropdown-item" href="categories.html" data-id="1">Ver todo</a></li>
-              <li><a class="dropdown-item" href="#" data-id="1">Autos</a></li>
-              <li><a class="dropdown-item" href="#" data-id="2">Juguetes</a></li>
-              <li><a class="dropdown-item" href="#" data-id="3">Muebles</a></li>
-              <li><a class="dropdown-item" href="#" data-id="4">Herramientas</a></li>
-              <li><a class="dropdown-item" href="#" data-id="5">Computadoras</a></li>
-              <li><a class="dropdown-item" href="#" data-id="6">Vestimenta</a></li>
-              <li><a class="dropdown-item" href="#" data-id="7">Electrodomésticos</a></li>
-              <li><a class="dropdown-item" href="#" data-id="8">Deporte</a></li>
-              <li><a class="dropdown-item" href="#" data-id="9">Celulares</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="101">Autos</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="102">Juguetes</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="103">Muebles</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="104">Herramientas</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="105">Computadoras</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="106">Vestimenta</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="107">Electrodomésticos</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="108">Deporte</a></li>
+              <li><a class="dropdown-item" href="products.html" onclick="RedireccionarPorCategoriaAProducts(event)" data-id="109">Celulares</a></li>
             </ul>
           </li>          
           <li class="nav-item liIndex mx-1 my-1">
@@ -95,107 +95,107 @@
     </div>
   </nav>
 
-  <main>
-    <h1>Mi Carrito</h1>
+    <main>
+      <h1>Mi Carrito</h1>
 
-    <div class="row mt-3 mx-2 d-md-flex justify-content-center" id="divCarrito1">
-      <section id="carritoProductos" class="col-12 col-md-9 col-lg-7 col-xl-5 my-3"> 
-        <div class="sectionHeadings d-flex justify-content-between align-items-center">
-          <h2 class="prodHeading active text-center text-capitalize py-2 flex-fill text-center bg-secondary-subtle"
-            id="productosHeading">Productos</h2>
-          <h2 class="envioHeading text-center text-capitalize py-2 flex-fill text-center bg-secondary-light"
-            id="envioHeading">Envío</h2>
+      <div class="row mt-3 mx-2 d-md-flex justify-content-center" id="divCarrito1">
+        <section id="carritoProductos" class="col-12 col-md-9 col-lg-7 col-xl-5 my-3"> 
+          <div class="sectionHeadings d-flex justify-content-between align-items-center">
+            <h2 class="prodHeading active text-center text-capitalize py-2 flex-fill text-center bg-secondary-subtle"
+              id="productosHeading">Productos</h2>
+            <h2 class="envioHeading text-center text-capitalize py-2 flex-fill text-center bg-secondary-light"
+              id="envioHeading">Envío</h2>
+          </div>
+
+          <div id="productosSection">
+          </div>
+
+          <div id="envioSection" style="display: none;">
+            <article>
+              <h2 class="text-center mt-4">Tipo de envío:</h2>
+              <div class="inputContainer col mx-4">
+                <select name="select" class="input" id="SelectEnvio">
+                  <option class="options" value="heading" selected disabled>Selecciona un tipo de envío</option>
+                  <option value="1.05">Standard - 12 a 15 días - (5%)</option>
+                  <option value="1.07">Express - 5 a 8 días - (7%)</option>
+                  <option value="1.15">Premium - 2 a 5 días - (15%)</option>
+                </select>
+              </div>
+            </article>
+            <article>
+              <h2 class="text-center mt-4">Forma de pago:</h2>
+              <div class="inputContainer col mx-4">
+                <select name="select" class="input">
+                  <option class="options" value="heading" selected disabled>Selecciona una forma de pago</option>
+                  <option value="tarjeta_credito">Tarjeta de crédito</option>
+                  <option value="transferencia_bancaria">Transferencia bancaria</option>
+                </select>
+              </div>
+            </article>
+            <article>
+              <h2 class="text-center mt-4">Dirección de envío:</h2>
+              <div class="inputContainer col mx-4">
+                <select name="select" class="input">
+                  <option value="value1" selected disabled>Departamento</option>
+                  <option value="artigas">Artigas</option>
+                  <option value="canelones">Canelones</option>
+                  <option value="cerro_largo">Cerro Largo</option>
+                  <option value="colonia">Colonia</option>
+                  <option value="durazno">Durazno</option>
+                  <option value="flores">Flores</option>
+                  <option value="florida">Florida</option>
+                  <option value="lavalleja">Lavalleja</option>
+                  <option value="maldonado">Maldonado</option>
+                  <option value="montevideo">Montevideo</option>
+                  <option value="paysandu">Paysandú</option>
+                  <option value="rio_negro">Río Negro</option>
+                  <option value="rivera">Rivera</option>
+                  <option value="rocha">Rocha</option>
+                  <option value="salto">Salto</option>
+                  <option value="san_jose">San José</option>
+                  <option value="soriano">Soriano</option>
+                  <option value="tacuarembo">Tacuarembó</option>
+                  <option value="treinta_y_tres">Treinta y Tres</option>                
+                </select>
+                <div class="inputContainer col">
+                  <input id="localidad" type="text" class="input" placeholder="" required>
+                  <label id="localidadLabel" for="localidad" class="label fs-6">Localidad:</label>
+                </div>
+                <div class="inputContainer col">
+                  <input id="calle" type="text" class="input" placeholder="" required>
+                  <label id="calleLabel" for="calle" class="label fs-6">Calle:</label>
+                </div>
+                <div class="inputContainer col">
+                  <input id="numero" type="number" class="input" placeholder="" required>
+                  <label id="numeroLabel" for="numero" class="label fs-6">Número:</label>
+                </div>
+                <div class="inputContainer col">
+                  <input id="esquina" type="text" class="input" placeholder="" required>
+                  <label id="esquinaLabel" for="esquina" class="label fs-6">Esquina:</label>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <div class="d-flex justify-content-start col-12 col-md-10 col-lg-3 col ms-md-5">
+          <section id="montoTotal" class="col-12 col-md-4 col-lg-12 my-3">
+            <h2 class="text-center pt-2">Resumen de compra</h2>
+
+          </section>
         </div>
+      </div>
 
-        <div id="productosSection">
-        </div>
 
-        <div id="envioSection" style="display: none;">
-          <article>
-            <h2 class="text-center mt-4">Tipo de envío:</h2>
-            <div class="inputContainer col mx-4">
-              <select name="select" class="input">
-                <option class="options" value="heading" selected disabled>Selecciona un tipo de envío</option>
-                <option value="standard">Standard - 12 a 15 días - (5%)</option>
-                <option value="express">Express - 5 a 8 días - (7%)</option>
-                <option value="premium">Premium - 2 a 5 días - (15%)</option>
-              </select>
-            </div>
-          </article>
-          <article>
-            <h2 class="text-center mt-4">Forma de pago:</h2>
-            <div class="inputContainer col mx-4">
-              <select name="select" class="input">
-                <option class="options" value="heading" selected disabled>Selecciona una forma de pago</option>
-                <option value="tarjeta_credito">Tarjeta de crédito</option>
-                <option value="transferencia_bancaria">Transferencia bancaria</option>
-              </select>
-            </div>
-          </article>
-          <article>
-            <h2 class="text-center mt-4">Dirección de envío:</h2>
-            <div class="inputContainer col mx-4">
-              <select name="select" class="input">
-                <option value="value1" selected disabled>Departamento</option>
-                <option value="artigas">Artigas</option>
-                <option value="canelones">Canelones</option>
-                <option value="cerro_largo">Cerro Largo</option>
-                <option value="colonia">Colonia</option>
-                <option value="durazno">Durazno</option>
-                <option value="flores">Flores</option>
-                <option value="florida">Florida</option>
-                <option value="lavalleja">Lavalleja</option>
-                <option value="maldonado">Maldonado</option>
-                <option value="montevideo">Montevideo</option>
-                <option value="paysandu">Paysandú</option>
-                <option value="rio_negro">Río Negro</option>
-                <option value="rivera">Rivera</option>
-                <option value="rocha">Rocha</option>
-                <option value="salto">Salto</option>
-                <option value="san_jose">San José</option>
-                <option value="soriano">Soriano</option>
-                <option value="tacuarembo">Tacuarembó</option>
-                <option value="treinta_y_tres">Treinta y Tres</option>                
-              </select>
-              <div class="inputContainer col">
-                <input id="localidad" type="text" class="input" placeholder="" required>
-                <label id="localidadLabel" for="localidad" class="label fs-6">Localidad:</label>
-              </div>
-              <div class="inputContainer col">
-                <input id="calle" type="text" class="input" placeholder="" required>
-                <label id="calleLabel" for="calle" class="label fs-6">Calle:</label>
-              </div>
-              <div class="inputContainer col">
-                <input id="numero" type="number" class="input" placeholder="" required>
-                <label id="numeroLabel" for="numero" class="label fs-6">Número:</label>
-              </div>
-              <div class="inputContainer col">
-                <input id="esquina" type="text" class="input" placeholder="" required>
-                <label id="esquinaLabel" for="esquina" class="label fs-6">Esquina:</label>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <div class="d-flex justify-content-start col-12 col-md-10 col-lg-3 col ms-md-5">
-        <section id="montoTotal" class="col-12 col-md-4 col-lg-12 my-3">
-          <h2 class="text-center pt-2">Resumen de compra</h2>
+      <div class="row mx-auto d-md-flex justify-content-center">
+        <h2 class="text-uppercase px-4 my-2 text-lg-center pt-3" id="tituloProdInteres">Productos que te interesaron</h2>
+        <section id="productosDeInteres" class="col-12 col-md-10 col-lg-12 my-3">
 
         </section>
       </div>
-    </div>
 
-
-    <div class="row mx-auto d-md-flex justify-content-center">
-      <h2 class="text-uppercase px-4 my-2 text-lg-center pt-3" id="tituloProdInteres">Productos que te interesaron</h2>
-      <section id="productosDeInteres" class="col-12 col-md-10 col-lg-12 my-3">
-
-      </section>
-    </div>
-
-  </main>
+    </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

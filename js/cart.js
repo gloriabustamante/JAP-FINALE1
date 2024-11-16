@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarProductosInteres();
   actualizarBadge();
   alternarPestañas();
+  let selectEnvio = document.querySelector("#SelectEnvio");
+  if (selectEnvio) {
+    selectEnvio.addEventListener("change", mostrarTotalCompra);
+  }
 });
 
 //Funcion para agregar productos al carrito 
@@ -133,12 +137,29 @@ const alternarPestañas = () => {
   });
 };
 
+function mostrarTotalCompra(){
+  let section = document.querySelector("#envioSection");
+  let selectEnvio = document.querySelector("#SelectEnvio");
+  let valorEnvio = parseFloat(selectEnvio?.value || 1); 
+
+  let total = precioTotal * valorEnvio;
+  let cadena = `<div class="text-end m-3" id="Monto">Total: USD ${total.toFixed(2)}</div>`;
+  const totalDiv = section.querySelector(".total-envio");
+  if (totalDiv) totalDiv.remove();
+  let div = document.createElement("div");
+  div.classList.add("total-envio");
+  div.innerHTML = cadena;
+  section.appendChild(div);
+}
+
+let precioTotal = 0;
+
 //Funcion del resumen de compra
 const resumenCompra = () => {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
   let cantidadTotal = 0;
-  let precioTotal = 0;
+  precioTotal = 0;
 
   productos.forEach((producto) => {
 
