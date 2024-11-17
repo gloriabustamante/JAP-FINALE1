@@ -202,6 +202,45 @@ const resumenCompra = () => {
 }
 }
 
+//validacioncamposyeventodelboton
+function validarCamposEnvioYPago() {
+  let isValid = true;
+
+  const tipoenvio = document.getElementById("tipoenvio");
+  const formapago = document.getElementById("formapago");
+  const departamento = document.getElementById("departamento");
+  const esquinaLabel = document.getElementById("esquinaLabel");
+  const numeroLabel = document.getElementById("numeroLabel");
+  const calleLabel = document.getElementById("calleLabel");
+
+
+  if (!tipoenvio || tipoenvio.value === "") isValid = false;
+  if (!formapago || formapago.value === "") isValid = false;
+  if (!departamento || departamento.value === "") isValid = false;
+  if (!esquinaLabel || esquina.value.trim() === "") isValid = false;
+  if (!numeroLabel || numero.value.trim() === "0") isValid = false;
+  if (!calleLabel || calle.value.trim() === "") isValid = false;
+}
+
+
+function validarYFinalizarCompra() {
+  const camposCompletos = validarCamposEnvioYPago();
+  
+  if (camposCompletos) {
+    alert("Compra realizada con éxito. ¡Gracias por tu compra!");
+  } else {
+    alert("Campo sin completar. Por favor, completa todos los campos requeridos.");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnComprar = document.getElementById("btnComprar");
+  if (btnComprar) {
+    btnComprar.addEventListener("click", validarYFinalizarCompra);
+  }
+});
+
+
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
 async function ObtenerProductoInt1() {
   let idProducto = localStorage.getItem("proRel1");
