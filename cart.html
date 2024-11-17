@@ -115,7 +115,7 @@
               <h2 class="text-center mt-4">Tipo de envío:</h2>
               <div class="inputContainer col mx-4">
                 <select name="select" class="input" id="SelectEnvio">
-                  <option class="options" value="heading" selected disabled>Selecciona un tipo de envío</option>
+                  <option class="options" value="" selected disabled>Selecciona un tipo de envío</option>
                   <option value="1.05">Standard - 12 a 15 días - (5%)</option>
                   <option value="1.07">Express - 5 a 8 días - (7%)</option>
                   <option value="1.15">Premium - 2 a 5 días - (15%)</option>
@@ -125,8 +125,8 @@
             <article>
               <h2 class="text-center mt-4">Forma de pago:</h2>
               <div class="inputContainer col mx-4">
-                <select name="select" class="input">
-                  <option class="options" value="heading" selected disabled>Selecciona una forma de pago</option>
+                <select name="select" class="input" id="formaPago">
+                  <option value="" selected disabled>Selecciona una forma de pago</option>
                   <option value="tarjeta_credito">Tarjeta de crédito</option>
                   <option value="transferencia_bancaria">Transferencia bancaria</option>
                 </select>
@@ -134,9 +134,9 @@
             </article>
             <article>
               <h2 class="text-center mt-4">Dirección de envío:</h2>
-              <div class="inputContainer col mx-4">
-                <select name="select" class="input">
-                  <option value="value1" selected disabled>Departamento</option>
+              <div class="inputContainer col mx-4" id="direccionEnvio">
+                <select name="select" class="input" id="departamento">
+                  <option value="" selected disabled>Departamento</option>
                   <option value="artigas">Artigas</option>
                   <option value="canelones">Canelones</option>
                   <option value="cerro_largo">Cerro Largo</option>
