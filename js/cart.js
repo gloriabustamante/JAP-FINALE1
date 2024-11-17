@@ -4,7 +4,7 @@ const submitEnvioButton = document.getElementById("submitEnvio");
 const productosHeading = document.getElementById("productosHeading");
 const productosSection = document.getElementById("productosSection");
 const botonComprar = document.getElementById("btnComprar");
-const selectEnvio = document.getElementById('SelectEnvio');
+const selectEnvio = document.getElementById('selectEnvio');
 const formaPago = document.getElementById('formaPago');
 const departamento = document.getElementById('departamento');
 const localidad = document.getElementById('localidad');
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarProductosInteres();
   actualizarBadge();
   alternarPestañas();
-  let selectEnvio = document.querySelector("#SelectEnvio");
+  let selectEnvio = document.querySelector("#selectEnvio");
   if (selectEnvio) {
     selectEnvio.addEventListener("change", mostrarTotalCompra);
   }
@@ -147,7 +147,7 @@ const alternarPestañas = () => {
 
 function mostrarTotalCompra() {
   let section = document.querySelector("#envioSection");
-  let selectEnvio = document.querySelector("#SelectEnvio");
+  let selectEnvio = document.querySelector("#selectEnvio");
   let valorEnvio = parseFloat(selectEnvio?.value || 1);
 
   let total = precioTotal * valorEnvio;
@@ -211,7 +211,7 @@ const resumenCompra = () => {
       btnComprar.addEventListener("click", () => {
         if (validarEnvio() && precioTotal > 0) {
           const modalHTML = `
-              <div class="modal fade alert-success" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+              <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -268,6 +268,14 @@ const resumenCompra = () => {
 // Funcion para validar envio
 
 function validarEnvio() {
+  const selectEnvio = document.getElementById('selectEnvio');
+  const formaPago = document.getElementById('formaPago');
+  const departamento = document.getElementById('departamento');
+  const localidad = document.getElementById('localidad');
+  const calle = document.getElementById('calle');
+  const numero = document.getElementById('numero');
+  const esquina = document.getElementById('esquina');
+
   const campos = [
     { field: selectEnvio, message: "Selecciona un tipo de envío." },
     { field: formaPago, message: "Selecciona una forma de pago." },
@@ -279,35 +287,57 @@ function validarEnvio() {
   ];
 
   const errors = campos
-    .filter(({ field, trim }) => !field || (trim ? !field.value.trim() : !field.value))
+    .filter(({ field, trim }) => {
+      const value = field ? (trim ? field.value.trim() : field.value) : '';
+      return !value;
+    })
     .map(({ message }) => message);
 
   if (errors.length > 0) {
-    modalHTML = `
-    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalCompraLabel">Whoops! Parece que te olvidaste de llenar los datos de envío...</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul>
-              ${errors.map(error => `<li>${error}</li>`).join('')}
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+    const existingModal = document.getElementById('modalCompra');
+    if (existingModal) {
+      const modalInstance = bootstrap.Modal.getInstance(existingModal);
+      modalInstance.hide();
+      setTimeout(() => {
+        existingModal.remove();
+      }, 300);
+    }
+
+
+    const modalHTML = `
+      <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCompraLabel">Whoops! Parece que te olvidaste de llenar los datos de envío...</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul>
+                ${errors.map(error => `<li>${error}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+
+    const modal = new bootstrap.Modal(document.getElementById('modalCompra'));
+    modal.show();
+
     return false;
   }
 
   return true;
 }
+
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
 async function ObtenerProductoInt1() {
