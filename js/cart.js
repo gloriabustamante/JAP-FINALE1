@@ -3,6 +3,14 @@ const envioSection = document.getElementById("envioSection");
 const submitEnvioButton = document.getElementById("submitEnvio");
 const productosHeading = document.getElementById("productosHeading");
 const productosSection = document.getElementById("productosSection");
+const botonComprar = document.getElementById("btnComprar");
+const selectTipoEnvio = document.getElementById("SelectEnvio").value;
+const selectFormaPago = document.getElementById("formaPago").value;
+const selectDepartamento = document.getElementById("departamento").value;
+const inputLocalidad = document.getElementById("localidad").value;
+const inputCalle = document.getElementById("calle").value;
+const inputNumero = document.getElementById("numero").value;
+const inputEsquina = document.getElementById("esquina").value;
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarProductos();
@@ -137,10 +145,10 @@ const alternarPestañas = () => {
   });
 };
 
-function mostrarTotalCompra(){
+function mostrarTotalCompra() {
   let section = document.querySelector("#envioSection");
   let selectEnvio = document.querySelector("#SelectEnvio");
-  let valorEnvio = parseFloat(selectEnvio?.value || 1); 
+  let valorEnvio = parseFloat(selectEnvio?.value || 1);
 
   let total = precioTotal * valorEnvio;
   let cadena = `<div class="text-end m-3" id="Monto">Total: USD ${total.toFixed(2)}</div>`;
@@ -152,11 +160,13 @@ function mostrarTotalCompra(){
   section.appendChild(div);
 
 
-  if(selectEnvio){
-    let valorEnvio = parseFloat(selectEnvio?.value || 1); 
+  if (selectEnvio) {
+    let cadena = "";
+    let valorEnvio = parseFloat(selectEnvio?.value || 1);
     let articulo = document.querySelector("#articuloEnvio");
+    articulo.innerHTML = cadena;
     let total = (precioTotal * valorEnvio) - precioTotal;
-    let cadena = `<p id="cantMonto" class="mx-4 mt-3 mb-2">Costo de envio</p>
+    cadena = `<p id="cantMonto" class="mx-4 mt-3 mb-2">Costo de envio</p>
               <p id="Monto" class="mx-5 "><span class="currency">USD </span>${total}</p>`
 
     articulo.style.borderBottom = "solid black 2px"
@@ -171,10 +181,9 @@ const resumenCompra = () => {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
   let cantidadTotal = 0;
-  precioTotal = 0;
+  let precioTotal = 0;
 
   productos.forEach((producto) => {
-
     const precio = producto.costo || 0;
     const cantidad = producto.cantidad || 1;
 
@@ -194,12 +203,89 @@ const resumenCompra = () => {
   const montoTotalContainer = document.querySelector("#montoTotal");
   if (montoTotalContainer) {
     montoTotalContainer.innerHTML = `
-    <h2 class="text-center pt-2">Resumen de compra</h2>
-    ${cadena}
-  `;
+      <h2 class="text-center pt-2">Resumen de compra</h2>
+      ${cadena}
+    `;
+
+    const btnComprar = document.querySelector("#btnComprar");
+    if (btnComprar) {
+      btnComprar.addEventListener("click", () => {
+        if (validateEnvioSection() && precioTotal > 0) {
+          alert(`Gracias por tu compra de $${precioTotal.toFixed(2)} USD.`); // a  modificar
+        } else if (precioTotal <= 0) {
+          alert(`Comprate algo papu.`);
+        }
+      });
+    }
+
   } else {
-  console.error("El contenedor #montoTotal no existe en el DOM.");
-}
+    console.error("El contenedor #montoTotal no existe en el DOM.");
+  }
+};
+
+
+// Funcion para validar envio
+
+function validateEnvioSection() {
+  const selectEnvio = document.getElementById('SelectEnvio');
+  const formaPago = document.getElementById('formaPago');
+  const departamento = document.getElementById('departamento');
+  const localidad = document.getElementById('localidad');
+  const calle = document.getElementById('calle');
+  const numero = document.getElementById('numero');
+  const esquina = document.getElementById('esquina');
+
+  let isValid = true;
+  let errorMessage = "";
+
+  // Check Tipo de envío
+  if (!selectEnvio.value) {
+    isValid = false;
+    errorMessage += "Selecciona un tipo de envío.\n";
+  }
+
+  // Check Forma de pago
+  if (!formaPago.value) {
+    isValid = false;
+    errorMessage += "Selecciona una forma de pago.\n";
+  }
+
+  // Check Dirección - Departamento
+  if (!departamento.value) {
+    isValid = false;
+    errorMessage += "Selecciona un departamento.\n";
+  }
+
+  // Check Dirección - Localidad
+  if (!localidad.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de localidad.\n";
+  }
+
+  // Check Dirección - Calle
+  if (!calle.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de calle.\n";
+  }
+
+  // Check Dirección - Número
+  if (!numero.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de número.\n";
+  }
+
+  // Check Dirección - Esquina
+  if (!esquina.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de esquina.\n";
+  }
+
+  // Show error message if invalid
+  if (!isValid) {
+    alert(errorMessage);
+  }
+
+  return isValid;
 }
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
