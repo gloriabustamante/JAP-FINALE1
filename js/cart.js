@@ -4,13 +4,13 @@ const submitEnvioButton = document.getElementById("submitEnvio");
 const productosHeading = document.getElementById("productosHeading");
 const productosSection = document.getElementById("productosSection");
 const botonComprar = document.getElementById("btnComprar");
-const selectTipoEnvio = document.getElementById("SelectEnvio").value;
-const selectFormaPago = document.getElementById("formaPago").value;
-const selectDepartamento = document.getElementById("departamento").value;
-const inputLocalidad = document.getElementById("localidad").value;
-const inputCalle = document.getElementById("calle").value;
-const inputNumero = document.getElementById("numero").value;
-const inputEsquina = document.getElementById("esquina").value;
+const selectEnvio = document.getElementById('SelectEnvio');
+const formaPago = document.getElementById('formaPago');
+const departamento = document.getElementById('departamento');
+const localidad = document.getElementById('localidad');
+const calle = document.getElementById('calle');
+const numero = document.getElementById('numero');
+const esquina = document.getElementById('esquina');
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarProductos();
@@ -151,27 +151,25 @@ function mostrarTotalCompra() {
   let valorEnvio = parseFloat(selectEnvio?.value || 1);
 
   let total = precioTotal * valorEnvio;
-  let cadena = `<div class="text-end m-3" id="Monto">Total: USD ${total.toFixed(2)}</div>`;
-  const totalDiv = section.querySelector(".total-envio");
-  if (totalDiv) totalDiv.remove();
-  let div = document.createElement("div");
-  div.classList.add("total-envio");
-  div.innerHTML = cadena;
-  section.appendChild(div);
 
-
-  if (selectEnvio) {
+  if (selectEnvio.value) {
     let cadena = "";
     let valorEnvio = parseFloat(selectEnvio?.value || 1);
     let articulo = document.querySelector("#articuloEnvio");
     articulo.innerHTML = cadena;
-    let total = (precioTotal * valorEnvio) - precioTotal;
+    let totalEnvio = (precioTotal * valorEnvio) - precioTotal;
+
     cadena = `<p id="cantMonto" class="mx-4 mt-3 mb-2">Costo de envio</p>
-              <p id="Monto" class="mx-5 "><span class="currency">USD </span>${total}</p>`
+              <p id="Monto" class="mx-5 "><span class="currency">USD </span>${totalEnvio.toFixed(2)}</p>`
 
     articulo.style.borderBottom = "solid black 2px"
     articulo.innerHTML += cadena
   }
+
+  let montoTotal = document.querySelector("#totalCompra");
+  montoTotal.style.borderBottom = "solid black 2px"
+  montoTotal.innerHTML += `<p id="cantMonto" class="mx-4 mt-3 mb-2">Total :</p>
+                          <p id="Monto" class="mx-5 "><span class="currency">USD </span>${total.toFixed(2)}</p>`
 }
 
 let precioTotal = 0;
@@ -181,7 +179,7 @@ const resumenCompra = () => {
   const productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
   let cantidadTotal = 0;
-  let precioTotal = 0;
+  precioTotal = 0;
 
   productos.forEach((producto) => {
     const precio = producto.costo || 0;
@@ -197,6 +195,7 @@ const resumenCompra = () => {
       <p id="Monto" class="mx-5 "><span class="currency">USD </span>${precioTotal.toFixed(2)}</p>
     </article>
     <article id="articuloEnvio" style="border: none"></article>
+    <article id="totalCompra" style="border: none"></article>
     <button id="btnComprar" class="d-flex justify-content-center align-items-center mx-auto my-2">Comprar</button>
   `;
 
@@ -210,11 +209,53 @@ const resumenCompra = () => {
     const btnComprar = document.querySelector("#btnComprar");
     if (btnComprar) {
       btnComprar.addEventListener("click", () => {
-        if (validateEnvioSection() && precioTotal > 0) {
-          alert(`Gracias por tu compra de $${precioTotal.toFixed(2)} USD.`); // a  modificar
+        if (validarEnvio() && precioTotal > 0) {
+          const modalHTML = `
+              <div class="modal fade alert-success" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalCompraLabel">Gracias por tu compra!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Te enviaremos un mail con los detalles de la misma.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+
+          // Insertar el modal en el documento y mostrarlo
+          document.body.insertAdjacentHTML("beforeend", modalHTML);
+          const modal = new bootstrap.Modal(document.getElementById("modalCompra"));
+          modal.show();
         } else if (precioTotal <= 0) {
-          alert(`Comprate algo papu.`);
+          modalHTML = `
+              <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalCompraLabel">Whoops! Ha ocurrido un error...</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Parece que no has seleccionado ningun producto. Probá seleccionando uno desde el catálogo!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
         }
+        document.body.insertAdjacentHTML("beforeend", modalHTML);
+        const modal = new bootstrap.Modal(document.getElementById("modalCompra"));
+        modal.show();
       });
     }
 
@@ -226,66 +267,46 @@ const resumenCompra = () => {
 
 // Funcion para validar envio
 
-function validateEnvioSection() {
-  const selectEnvio = document.getElementById('SelectEnvio');
-  const formaPago = document.getElementById('formaPago');
-  const departamento = document.getElementById('departamento');
-  const localidad = document.getElementById('localidad');
-  const calle = document.getElementById('calle');
-  const numero = document.getElementById('numero');
-  const esquina = document.getElementById('esquina');
+function validarEnvio() {
+  const campos = [
+    { field: selectEnvio, message: "Selecciona un tipo de envío." },
+    { field: formaPago, message: "Selecciona una forma de pago." },
+    { field: departamento, message: "Selecciona un departamento." },
+    { field: localidad, message: "Completa el campo de localidad.", trim: true },
+    { field: calle, message: "Completa el campo de calle.", trim: true },
+    { field: numero, message: "Completa el campo de número.", trim: true },
+    { field: esquina, message: "Completa el campo de esquina.", trim: true },
+  ];
 
-  let isValid = true;
-  let errorMessage = "";
+  const errors = campos
+    .filter(({ field, trim }) => !field || (trim ? !field.value.trim() : !field.value))
+    .map(({ message }) => message);
 
-  // Check Tipo de envío
-  if (!selectEnvio.value) {
-    isValid = false;
-    errorMessage += "Selecciona un tipo de envío.\n";
+  if (errors.length > 0) {
+    modalHTML = `
+    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCompraLabel">Whoops! Parece que te olvidaste de llenar los datos de envío...</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              ${errors.map(error => `<li>${error}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+    return false;
   }
 
-  // Check Forma de pago
-  if (!formaPago.value) {
-    isValid = false;
-    errorMessage += "Selecciona una forma de pago.\n";
-  }
-
-  // Check Dirección - Departamento
-  if (!departamento.value) {
-    isValid = false;
-    errorMessage += "Selecciona un departamento.\n";
-  }
-
-  // Check Dirección - Localidad
-  if (!localidad.value.trim()) {
-    isValid = false;
-    errorMessage += "Completa el campo de localidad.\n";
-  }
-
-  // Check Dirección - Calle
-  if (!calle.value.trim()) {
-    isValid = false;
-    errorMessage += "Completa el campo de calle.\n";
-  }
-
-  // Check Dirección - Número
-  if (!numero.value.trim()) {
-    isValid = false;
-    errorMessage += "Completa el campo de número.\n";
-  }
-
-  // Check Dirección - Esquina
-  if (!esquina.value.trim()) {
-    isValid = false;
-    errorMessage += "Completa el campo de esquina.\n";
-  }
-
-  // Show error message if invalid
-  if (!isValid) {
-    alert(errorMessage);
-  }
-
-  return isValid;
+  return true;
 }
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
