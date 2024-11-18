@@ -4,7 +4,7 @@ const submitEnvioButton = document.getElementById("submitEnvio");
 const productosHeading = document.getElementById("productosHeading");
 const productosSection = document.getElementById("productosSection");
 const botonComprar = document.getElementById("btnComprar");
-const selectEnvio = document.getElementById('SelectEnvio');
+const selectEnvio = document.getElementById('selectEnvio');
 const formaPago = document.getElementById('formaPago');
 const departamento = document.getElementById('departamento');
 const localidad = document.getElementById('localidad');
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarProductosInteres();
   actualizarBadge();
   alternarPestañas();
-  let selectEnvio = document.querySelector("#SelectEnvio");
+  let selectEnvio = document.querySelector("#selectEnvio");
   if (selectEnvio) {
     selectEnvio.addEventListener("change", mostrarTotalCompra);
   }
@@ -147,7 +147,7 @@ const alternarPestañas = () => {
 
 function mostrarTotalCompra() {
   let section = document.querySelector("#envioSection");
-  let selectEnvio = document.querySelector("#SelectEnvio");
+  let selectEnvio = document.querySelector("#selectEnvio");
   let valorEnvio = parseFloat(selectEnvio?.value || 1);
 
   let total = precioTotal * valorEnvio;
@@ -167,6 +167,7 @@ function mostrarTotalCompra() {
   }
 
   let montoTotal = document.querySelector("#totalCompra");
+  montoTotal.innerHTML = "";
   montoTotal.style.borderBottom = "solid black 2px"
   montoTotal.innerHTML += `<p id="cantMonto" class="mx-4 mt-3 mb-2">Total :</p>
                           <p id="Monto" class="mx-5 "><span class="currency">USD </span>${total.toFixed(2)}</p>`
@@ -211,7 +212,7 @@ const resumenCompra = () => {
       btnComprar.addEventListener("click", () => {
         if (validarEnvio() && precioTotal > 0) {
           const modalHTML = `
-              <div class="modal fade alert-success" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+              <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -266,47 +267,50 @@ const resumenCompra = () => {
 
 
 // Funcion para validar envio
-
 function validarEnvio() {
-  const campos = [
-    { field: selectEnvio, message: "Selecciona un tipo de envío." },
-    { field: formaPago, message: "Selecciona una forma de pago." },
-    { field: departamento, message: "Selecciona un departamento." },
-    { field: localidad, message: "Completa el campo de localidad.", trim: true },
-    { field: calle, message: "Completa el campo de calle.", trim: true },
-    { field: numero, message: "Completa el campo de número.", trim: true },
-    { field: esquina, message: "Completa el campo de esquina.", trim: true },
-  ];
+  let isValid = true;
+  let errorMessage = "";
 
-  const errors = campos
-    .filter(({ field, trim }) => !field || (trim ? !field.value.trim() : !field.value))
-    .map(({ message }) => message);
-
-  if (errors.length > 0) {
-    modalHTML = `
-    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalCompraLabel">Whoops! Parece que te olvidaste de llenar los datos de envío...</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul>
-              ${errors.map(error => `<li>${error}</li>`).join('')}
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-    return false;
+  if (!selectEnvio.value) {
+    isValid = false;
+    errorMessage += "Selecciona un tipo de envío.\n";
   }
 
-  return true;
+  if (!formaPago.value) {
+    isValid = false;
+    errorMessage += "Selecciona una forma de pago.\n";
+  }
+
+  if (!departamento.value) {
+    isValid = false;
+    errorMessage += "Selecciona un departamento.\n";
+  }
+
+  if (!localidad.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de localidad.\n";
+  }
+
+  if (!calle.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de calle.\n";
+  }
+
+  if (!numero.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de número.\n";
+  }
+
+  if (!esquina.value.trim()) {
+    isValid = false;
+    errorMessage += "Completa el campo de esquina.\n";
+  }
+
+  if (!isValid) {
+    alert(errorMessage);
+  }
+
+  return isValid;
 }
 
 //Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
