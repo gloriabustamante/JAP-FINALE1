@@ -1,0 +1,24 @@
+{
+  "name": "jap-finalgr1",
+  "version": "1.0.0",
+  "description": "emercado-api\r JSONs container para simular una Api REST para el ecommerce e-Mercado.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloriabustamante/JAP-FINALGR1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gloriabustamante/JAP-FINALGR1/issues"
+  },
+  "homepage": "https://github.com/gloriabustamante/JAP-FINALGR1#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mariadb": "^3.4.0"
+  }
+}
