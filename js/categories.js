@@ -23,37 +23,50 @@ function sortCategories(criteria, array) {
 }
 
 // Guarda el ID de la categoría seleccionada en localStorage y redirige
-function setCatID(id) {
-    localStorage.setItem("catID", id);
-    window.location = "products.html";
+export function setCatID(id) {
+    fetch(`http://localhost:3000/api/cats_products/${id}`, {
+        method: 'GET', 
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            window.location = "products.html";
+        })
+        .catch(error => console.error('Error:', error));
 }
 
-// Genera el HTML de la lista de categorías
+// Exponer al objeto global
+window.setCatID = setCatID;
+
 function showCategoriesList() {
+
     let htmlContentToAppend = "";
-    for (let category of currentCategoriesArray) {
-        if (
-            ((minCount === undefined) || (parseInt(category.productCount) >= minCount)) &&
-            ((maxCount === undefined) || (parseInt(category.productCount) <= maxCount))
-        ) {
+    for (let i = 0; i < currentCategoriesArray.length; i++) {
+        let category = currentCategoriesArray[i];
+
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))) {
+
             htmlContentToAppend += `
-                <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
-                        </div>
-                        <div class="col">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1">${category.name}</h4>
-                                <small class="text-muted">${category.productCount} artículos</small>
-                            </div>
-                            <p class="mb-1">${category.description}</p>
-                        </div>
+            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
                     </div>
-                </div>`;
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${category.name}</h4>
+                            <small class="text-muted">${category.productCount} artículos</small>
+                        </div>
+                        <p class="mb-1">${category.description}</p>
+                    </div>
+                </div>
+            </div>
+            `
         }
+
+        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
-    document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 }
 
 // Ordena y muestra las categorías

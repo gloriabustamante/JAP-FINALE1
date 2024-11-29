@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const router = express.Router();
 const path = require('path');
 const fs = require('fs').promises;
@@ -17,25 +18,5 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Ruta para obtener una categoría específica por ID
-router.get('/:id', async (req, res) => {
-  const categoryId = parseInt(req.params.id);
-  const filePath = path.join(__dirname, '../data/cats/cat.json');
-
-  try {
-    const data = await fs.readFile(filePath, 'utf8');
-    const categories = JSON.parse(data);
-    const category = categories.find(cat => cat.id === categoryId);
-
-    if (category) {
-      res.status(200).json(category);
-    } else {
-      res.status(404).json({ message: `Categoría con ID ${categoryId} no encontrada` });
-    }
-  } catch (err) {
-    console.error('Error al leer o parsear el archivo JSON:', err);
-    res.status(500).json({ message: 'Error al procesar los datos del archivo' });
-  }
-});
 
 module.exports = router;

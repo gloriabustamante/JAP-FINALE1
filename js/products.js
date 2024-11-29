@@ -1,3 +1,5 @@
+import { CATEGORIES_PRODUCTS } from './init.js';
+
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modalImg");
 const modalName = document.getElementById("modalName");
@@ -61,22 +63,37 @@ function mostrarProductosCuadrado() {
 // Función que obtiene productos desde una API y los muestra en el formato preferido
 
 function GetProductos() {
-    let idProducto = localStorage.getItem("catID");
+    // Get the product ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const idProducto = urlParams.get('id'); // Assuming the URL contains "?id=<product_id>"
 
-    fetch(`${PRODUCTS_URL}${idProducto}${EXT_TYPE}`, {
+    if (!idProducto) {
+        console.error("ID de producto no especificado en la URL.");
+        return;
+    }
+
+    console.log("ID Producto obtenido:", idProducto);
+
+    fetch(`${CATEGORIES_PRODUCTS}/${idProducto}`, {
         method: "GET"
-    }).then(function (response) {
+    })
+    .then(function (response) {
+        console.log("Response status:", response.status);
         if (response.ok) {
             return response.json();
         }
         throw new Error("Error al acceder a la URL");
-    }).then(function (data) {
+    })
+    .then(function (data) {
+        console.log("Datos obtenidos:", data);
         mostrarProductosEnFormato(data.products);
-        buscarProducto(data.products)
-    }).catch(function (error) {
-        console.error(error);
+        buscarProducto(data.products);
+    })
+    .catch(function (error) {
+        console.error("Error durante la solicitud:", error);
     });
 }
+
 
 // Función para ordenar los productos por precio
 

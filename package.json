@@ -1,6 +1,7 @@
 {
   "name": "jap-finalgr1",
   "version": "1.0.0",
+  "proxy": "http://localhost:3000",
   "description": "emercado-api\r JSONs container para simular una Api REST para el ecommerce e-Mercado.",
   "main": "index.js",
   "scripts": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/gloriabustamante/JAP-FINALGR1#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "mariadb": "^3.4.0"
   }
