@@ -1,3 +1,5 @@
+import { PRODUCTS_URL, PRODUCT_INFO_COMMENTS_URL } from './init.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   obtenerProductos();
   actualizarBadge()
@@ -8,7 +10,8 @@ const idProducto = localStorage.getItem("prodId");
 // Esta función obtiene los detalles de un producto específico desde un API y los envía a productosInfo.
 
 function obtenerProductos() {
-  fetch(`${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`)
+  
+  fetch(`${PRODUCTS_URL}/${idProducto}`)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -171,7 +174,10 @@ function configurarMiniaturas(imagenes) {
 // Esta función obtiene los comentarios del producto desde un API y los muestra.
 
 function obtenerComentarios() {
-  fetch(`${PRODUCT_INFO_COMMENTS_URL}${idProducto}${EXT_TYPE}`)
+  const idProducto = localStorage.getItem("prodId");
+
+  fetch(`${PRODUCT_INFO_COMMENTS_URL}/${idProducto}`)
+  
     .then((resp) => {
       if (resp.ok) {
         return resp.json();
@@ -234,7 +240,7 @@ function mostrarComentarios(comentarios) {
 function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
   let idProducto = localStorage.getItem("catID");
 
-  fetch(`${PRODUCTS_URL}${idProducto}${EXT_TYPE}`, {
+  fetch(`${PRODUCTS_URL}${idProducto}`, {
     method: "GET",
   })
     .then(function (response) {

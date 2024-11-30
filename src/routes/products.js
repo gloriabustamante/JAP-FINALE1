@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const fs = require('fs').promises; // Use promises-based fs API
+const fs = require('fs').promises;
 
 // Ruta para obtener todos los productos
 router.get('/', async (req, res) => {
-    const productsDirectory = path.join(__dirname, '../data/products'); // Ruta de la carpeta de productos
+    const productsDirectory = path.join(__dirname, '../data/products');
 
     try {
         const files = await fs.readdir(productsDirectory);
@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {
             }
         }
 
-        // Enviar la respuesta después de leer todos los archivos
         res.status(200).json(products);
     } catch (err) {
         console.error('Error al leer la carpeta de productos:', err);

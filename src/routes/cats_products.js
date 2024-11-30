@@ -8,13 +8,13 @@ router.get('/:id', async (req, res) => {
     const catID = req.params.id;
     const productFile = `${catID}.json`;
     const filePath = path.join(__dirname, '../data/cats_products', productFile);
-  
+
     try {
         const data = await fs.readFile(filePath, 'utf8');
-        const category = JSON.parse(data); // Suponiendo que el archivo contiene un solo objeto
+        const category = JSON.parse(data);
 
         if (category) {
-            res.status(200).json(category); // Devuelve la categoría si existe
+            res.status(200).json(category);
         } else {
             res.status(404).json({ message: `Categoría con ID ${catID} no encontrada` });
         }

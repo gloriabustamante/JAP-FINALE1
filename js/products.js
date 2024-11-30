@@ -63,29 +63,18 @@ function mostrarProductosCuadrado() {
 // Función que obtiene productos desde una API y los muestra en el formato preferido
 
 function GetProductos() {
-    // Get the product ID from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const idProducto = urlParams.get('id'); // Assuming the URL contains "?id=<product_id>"
-
-    if (!idProducto) {
-        console.error("ID de producto no especificado en la URL.");
-        return;
-    }
-
-    console.log("ID Producto obtenido:", idProducto);
+    const idProducto = localStorage.getItem("catID");
 
     fetch(`${CATEGORIES_PRODUCTS}/${idProducto}`, {
         method: "GET"
     })
     .then(function (response) {
-        console.log("Response status:", response.status);
         if (response.ok) {
             return response.json();
         }
         throw new Error("Error al acceder a la URL");
     })
     .then(function (data) {
-        console.log("Datos obtenidos:", data);
         mostrarProductosEnFormato(data.products);
         buscarProducto(data.products);
     })
@@ -183,7 +172,7 @@ function mostrarProductosEnFormato(productos) {
         const dataPriceAttr = `data-price="${p.cost}" data-sold="${p.soldCount}"`;
         if (preferencia === "lineal") {
             cadena += `
-                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', '${p.soldCount}', '${p.currency}${p.cost}', '${p.id}')">
+                <article class="row align-items-center articuloProductosLineal m-4" ${dataPriceAttr} >
                         <figure class="col-2 m-auto">
                             <img src="${p.image}" class="img-fluid imgProductosLineal p-2">
                         </figure>
@@ -201,7 +190,7 @@ function mostrarProductosEnFormato(productos) {
                 </article>`;
         } else {
             cadena += `
-                <article class="row d-block justify-content-center ArticuloProductos col-md-5 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr} onclick="openModal('${p.image}', '${p.name}', '${p.description}', '${p.soldCount}', '${p.currency}${p.cost}', '${p.id}')">
+                <article class="row d-block justify-content-center ArticuloProductos col-md-5 m-2 w-lg-50 col-lg-3 col-xl-3 m-lg-3" ${dataPriceAttr}>
                     <figure class="col-11" >
                         <img src="${p.image}" class="m-3 imagenProductosCuadrado">
                     </figure>
@@ -228,39 +217,16 @@ function mostrarProductosEnFormato(productos) {
     document.querySelector("#MostrarProductos").innerHTML = cadena;
 }
 
-function redirecionAInfoProducto(id){
+window.redirecionAInfoProducto = function(id) {
     localStorage.setItem('prodId', id);
     window.location.href = "product-info.html";
 
-    if(!localStorage.getItem("proRel1")){
-        localStorage.setItem("proRel1", id)
-    }else{
-        if(localStorage.getItem("proRel1") != id){
-            localStorage.setItem("proRel2", localStorage.getItem("proRel1"))
-            localStorage.setItem("proRel1", id)
+    if (!localStorage.getItem("proRel1")) {
+        localStorage.setItem("proRel1", id);
+    } else {
+        if (localStorage.getItem("proRel1") != id) {
+            localStorage.setItem("proRel2", localStorage.getItem("proRel1"));
+            localStorage.setItem("proRel1", id);
         }
     }
-}
-
-// Funcion de apertura y cierre del modal
-
-function openModal(imgSrc, name, description, soldCount, price) {
-    modal.style.display = "block";
-    modalImg.src = imgSrc;
-    modalName.innerHTML = name;
-    modalDescription.innerHTML = description;
-    modalSoldCount.innerHTML = `${soldCount} VENDIDOS`;
-    modalPrice.innerHTML = `${price}`;
-}
-
-function closeModal() {
-    modal.style.display = "none";
-}
-
-window.onclick = function (event) {
-    if (event.target === modal) {
-        closeModal();
-    }
-}
-
-closeBtn.onclick = closeModal;
+};

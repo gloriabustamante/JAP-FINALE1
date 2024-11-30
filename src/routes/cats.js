@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
 
   try {
     const data = await fs.readFile(filePath, 'utf8');
-    const categories = JSON.parse(data); // Parse the entire JSON array
-    res.status(200).json(categories); // Return all categories
+    const categories = JSON.parse(data);
+    res.status(200).json(categories);
   } catch (err) {
     console.error('Error al leer el archivo JSON:', err);
     res.status(500).json({ message: 'Error al leer el archivo JSON' });

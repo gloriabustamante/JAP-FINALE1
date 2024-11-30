@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 });
 
 // Ruta para obtener comentarios de un producto específico por ID
-router.get('/product/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const productId = req.params.id;
     const commentsFilePath = path.join(__dirname, `../data/products_comments/${productId}.json`);
 

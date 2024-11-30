@@ -29,7 +29,6 @@ export function setCatID(id) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             window.location = "products.html";
         })
         .catch(error => console.error('Error:', error));
