@@ -42,9 +42,36 @@ function login(event) {
     let password = document.querySelector("#password").value;
 
     if (username.length < 30 && username.length > 0  && password != null) {
-        localStorage.setItem("username", username);
-        window.location.href = "index.html";
+        fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: "admin",
+                password: "admin",
+            }),
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Credenciales incorrectas o error en el servidor");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
+                window.location.href = "index.html";
+            } else {
+                alert("Error: No se recibió un token válido.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error al iniciar sesión:", error.message);
+            alert("Error al iniciar sesión. Verifique sus credenciales.");
+        });
     } else {
-        alert("Error");
+        alert("Por favor, ingrese un nombre de usuario y una contraseña válidos.");
     }
-};
+}

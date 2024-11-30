@@ -11,7 +11,12 @@ const idProducto = localStorage.getItem("prodId");
 
 function obtenerProductos() {
   
-  fetch(`${PRODUCTS_URL}/${idProducto}`)
+  fetch(`${PRODUCTS_URL}/${idProducto}`, {
+    method: "GET",
+    headers: {
+      "access-token": localStorage.getItem("token"),
+    },
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -176,8 +181,12 @@ function configurarMiniaturas(imagenes) {
 function obtenerComentarios() {
   const idProducto = localStorage.getItem("prodId");
 
-  fetch(`${PRODUCT_INFO_COMMENTS_URL}/${idProducto}`)
-  
+  fetch(`${PRODUCT_INFO_COMMENTS_URL}/${idProducto}`, {
+    method: "GET",
+    headers: {
+      "access-token": localStorage.getItem("token"),
+    },
+  })
     .then((resp) => {
       if (resp.ok) {
         return resp.json();
@@ -242,6 +251,9 @@ function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
 
   fetch(`${PRODUCTS_URL}${idProducto}`, {
     method: "GET",
+    headers: {
+      "access-token": localStorage.getItem("token"),
+    },
   })
     .then(function (response) {
       if (response.ok) {

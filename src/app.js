@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
@@ -13,6 +14,7 @@ const commentsRoutes = require('./routes/products_comments');
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
@@ -44,6 +46,10 @@ app.use('/api/comments', authenticateToken, commentsRoutes);
 app.use('/api/comments/:id', authenticateToken, commentsRoutes);
 app.use('/api/cats_products', authenticateToken, catProductRoutes);
 app.use('/api/cats_products/:id', authenticateToken, catProductRoutes);
+
+app.get("/protected", authenticateToken, (req, res) => {
+  res.status(200).json({ message: "Acceso permitido", user: req.user });
+});
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

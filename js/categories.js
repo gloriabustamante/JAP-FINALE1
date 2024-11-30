@@ -111,12 +111,19 @@ function setupEventListeners() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    getJSONData(CATEGORIES_URL).then(resultObj => {
-        if (resultObj.status === "ok") {
-            currentCategoriesArray = resultObj.data;
-            showCategoriesList();
-        }
-    });
+    const token = localStorage.getItem('token'); 
+
+    if (token) {
+        getJSONData(CATEGORIES_URL, token).then(resultObj => {
+            if (resultObj.status === "ok") {
+                currentCategoriesArray = resultObj.data;
+                showCategoriesList();
+            }
+        });
+    } else {
+        console.error('No se encontró el token en localStorage');
+    }
 
     setupEventListeners();
 });
+
