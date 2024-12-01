@@ -1,5 +1,15 @@
 const express = require('express');
-const path = require('path');
+const mariadb = require('mariadb');
+
+const pool = mariadb.createPool({
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "ecommerce",
+  connectionLimit: 5,
+  port : 3306
+});
+
 const router = express.Router();
 
 // Endpoint para agregar productos al carrito

@@ -82,6 +82,36 @@ function productosInfo(productos) {
   document.getElementById("btnComprar").addEventListener("click", comprarProducto);
 }
 
+function agregarAlCarrito(usuarioId, nombreproducto, cantidad) {
+  let token =  localStorage.getItem("token");
+  fetch('http://localhost:3000/api/cart', {
+    method: 'POST',
+    headers: {
+      'Content-Type' : 'application/json',
+      'access-token' : token
+    },
+    body: JSON.stringify({
+      usuarioId: usuarioId,
+      nombreproducto: nombreproducto,
+      cantidad: cantidad
+    })
+  })
+  .then(response => {
+    console.log("Respuesta del servidor:", response);  // Log para ver qué devuelve el servidor
+    return response.json();
+  })
+  .then(data => {
+    console.log("data", data); 
+  })
+  .catch(error => {
+    console.error('Error al agregar al carrito:', error);
+  });
+}
+
+
+
+
+
 //funcion para el boton de comprar producto
 
 function comprarProducto() {
