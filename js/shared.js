@@ -28,6 +28,7 @@ const logout = () => {
         localStorage.removeItem('carrito');
         localStorage.removeItem('proRel1');
         localStorage.removeItem('proRel2');
+        localStorage.removeItem("token")
     })
 }
 

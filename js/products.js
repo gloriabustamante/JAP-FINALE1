@@ -65,8 +65,19 @@ function mostrarProductosCuadrado() {
 function GetProductos() {
     const idProducto = localStorage.getItem("catID");
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        console.error("No se encontró el token en localStorage");
+        window.location.href = "login.html";
+    } else {
+        console.log("Token encontrado:", token);
+    
     fetch(`${CATEGORIES_PRODUCTS}/${idProducto}`, {
-        method: "GET"
+        method: "GET",
+        headers: {
+            "access-token": localStorage.getItem("token"),
+        },
     })
     .then(function (response) {
         if (response.ok) {
@@ -229,4 +240,5 @@ window.redirecionAInfoProducto = function(id) {
             localStorage.setItem("proRel1", id);
         }
     }
+    };
 };

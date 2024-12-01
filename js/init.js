@@ -18,27 +18,33 @@ let hideSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "none";
 };
 
-export function getJSONData(url) {
+export function getJSONData(url, token) {
     let result = {};
     showSpinner();
-    return fetch(url)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(response.statusText);
-            }
-        })
-        .then(function(response) {
-            result.status = "ok";
-            result.data = response;
-            hideSpinner();
-            return result;
-        })
-        .catch(function(error) {
-            result.status = "error";
-            result.data = error;
-            hideSpinner();
-            return result;
-        });
+
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'access-token': token
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(response.statusText);
+        }
+    })
+    .then(function(response) {
+        result.status = "ok";
+        result.data = response;
+        hideSpinner();
+        return result;
+    })
+    .catch(function(error) {
+        result.status = "error";
+        result.data = error;
+        hideSpinner();
+        return result;
+    });
 }
