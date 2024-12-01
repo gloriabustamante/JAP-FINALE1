@@ -1,9 +1,9 @@
+import { PRODUCTS_URL } from './init.js';
+
 const envioHeading = document.getElementById("envioHeading");
 const envioSection = document.getElementById("envioSection");
-const submitEnvioButton = document.getElementById("submitEnvio");
 const productosHeading = document.getElementById("productosHeading");
 const productosSection = document.getElementById("productosSection");
-const botonComprar = document.getElementById("btnComprar");
 const selectEnvio = document.getElementById('selectEnvio');
 const formaPago = document.getElementById('formaPago');
 const departamento = document.getElementById('departamento');
@@ -313,72 +313,75 @@ function validarEnvio() {
   return isValid;
 }
 
-//Funcion que obtiene los productos en los cuales el usuario ingreso por ultima vez.
-async function ObtenerProductoInt1() {
-  let idProducto = localStorage.getItem("proRel1");
+// Función que obtiene los productos relacionados
+async function obtenerProductoInteres(idsProductos) {
+  
   try {
-    let resultado = await fetch(`${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`);
-    if (!resultado.ok) throw new Error("Error en la carga del producto 1");
-    let producto = await resultado.json();
-    return producto;
+    const productos = await Promise.all(
+      idsProductos.map(async (idProducto) => {
+
+        const resultado = await fetch(`${PRODUCTS_URL}/${idProducto}`, {
+          method: "GET",
+          headers: {
+            "access-token": localStorage.getItem("token"),
+          },
+        });
+        if (!resultado.ok) throw new Error(`Error en la carga del producto ${idProducto}`);
+        return await resultado.json();
+      })
+    );
+    return productos.filter(producto => producto);
   } catch (error) {
     console.error(error);
+    return [];
   }
 }
 
-async function ObtenerProductoInt2() {
-  let idProducto = localStorage.getItem("proRel2");
-  try {
-    let resultado = await fetch(`${PRODUCT_INFO_URL}${idProducto}${EXT_TYPE}`);
-    if (!resultado.ok) throw new Error("Error en la carga del producto 2");
-    let producto = await resultado.json();
-    return producto;
-  } catch (error) {
-    console.error(error);
-  }
-}
 async function cargarProductosInteres() {
-  let prod1 = await ObtenerProductoInt1();
-  let prod2 = await ObtenerProductoInt2();
+  const idsProductos = Object.keys(localStorage)
+    .filter(key => key.startsWith("proRel"))
+    .map(key => localStorage.getItem(key));
 
-  const crearArticuloProducto = (prod) => {
-    return `
-      <article class="row articuloProductosLineal col-12 col-lg-8 mx-auto px-3 articuloProductosInteres" onClick="redirecionAInfoProducto(${prod.id})">
-        <figure class="col-10  mx-auto">
-          <img src="${prod.images[0]}" alt="${prod.name}" class="img-fluid py-3 imgProductosLineal ">
-        </figure>
-        <div class="px-4 mb-2 divNameSoldCount">
-          <h3 class="mb-1">${prod.name}</h3>
-          <p class="cantidadVendidos m-0">${prod.soldCount} vendidos</p>
-        </div>
-        <div class="col-12 m-0 px-4 ">
-          <p class="">${prod.description}</p>
-        </div>
-        <div class="col-12 text-end ">
-          <p class="price text-muted"><span class="currency">${prod.currency}</span> ${prod.cost}</p>
-        </div>
-      </article>
-    `;
+  if (idsProductos.length === 0) {
+    tituloProdInteres.style.display = "none";
+    return;
   }
+
+  const productos = await obtenerProductoInteres(idsProductos);
+
+  const crearArticuloProducto = (prod) => `
+    <article class="row articuloProductosLineal col-12 col-lg-8 mx-auto px-3 articuloProductosInteres" onClick="redirecionAInfoProducto(${prod.id})">
+      <figure class="col-10 mx-auto">
+        <img src="${prod.images[0]}" alt="${prod.name}" class="img-fluid py-3 imgProductosLineal">
+      </figure>
+      <div class="px-4 mb-2 divNameSoldCount">
+        <h3 class="mb-1">${prod.name}</h3>
+        <p class="cantidadVendidos m-0">${prod.soldCount} vendidos</p>
+      </div>
+      <div class="col-12 m-0 px-4">
+        <p>${prod.description}</p>
+      </div>
+      <div class="col-12 text-end">
+        <p class="price text-muted"><span class="currency">${prod.currency}</span> ${prod.cost}</p>
+      </div>
+    </article>
+  `;
 
   let productosContainer = document.querySelector("#productosDeInteres");
 
-  if (prod1 && !prod2) {
-    productosContainer.innerHTML += crearArticuloProducto(prod1);
-  } else if (!prod1 && prod2) {
-    productosContainer.innerHTML += crearArticuloProducto(prod2);
-  } else if (prod1 && prod2) {
+  productosContainer.innerHTML = "";
+
+  if (productos.length > 1) {
     let carrusel = `
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div id="Carrusel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                ${crearArticuloProducto(prod1)}
-              </div>
-              <div class="carousel-item">
-                ${crearArticuloProducto(prod2)}
-              </div>
+              ${productos.map((prod, index) => `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                  ${crearArticuloProducto(prod)}
+                </div>
+              `).join('')}
             </div>
             <a class="carousel-control-prev aCarrusel1" href="#Carrusel" role="button" data-bs-slide="prev">
               <i class="fa-solid fa-angle-left flechitaCarrito"></i>
@@ -390,14 +393,17 @@ async function cargarProductosInteres() {
         </div>
       </div>
     `;
-    productosContainer.innerHTML += carrusel;
+    productosContainer.innerHTML = carrusel;
+  } else if (productos.length === 1) {
+    productosContainer.innerHTML = crearArticuloProducto(productos[0]);
   } else {
     tituloProdInteres.style.display = "none";
   }
 }
 
-
 const redirecionAInfoProducto = (id) => {
   localStorage.setItem('prodId', id);
   window.location.href = "product-info.html";
-}
+};
+
+cargarProductosInteres();
