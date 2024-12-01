@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     connection = await pool.getConnection();
 
     // Verificar si el usuario ya tiene un carrito
-    const result = await connection.query('SELECT * FROM Carritos WHERE IdUsuario = ? AND nombreproducto = ?', [usuarioId, nombreproducto]);
+    const result = await connection.query('SELECT * FROM Carritos WHERE nombreUsuario = ? AND nombreproducto = ?', [usuarioId, nombreproducto]);
 
     if (result.length > 0) {
       // Si el producto ya está en el carrito, actualizamos la cantidad
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
       res.status(200).json({ mensaje: 'Cantidad actualizada en el carrito con éxito' });
     } else {
       // Si el usuario no tiene el producto en su carrito, lo agregamos
-      const insertResult = await connection.query('INSERT INTO Carritos (IdUsuario, nombreproducto, cantidad) VALUES (?, ?, ?)',
+      const insertResult = await connection.query('INSERT INTO Carritos (nombreUsuario, nombreproducto, cantidad) VALUES (?, ?, ?)',
         [usuarioId, nombreproducto, cantidad]);
 
       res.status(200).json({ mensaje: 'Producto agregado al carrito con éxito' });

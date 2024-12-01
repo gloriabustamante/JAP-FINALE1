@@ -401,7 +401,8 @@ async function cargarProductosInteres() {
   }
 }
 
-const redirecionAInfoProducto = (id) => {
+
+window.redirecionAInfoProducto = function (id) {
   localStorage.setItem('prodId', id);
   window.location.href = "product-info.html";
 };
