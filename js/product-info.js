@@ -1,4 +1,4 @@
-import { PRODUCTS_URL, PRODUCT_INFO_COMMENTS_URL } from './init.js';
+import { PRODUCTS_URL, PRODUCT_INFO_COMMENTS_URL, CATEGORIES_PRODUCTS } from './init.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   obtenerProductos();
@@ -248,8 +248,9 @@ function mostrarComentarios(comentarios) {
 
 function obtenerDatosProductosRelacionados(arrayProductosRelacionados) {
   let idProducto = localStorage.getItem("catID");
-
-  fetch(`${PRODUCTS_URL}${idProducto}`, {
+  console.log(idProducto);
+  
+  fetch(`${CATEGORIES_PRODUCTS}/${idProducto}`, {
     method: "GET",
     headers: {
       "access-token": localStorage.getItem("token"),
@@ -301,10 +302,10 @@ function mostrarInfoProductosRel(productos, arrayProductosRelacionados) {
 
 // Función para mostrar el producto relacionado cuando se selecciona uno de la lista
 
-function mostrarProductoRelacionado(id) {
+window.mostrarProductoRelacionado = function (id) {
   localStorage.setItem("prodId", id);
   window.location.href = window.location.href;
-}
+};
 
 //FUNCION PARA LOS COMENTARIOS NUEVOS
 

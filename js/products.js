@@ -1,13 +1,5 @@
 import { CATEGORIES_PRODUCTS } from './init.js';
 
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const modalName = document.getElementById("modalName");
-const modalDescription = document.getElementById("modalDescription");
-const modalSoldCount = document.getElementById("modalSoldCount");
-const modalPrice = document.getElementById("modalPrice");
-const closeBtn = document.getElementsByClassName("close");
-
 document.addEventListener("DOMContentLoaded", function () {
     ajustarPreferenciaPorTamañoVentana();
     window.addEventListener("resize", ajustarPreferenciaPorTamañoVentana);
