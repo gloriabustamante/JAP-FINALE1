@@ -105,6 +105,7 @@ function comprarProducto() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
   mostrarModalCompra();
   actualizarBadge();
+  agregarAlCarrito(localStorage.getItem("username"), productoComprado.nombre, productoComprado.cantidad)
 }
 
 document.addEventListener("click", function(event) {
